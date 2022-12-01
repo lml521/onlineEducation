@@ -1,6 +1,6 @@
 <template>
-	<view class="login-box">
-			登 录
+	<view>
+		资料编辑
 	</view>
 </template>
 

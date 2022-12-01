@@ -3,15 +3,17 @@
 		// 首页
 		{
 			"path": "pages/index/index",
-			
+
 			"style": {
 				"navigationBarBackgroundColor": "#fff",
 				"app-plus": {
 					"titleNView": {
 						"searchInput": {
+							"height":"200rpx",
 							"align": "center",
 							"placeholder": "搜索你想要的内容",
-							"backgroundColor":"#f5f5f1",
+							"placeholderColor": "#928e8a",
+							"backgroundColor": "#f5f5f1",
 							"disabled": true
 						}
 					}
@@ -20,7 +22,7 @@
 			}
 
 		}, {
-			// 学习进度
+			// 学习进度 /pages/tabbar/learn/learn
 			"path": "pages/tabbar/learn/learn",
 			"style": {
 				"navigationBarTitleText": "学习进度",
@@ -38,64 +40,98 @@
 				"navigationBarTextStyle": "white", //导航栏字体颜色
 				"app-plus": {
 					"titleNView": {
-						"buttons": [
-							{
-								"float": "right",
-								"type": "menu"
-							}
-						]
+						"buttons": [{
+							"float": "right",
+							"type": "menu"
+						}]
 					}
 				}
 			}
 
-		}
-	    ,{
-            "path" : "pages/login/login",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/setting/setting",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的设置",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
-	"tabBar": {
-		"color": "#c4c0c9",
-		"selectedColor": "#353535",
-		"list": [{
-				"text": "首页",
-				"pagePath": "pages/index/index",
-				"iconPath": "static/tabbar/index1.png",
-				"selectedIconPath": "static/tabbar/index1_selected.png"
-			},
-			{
-				"text": "学习",
-				"pagePath": "pages/tabbar/learn/learn",
-				"iconPath": "static/tabbar/learn.png",
-				"selectedIconPath": "static/tabbar/learn_selected.png"
-			},
-			{
-				"text": "我的",
-				"pagePath": "pages/tabbar/home/home",
-				"iconPath": "static/tabbar/home.png",
-				"selectedIconPath": "static/tabbar/home_selected.png"
+		}, {
+			// 登录
+			"path": "pages/login/login",
+			"style": {
+				
 			}
-		]
-	},
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	},
-	"uniIdRouter": {}
-}
+			},
+			{
+				"path": "pages/setting/setting",
+				"style": {
+					"navigationBarTitleText": "我的设置",
+					"enablePullDownRefresh": false
+				}
+
+			},
+			{
+				"path": "pages/user-info/user-info",
+				"style": {
+					"navigationBarTitleText": "资料编辑",
+					"enablePullDownRefresh": false
+				}
+
+			},
+			{
+				"path": "pages/order-list/order-list",
+				"style": {
+					"navigationBarTitleText": "我的订单",
+					"enablePullDownRefresh": false
+				}
+
+			},
+			{
+				"path": "pages/msg-list/msg-list",
+				"style": {
+					"navigationBarTitleText": "消息列表",
+					"enablePullDownRefresh": false
+				}
+
+			},
+			{
+				"path": "pages/fava-list/fava-list",
+				"style": {
+					"navigationBarTitleText": "收藏列表",
+					"enablePullDownRefresh": false
+				}
+
+			},
+			{
+				"path": "pages/my-coupon/my-coupon",
+				"style": {
+					"navigationBarTitleText": "我的优惠券",
+					"enablePullDownRefresh": false
+				}
+
+			}
+		],
+		"tabBar": {
+			"color": "#c4c0c9",
+			"selectedColor": "#353535",
+			"list": [{
+					"text": "首页",
+					"pagePath": "pages/index/index",
+					"iconPath": "static/tabbar/index1.png",
+					"selectedIconPath": "static/tabbar/index1_selected.png"
+				},
+				{
+					"text": "学习",
+					"pagePath": "pages/tabbar/learn/learn",
+					"iconPath": "static/tabbar/learn.png",
+					"selectedIconPath": "static/tabbar/learn_selected.png"
+				},
+				{
+					"text": "我的",
+					"pagePath": "pages/tabbar/home/home",
+					"iconPath": "static/tabbar/home.png",
+					"selectedIconPath": "static/tabbar/home_selected.png"
+				}
+			]
+		},
+		"globalStyle": {
+			"navigationBarTextStyle": "black",
+			"navigationBarTitleText": "uni-app",
+			"navigationBarBackgroundColor": "#F8F8F8",
+			"backgroundColor": "#F8F8F8"
+		},
+		"uniIdRouter": {}
+	}

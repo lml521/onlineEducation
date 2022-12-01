@@ -1,6 +1,6 @@
 <template>
-	<view class="login-box">
-			登 录
+	<view>
+		我的订单
 	</view>
 </template>
 
