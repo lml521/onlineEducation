@@ -1,9 +1,9 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+	<view class="content animate__animated animate__fadeInDown">
+			124
 		<view class="text-area">
 			<text class="title text-main">{{title}}</text>
-			<view class="divider order-main"></view>
+			<view class="animated bounceOutLeft"></view>
 			<view class="iconfont icon-info">
 				
 			</view>

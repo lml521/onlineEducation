@@ -1,13 +1,14 @@
 import App from './App'
-
-
-
-// #ifndef VUE3
 import Vue from 'vue'
+
+// 引入vuex
+import store from "@/store/index.js"
+// #ifndef VUE3
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
-    ...App
+    ...App,
+	store
 })
 app.$mount()
 // #endif
