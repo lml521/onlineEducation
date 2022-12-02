@@ -4,7 +4,12 @@
 	width: 100%;
 	white-space: nowrap;
 }
-
+.noList{
+	text-align: center;
+	margin: 20rpx 0;
+	font-size: 30rpx;
+	color: #777777;
+}
 .scroll-row-item {
 	display: inline-block !important;
 }

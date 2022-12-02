@@ -1,4 +1,3 @@
-const rightIcon = 'iconfont icon-right' // 右侧图标
 export default () => {
 	return [
 		{

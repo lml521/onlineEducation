@@ -134,6 +134,36 @@
             }
             
         }
+        ,{
+            "path" : "pages/my-post/my-post",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的帖子",
+				"navigationBarBackgroundColor": "#fff",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/my-test/my-test",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的考试数据",
+				"navigationBarBackgroundColor": "#fff",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/my-book/my-book",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的电子书",
+				"navigationBarBackgroundColor": "#fff",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 		"color": "#c4c0c9",
