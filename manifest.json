@@ -48,11 +48,29 @@
     },
     /* 快应用特有相关 */
     "quickapp" : {},
+
+// "H5相关 "
+	// "h5": {
+	// 		"devServer": {
+	// 			"proxy" : {
+	// 				"/api" : {
+	// 					"target" :"http://demonuxtapi.dishait.cn/mobile",
+	// 					"changeOrigin" : true,
+	// 					"pathRewrite" : {
+	// 						"^/api" : ""
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wx1b04c07d31df32bd",
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : false,
+            "es6" : true,
+            "postcss" : true,
+            "minified" : true
         },
         "usingComponents" : true
     },

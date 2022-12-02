@@ -1,8 +1,8 @@
 <template>
 	<!-- 学习进度 -->
 	<view class="box">
-
-		<view class="noLogin" v-if="hasLogin">
+		<!-- {{hasLogin}} -->
+		<view class="noLogin" v-if="!hasLogin">
 		<!-- 学习进度 -->
 		<img src="/static/noLogin.png" alt="">
 		<view class="text">登录后才可以查看我的学习哦</view>

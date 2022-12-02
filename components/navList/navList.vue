@@ -1,8 +1,9 @@
 <template>
 	<!-- nav封装 -->
 	<view class="box flex text-center">
-		<view class="flex-1 flex flex-column align-conent  justify-center py-3" v-for="(item,index) in list"
-			:key="index" @click="ToPage(item)">
+		<view class="flex-1 flex flex-column align-conent  justify-center py-3" 
+		v-for="(item,index) in list" :key="index" @click="ToPage(item)" 
+		 hover-class="active" :hover-stay-time="100">
 			<text :class="item.icon " class="icon"></text>
 			<span class="title">{{item.title}}</span>
 		</view>
@@ -55,6 +56,7 @@
 <style lang="scss">
 	.box {
 		background-color: #fff;
+		border-radius: 10rpx;
 		width: 100%;
 		height: 100%;
 		box-shadow: 2px 2px 5px #ddd;
@@ -68,5 +70,8 @@
 			font-size: 24rpx;
 			color: #707880;
 		}
+	}
+	.active {
+		background-color: #f5f5f5;
 	}
 </style>

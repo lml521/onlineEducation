@@ -1,4 +1,4 @@
-const rightIcon = 'iconfont icon-right' // 右侧图标
+const rightIcon = ' iconfont icon-jinru' // 右侧图标
 export default () => {
 	return [
 		[{
@@ -18,8 +18,8 @@ export default () => {
 				icon: 'iconfont icon-help',
 				title: '常见问题',
 				rightIcon,
-				// page: '/pages/order/my-balance',
-				// login: true,
+				page: '/pages/problem/problem',
+				login: true,
 			},
 			{
 				icon: 'iconfont icon-leimupinleifenleileibie',

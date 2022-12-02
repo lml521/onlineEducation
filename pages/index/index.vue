@@ -12,6 +12,7 @@
 </template>
 
 <script>
+	import api from '@/api/login.js'
 	export default {
 		data() {
 			return {
@@ -21,7 +22,15 @@
 		onLoad() {
 
 		},
+		created(){
+			this.login()
+		},
 		methods: {
+			async login(){
+				let res =await api.login()
+				// console.log(res)
+				
+			}
 
 		}
 	}

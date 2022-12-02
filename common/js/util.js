@@ -1,3 +1,4 @@
+
 let _throttleRunning = false // 判断是否开启节流 开关
 
 /** 
@@ -22,6 +23,9 @@ export const throttle = (callback, delay = 500) => {
 
 }
 
+
+
+
 // 封装toast提示
 export const msg = (title = '', param={}) => {
 	if(!title) return;
@@ -33,10 +37,7 @@ export const msg = (title = '', param={}) => {
 	});
 }
 
-// 第三方日期格式化方法
-export const dateFormat = (val,format = 'YYYY-MM-DD') => {
-	return dayjs(val).format(format);
-}
+
 
 // 检测格式方法
 export const checkStr = (str, type) => {

@@ -1,7 +1,7 @@
 <template>
 	<!-- 我的  13233962195     13526996192    123456-->
+	
 	<view class="animate__animated animate__fadeInDown box">
-		
 		<!-- 登录头像 -->
 		<view class="userInfo">
 			<userInfo></userInfo>
@@ -25,13 +25,17 @@
 	import NavList from "@/config/my-nav-list.js" //nav数据
 	import userList from "@/pages/tabbar/home/components/userList.vue"
 	import BarList from "@/config/my-list-bar.js" //列表数据
+
+	import {mapGetters} from "vuex";
 	export default {
 		components: {
 			userInfo,
 			navList,
 			userList
 		},
-
+		computed: {
+			...mapGetters(["hasLogin","hasUserInfo"]),
+		},
 		data() {
 			return {
 				NavList: NavList(),
@@ -54,7 +58,7 @@
 	}
 
 	.userInfo {
-
+margin-bottom: 40rpx;
 		height: 350rpx;
 		background-color: #5ccc84;
 		border-radius: 0 0 100rpx 100rpx;

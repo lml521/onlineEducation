@@ -9,7 +9,7 @@
 				"app-plus": {
 					"titleNView": {
 						"searchInput": {
-							"height":"200rpx",
+							"height": "200rpx",
 							"align": "center",
 							"placeholder": "搜索你想要的内容",
 							"placeholderColor": "#928e8a",
@@ -52,86 +52,117 @@
 			// 登录
 			"path": "pages/login/login",
 			"style": {
-				
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent" // app/h5滚动透明渐变
+					}
+				}
 			}
-			},
-			{
-				"path": "pages/setting/setting",
-				"style": {
-					"navigationBarTitleText": "我的设置",
-					"enablePullDownRefresh": false
-				}
-
-			},
-			{
-				"path": "pages/user-info/user-info",
-				"style": {
-					"navigationBarTitleText": "资料编辑",
-					"enablePullDownRefresh": false
-				}
-
-			},
-			{
-				"path": "pages/order-list/order-list",
-				"style": {
-					"navigationBarTitleText": "我的订单",
-					"enablePullDownRefresh": false
-				}
-
-			},
-			{
-				"path": "pages/msg-list/msg-list",
-				"style": {
-					"navigationBarTitleText": "消息列表",
-					"enablePullDownRefresh": false
-				}
-
-			},
-			{
-				"path": "pages/fava-list/fava-list",
-				"style": {
-					"navigationBarTitleText": "收藏列表",
-					"enablePullDownRefresh": false
-				}
-
-			},
-			{
-				"path": "pages/my-coupon/my-coupon",
-				"style": {
-					"navigationBarTitleText": "我的优惠券",
-					"enablePullDownRefresh": false
-				}
-
+		},
+		{
+			"path": "pages/setting/setting",
+			"style": {
+				"navigationBarTitleText": "我的设置",
+				"enablePullDownRefresh": false
 			}
-		],
-		"tabBar": {
-			"color": "#c4c0c9",
-			"selectedColor": "#353535",
-			"list": [{
-					"text": "首页",
-					"pagePath": "pages/index/index",
-					"iconPath": "static/tabbar/index1.png",
-					"selectedIconPath": "static/tabbar/index1_selected.png"
-				},
-				{
-					"text": "学习",
-					"pagePath": "pages/tabbar/learn/learn",
-					"iconPath": "static/tabbar/learn.png",
-					"selectedIconPath": "static/tabbar/learn_selected.png"
-				},
-				{
-					"text": "我的",
-					"pagePath": "pages/tabbar/home/home",
-					"iconPath": "static/tabbar/home.png",
-					"selectedIconPath": "static/tabbar/home_selected.png"
-				}
-			]
+
 		},
-		"globalStyle": {
-			"navigationBarTextStyle": "black",
-			"navigationBarTitleText": "uni-app",
-			"navigationBarBackgroundColor": "#F8F8F8",
-			"backgroundColor": "#F8F8F8"
+		{
+			"path": "pages/user-info/user-info",
+			"style": {
+				"navigationBarTitleText": "编辑资料",
+				"navigationBarBackgroundColor": "#fff",
+				"enablePullDownRefresh": false
+			}
+
 		},
-		"uniIdRouter": {}
-	}
+		{
+			"path": "pages/order-list/order-list",
+			"style": {
+				"navigationBarTitleText": "我的订单",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/msg-list/msg-list",
+			"style": {
+				"navigationBarTitleText": "消息列表",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/fava-list/fava-list",
+			"style": {
+				"navigationBarTitleText": "收藏列表",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/my-coupon/my-coupon",
+			"style": {
+				"navigationBarTitleText": "我的优惠券",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/problem/problem",
+			"style": {
+				"navigationBarTitleText": "常见问题",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/forget/forget",
+			"style": {
+				"navigationBarTitleText": "忘记密码",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	    ,{
+            "path" : "pages/bind-phone/bind-phone",
+            "style" :                                                                                    
+            {
+                "app-plus": {
+                	"titleNView": {
+                		"type": "transparent" // app/h5滚动透明渐变
+                	}
+                }
+            }
+            
+        }
+    ],
+	"tabBar": {
+		"color": "#c4c0c9",
+		"selectedColor": "#353535",
+		"list": [{
+				"text": "首页",
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tabbar/index1.png",
+				"selectedIconPath": "static/tabbar/index1_selected.png"
+			},
+			{
+				"text": "学习",
+				"pagePath": "pages/tabbar/learn/learn",
+				"iconPath": "static/tabbar/learn.png",
+				"selectedIconPath": "static/tabbar/learn_selected.png"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/tabbar/home/home",
+				"iconPath": "static/tabbar/home.png",
+				"selectedIconPath": "static/tabbar/home_selected.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
