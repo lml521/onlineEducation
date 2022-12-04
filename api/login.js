@@ -18,17 +18,6 @@ const login = (data) => {
 	})
 }
 
-// /mobile/upload
-// 更新 头像 
-const upload = (file) => {
-	return Http.request({
-		url: "/upload",
-		method: "POST",
-		data: file,
-	})
-}
-
-
 //  提交修改 
 const updateinfo = (data) => {
 	return Http.request({

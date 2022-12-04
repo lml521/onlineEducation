@@ -9,7 +9,7 @@
 <script>
 	import userList from '@/pages/tabbar/home/components/userList.vue' // 封装列表
 	import userInfoList from "@/config/user-info-list.js" //列表数据
-	import loginApi from "@/api/login.js"
+	import uploadApi from "@/api/upload.js"
 	import {
 		mapGetters
 	} from 'vuex'
@@ -34,18 +34,27 @@
 				console.log(e)
 				uni.chooseImage({
 					count: 1, //默认9  /mobile/upload
+					sizeType:['compressed'],
 					success: async (res) => {
 						const file = res.tempFilePaths[0];
 						console.log(file)
-						var reader = new FileReader();
 						uni.showLoading({
 							title: "更换头像中",
 							mask: true,
 						});
-						let responent =await loginApi.upload(file)
-						console.log(responent)
+						let {code,data,message} =await uploadApi.uploadImg(file)
+						if(code==20000){
+							
+						this.hasUserInfo.avatar=data
+						this.$store.commit('setToken',this.hasUserInfo)
+						this.list= userInfoList()
+						uni.hideLoading()
+						}else{
+							this.$util.msg('头像更新失败')
+							uni.hideLoading()
+						}
 						
-	
+						
 					}
 				})
 			},
