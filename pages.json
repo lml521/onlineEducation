@@ -63,6 +63,7 @@
 			"path": "pages/setting/setting",
 			"style": {
 				"navigationBarTitleText": "我的设置",
+				"navigationBarBackgroundColor": "#fff",
 				"enablePullDownRefresh": false
 			}
 
@@ -163,6 +164,16 @@
             {
                 "navigationBarTitleText": "我的电子书",
 				"navigationBarBackgroundColor": "#fff",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/user-safe/user-safe",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改密码",
+					"navigationBarBackgroundColor": "#fff",
                 "enablePullDownRefresh": false
             }
             

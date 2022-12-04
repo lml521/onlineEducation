@@ -5,7 +5,8 @@
 			<view class="loginTitle">{{type=='login'?'登 录':'注 册'}}</view>
 			<!-- 表单 -->
 
-			<formInput :type="type" :formlist="formlist" :agreement="agreement" v-model="form" @changeLogin="toAccount">
+			<formInput :type="type" :formlist="formlist" :agreement="agreement" 
+			v-model="form" @changeLogin="toAccount">
 			</formInput>
 
 			<view class="register">

@@ -4,7 +4,6 @@
 		<view v-for="(item,index) in list" :key="index">
 			<view class="list p-2" v-for="(ele,i) in item" :key="i" @click="ToPage(ele)" hover-class="active"
 				:hover-stay-time="100">
-
 				<view class="flex left">
 					<text v-if="ele.icon" :class="ele.icon " class=" icon"></text>
 					<text class="title">{{ele.title}}</text>
@@ -13,6 +12,8 @@
 					<text v-if="ele.rightIcon" class="iconccc" :class="ele.rightIcon"></text>
 					<img v-if="ele.src" :src="ele.src" alt="">
 					<text v-if="ele.text">{{ele.text}}</text>
+					<input v-if="ele.input" type="text" :placeholder="ele.placeholder" placeholder-class="#9b9893" maxlength="140" step
+						enterkeyhint="done" autocomplete="off">
 				</view>
 			</view>
 		</view>
@@ -105,6 +106,11 @@
 					width: 100rpx;
 					height: 100rpx;
 					border-radius: 50%;
+				}
+
+				input {
+					font-size: 36rpx;
+					text-align: right;
 				}
 			}
 

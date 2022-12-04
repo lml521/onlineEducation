@@ -36,9 +36,8 @@ const store = new Vuex.Store({
 			state.userInfo={}
 			uni.removeStorageSync(USER_INFO)
 			state.isToken=""
-			uni.removeStorageSync(USER_INFO)
+			uni.removeStorageSync(TOKEN)
 		}
-
 	},
 	actions: {
 

@@ -10,9 +10,13 @@
 				<view class="item flex" v-if="item.type=='code'">
 					<uni-icons :type="item.icon" size="16" class="icon"></uni-icons>
 					<input class="input" v-model="value[item.prop]" :type="item.type" :placeholder="item.placeholder">
-					<button class="send" @click="sendCode">
+					
+					<sendCode :phone="value.phone"></sendCode>
+					
+					<!-- <button class="send" @click="sendCode">
 						{{flag?countDown:'发送'}}
-					</button>
+					</button> -->
+				
 				</view>
 
 				<view class="item" v-if="item.type=='button'" @click="handelLogin">
@@ -26,12 +30,16 @@
 </template>
 
 <script>
+	import sendCode from '@/components/sendCode/sendCode.vue'
 	import loginApi from '@/api/login.js'
 	import {
 		mapGetters
 	} from 'vuex'
 	export default {
 		name: "formInput",
+		components:{
+			sendCode
+		},
 		props: {
 			// 登录 注册  状态
 			type: {
@@ -92,24 +100,13 @@
 						res = await loginApi.bindMobile(this.value)
 						console.log(res,'绑定手机号')
 					}else if (this.type=='retrievePassword'){
-						// 找回密码
+						// 找回密码 -----------------
 						console.log(this.value,'找回密码')
 						res=await loginApi.getForget(this.value)
-						console.log(res)
+						console.log(res,'找回密码')
 					}
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+
 					
 					if (res.code == 20000) {
 						this.loading = false
