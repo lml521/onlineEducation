@@ -58,7 +58,6 @@ const getForget=(data)=>{
 export default {
 	reg,
 	login,
-	upload,
 	updateinfo,
 	sendCode,
 	bindMobile,

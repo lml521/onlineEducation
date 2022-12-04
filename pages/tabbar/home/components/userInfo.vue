@@ -1,17 +1,18 @@
 <template>
 	<!-- 我的页面 头部封装 -->
 	<view class="user-header p-2 flex" @click="ToLogin">
-		<img :src=" hasUserInfo.avatar||'/static/userImg.png'" alt="">
+		
+		<img :src="hasLogin&&String(hasLogin)!='{}'?hasUserInfo.avatar:'/static/userImg.png'" alt="">
 		<view class=" userInfo">
 			
 			<view class="font-md mb-3">
-			{{hasLogin?$store.state.userinfo.username:'立即登录'}}  
-			<text v-if="hasLogin" class="member">永久会员</text>
+			{{hasLogin&&String(hasLogin)!='{}'?$store.state.userinfo.username:'立即登录'}}  
+			<text v-if="hasLogin&&String(hasLogin)!='{}'" class="member">永久会员</text>
 			</view>
-			<view class="font-sm">{{hasLogin?'暂无描述':'登录解锁更多功能'}}</view>
+			<view class="font-sm">{{hasLogin&&String(hasLogin)!='{}'?'暂无描述':'登录解锁更多功能'}}</view>
 		</view>
 
-		<view v-if="hasLogin" class="amend iconfont icon-set"></view>
+		<view v-if="hasLogin&&String(hasLogin)!='{}'" class="amend iconfont icon-set"></view>
 		
 	</view>
 </template>

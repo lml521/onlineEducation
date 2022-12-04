@@ -13,7 +13,8 @@ export default () => {
 			{
 				title: '昵称',
 				event: 'editName',
-				text: userInfo.username,
+				input:true,
+				value: userInfo.username,
 				
 			},
 			{

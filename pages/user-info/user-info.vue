@@ -10,6 +10,7 @@
 	import userList from '@/pages/tabbar/home/components/userList.vue' // 封装列表
 	import userInfoList from "@/config/user-info-list.js" //列表数据
 	import uploadApi from "@/api/upload.js"
+	import loginApi from "@/api/login.js"
 	import {
 		mapGetters
 	} from 'vuex'
@@ -44,7 +45,6 @@
 						});
 						let {code,data,message} =await uploadApi.uploadImg(file)
 						if(code==20000){
-							
 						this.hasUserInfo.avatar=data
 						this.$store.commit('setToken',this.hasUserInfo)
 						this.list= userInfoList()

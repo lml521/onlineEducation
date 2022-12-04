@@ -12,8 +12,10 @@
 					<text v-if="ele.rightIcon" class="iconccc" :class="ele.rightIcon"></text>
 					<img v-if="ele.src" :src="ele.src" alt="">
 					<text v-if="ele.text">{{ele.text}}</text>
-					<input v-if="ele.input" type="text" :placeholder="ele.placeholder" placeholder-class="#9b9893" maxlength="140" step
-						enterkeyhint="done" autocomplete="off">
+					<input v-if="ele.input" type="text"  v-model="ele.value" value=""
+					@change="changeValue"
+					:placeholder="ele.placeholder" placeholder-class="#9b9893"
+					 maxlength="140"  >
 				</view>
 			</view>
 		</view>
@@ -57,6 +59,12 @@
 				if (item.event) {
 					this.$emit(item.event, item)
 				}
+			},
+			
+			// 修改 input 值 
+			changeValue(e){
+				console.log(1)
+				console.log(e)
 			}
 		}
 
