@@ -3,9 +3,7 @@
 		// 首页
 		{
 			"path": "pages/index/index",
-
 			"style": {
-				"navigationBarBackgroundColor": "#fff",
 				"app-plus": {
 					"titleNView": {
 						"searchInput": {
@@ -26,8 +24,7 @@
 			"path": "pages/tabbar/learn/learn",
 			"style": {
 				"navigationBarTitleText": "学习进度",
-				"enablePullDownRefresh": false,
-				"navigationBarBackgroundColor": "#fff"
+				"enablePullDownRefresh": false
 			}
 
 		}, {
@@ -63,7 +60,6 @@
 			"path": "pages/setting/setting",
 			"style": {
 				"navigationBarTitleText": "我的设置",
-				"navigationBarBackgroundColor": "#fff",
 				"enablePullDownRefresh": false
 			}
 
@@ -72,7 +68,6 @@
 			"path": "pages/user-info/user-info",
 			"style": {
 				"navigationBarTitleText": "编辑资料",
-				"navigationBarBackgroundColor": "#fff",
 				"enablePullDownRefresh": false
 			}
 
@@ -143,7 +138,6 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "我的帖子",
-				"navigationBarBackgroundColor": "#fff",
                 "enablePullDownRefresh": false
             }
             
@@ -153,7 +147,6 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "我的考试数据",
-				"navigationBarBackgroundColor": "#fff",
                 "enablePullDownRefresh": false
             }
             
@@ -163,7 +156,6 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "我的电子书",
-				"navigationBarBackgroundColor": "#fff",
                 "enablePullDownRefresh": false
             }
             
@@ -173,7 +165,6 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "修改密码",
-					"navigationBarBackgroundColor": "#fff",
                 "enablePullDownRefresh": false
             }
             
@@ -206,6 +197,7 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#fff",
 		"backgroundColor": "#F8F8F8"
 	},
 	"uniIdRouter": {}
