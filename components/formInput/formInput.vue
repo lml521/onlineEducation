@@ -2,8 +2,7 @@
 	<view class="form">
 		<form>
 			<view v-for="(item,index) in formlist">
-
-				<view class="item" v-if="item.type=='text'&&item.show">
+				<view class="item" v-if="item.type=='text'||item.type=='password'&&item.show">
 					<uni-icons :type="item.icon" size="16" class="icon"></uni-icons>
 					<input class="input" v-model="value[item.prop]" :type="item.type" :placeholder="item.placeholder">
 				</view>
@@ -13,7 +12,7 @@
 					<input class="input" v-model="value[item.prop]" :type="item.type" :placeholder="item.placeholder">
 					<button class="send" @click="sendCode">
 						{{flag?countDown:'发送'}}
-						</button>
+					</button>
 				</view>
 
 				<view class="item" v-if="item.type=='button'" @click="handelLogin">
@@ -28,7 +27,9 @@
 
 <script>
 	import loginApi from '@/api/login.js'
-	import {mapGetters} from 'vuex'
+	import {
+		mapGetters
+	} from 'vuex'
 	export default {
 		name: "formInput",
 		props: {
@@ -53,6 +54,7 @@
 				default: false
 			}
 		},
+
 		computed: {
 			...mapGetters(["hasUserInfo"]),
 		},
@@ -70,46 +72,82 @@
 				this.loading = true //开启loading加载
 				let res
 				try {
-					// 注册 
+					// 注册      --------------
 					if (this.type == 'reg') {
 						res = await loginApi.reg(this.value)
-					} else  if (this.type == 'login'){
-						// 登录
+						console.log(res,'注册账号')
+					} else if (this.type == 'login') {
+						// 登录------------------
 						if (!this.agreement) {
 							this.$util.msg('请先阅读并同意用户协议&隐私声明')
 							this.loading = false
 							return
 						}
 						res = await loginApi.login(this.value)
-					}else if (this.type=='SFZ'){
+						console.log(res,'登录账号')
+					} else if (this.type == 'SFZ') {
+						// 绑定手机号 ----------------------
 						console.log('绑定')
 						console.log(this.value)
 						res = await loginApi.bindMobile(this.value)
+						console.log(res,'绑定手机号')
+					}else if (this.type=='retrievePassword'){
+						// 找回密码
+						console.log(this.value,'找回密码')
+						res=await loginApi.getForget(this.value)
 						console.log(res)
-						
 					}
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					if (res.code == 20000) {
 						this.loading = false
 						if (this.type == 'reg') {
 							this.$util.msg('注册成功')
 							this.$emit("changeLogin")
-						} else  if (this.type == 'login'){
+						} else if (this.type == 'login') {
 							this.$util.msg('登录成功')
-							uni.switchTab({
-								url: '/pages/tabbar/home/home'
-							})
+							console.log(res.data,1)
 							this.setToken(res.data)
-						}else if (this.type=='SFZ'){
+							
+							setTimeout(() => {
+									if (res.data.phone) {
+										uni.switchTab({
+											url: '/pages/tabbar/home/home'
+										})
+									}else{
+										this.navTo('/pages/bind-phone/bind-phone')
+									}
+								},300)
+								this.setToken(res.data)
+						} else if (this.type == 'SFZ') {
 							this.$util.msg('绑定成功')
-							console.log(res)
 							console.log(this.hasUserInfo, this.value.phone)
 							this.hasUserInfo.phone = this.value.phone
 							console.log(this.hasUserInfo)
-							this.$store.commit('setToken',this.hasUserInfo)
-							// this.list = userInfoList()
+							this.$store.commit('setToken', this.hasUserInfo)
+							console.log(this.hasUserInfo.phone)
+							setTimeout(() => {
+							uni.switchTab({
+								url: '/pages/tabbar/home/home'
+							})
+							}, 300)
+						}else if(this.type=='retrievePassword'){
+							setTimeout(() => {
 							this.navBack()
-							}
-						
+							}, 300)
+						}
 					} else {
 						this.loading = false
 						this.$util.msg(res.data)
@@ -119,24 +157,25 @@
 					this.loading = false
 				}
 			},
+			// 发送验证码
 			async sendCode() {
-				if(this.flag)return 
+				if (this.flag) return
 				try {
 					let res = await loginApi.sendCode({
 						phone: this.value.phone
 					})
 					console.log(res)
 					if (res.code == 20000) {
-						this.$util.throttle()
+						
 						this.$util.msg(`验证码：${res.data}`)
 					} else {
 						this.$util.msg(res.data)
 						return
 					}
 				} catch (e) {
-					this.$util.msg(res.data)
+					console.log(e)
 				}
-				
+
 				this.countDown = 60 //规定定时器秒数
 				this.flag = true //节流开关
 				this.Time = setInterval(() => {
@@ -148,17 +187,12 @@
 						this.flag = null
 					}
 				}, 1000)
-				
-				
 			},
 
 
 			// 存储token 
 			setToken(data) {
-
-				console.log(data)
 				this.$store.commit("setToken", data)
-
 			}
 
 		}
@@ -181,7 +215,7 @@
 		}
 
 		.input {
-			// flex: 1;
+			flex: 1;
 			border: 0;
 			font-size: 32rpx;
 			background-color: #f5f5f5;

@@ -28,6 +28,7 @@ const store = new Vuex.Store({
 			// 存储token
 			state.isToken = data.token
 			uni.setStorageSync(TOKEN, data.token)
+			console.log(state.userInfo,'state.userInfo')
 		},
 		
 		// 退出登录 删除 用户信息以及token

@@ -3,8 +3,9 @@
 	<view class="user-header p-2 flex" @click="ToLogin">
 		<img :src=" hasUserInfo.avatar||'/static/userImg.png'" alt="">
 		<view class=" userInfo">
+			
 			<view class="font-md mb-3">
-			{{hasLogin?hasUserInfo.username:'立即登录'}}  
+			{{hasLogin?$store.state.userinfo.username:'立即登录'}}  
 			<text v-if="hasLogin" class="member">永久会员</text>
 			</view>
 			<view class="font-sm">{{hasLogin?'暂无描述':'登录解锁更多功能'}}</view>

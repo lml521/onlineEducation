@@ -117,8 +117,11 @@
 		}, {
 			"path": "pages/forget/forget",
 			"style": {
-				"navigationBarTitleText": "忘记密码",
-				"enablePullDownRefresh": false
+				"app-plus": {
+					"titleNView": {
+						"type": "transparent" // app/h5滚动透明渐变
+					}
+				}
 			}
 
 		}

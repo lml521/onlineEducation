@@ -7,21 +7,21 @@ let _throttleRunning = false // 判断是否开启节流 开关
  */
 
 // 节流 
-export const throttle = (callback, delay = 500) => {
+// export const throttle = (callback, delay = 500) => {
 	/**
 	 * 判断节流开关是否正在使用 如果为true 则是正在运行  不能再次执行
 	 * 为false  就是没有在执行  这个时候就可以执行    需要 把_throttleRunning 设置成true  这个时候再次点击 就不能执行
 	 * 
 	 *接着执行定时器  callback() 是 要执行的函数  执行玩之后 需要把 _throttleRunning 设置成 false 就是说 运行结束了   可以进行下次使用
 	 */
-	if (_throttleRunning) return
-	_throttleRunning = true
-	setTimeout(() => {
-		callback()
-		_throttleRunning = false
-	}, delay)
+// 	if (_throttleRunning) return
+// 	_throttleRunning = true
+// 	setTimeout(() => {
+// 		callback()
+// 		_throttleRunning = false
+// 	}, delay)
 
-}
+// }
 
 
 

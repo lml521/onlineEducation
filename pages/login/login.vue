@@ -22,7 +22,6 @@
 				<checkbox-group @change="changeCheckBox">
 					<checkbox style="transform: scale(0.7);" :checkes="agreement" />
 					<text class="text-light-muted">已阅读并同意用户协议&隐私声明</text>
-
 				</checkbox-group>
 			</view>
 		</view>
@@ -61,13 +60,13 @@
 						show: true
 					},
 					{
-						type: "text",
+						type: "password",
 						icon: "locked",
 						placeholder: "请输入密码",
 						prop: "password",
 						show: true
 					}, {
-						type: "text",
+						type: "password",
 						icon: "locked",
 						placeholder: "请输入确认密码",
 						prop: "repassword",
