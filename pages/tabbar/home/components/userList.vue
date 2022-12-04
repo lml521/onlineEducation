@@ -1,5 +1,6 @@
 <template>
 	<!-- 列表封装 -->
+	
 	<view class="list-boxs ">
 		<view v-for="(item,index) in list" :key="index">
 			<view class="list p-2" v-for="(ele,i) in item" :key="i" @click="ToPage(ele)" hover-class="active"
@@ -12,10 +13,9 @@
 					<text v-if="ele.rightIcon" class="iconccc" :class="ele.rightIcon"></text>
 					<img v-if="ele.src" :src="ele.src" alt="">
 					<text v-if="ele.text">{{ele.text}}</text>
-					<input v-if="ele.input" type="text"  v-model="ele.value" value=""
-					@change="changeValue"
-					:placeholder="ele.placeholder" placeholder-class="#9b9893"
-					 maxlength="140"  >
+					<input v-if="ele.input" type="text" v-model="value[ele.prop]"
+				 :placeholder="ele.placeholder"
+					 placeholder-class="#9b9893">
 				</view>
 			</view>
 		</view>
@@ -31,6 +31,10 @@
 			list: {
 				type: Array,
 				default: () => []
+			},
+			value:{
+				type: Object,
+				default: () => {}
 			}
 		},
 		data() {
@@ -42,6 +46,7 @@
 
 			...mapGetters(["hasLogin"]),
 		},
+		
 		methods: {
 			// 点击nav跳转页面
 			ToPage(item) {
@@ -61,10 +66,12 @@
 				}
 			},
 			
+			
 			// 修改 input 值 
 			changeValue(e){
 				console.log(1)
-				console.log(e)
+				console.log(this.value)
+				// console.log(e)
 			}
 		}
 

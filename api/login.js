@@ -54,6 +54,22 @@ const getForget=(data)=>{
 	})
 }
 
+// 修改 密码 
+const upPassword=(data)=>{
+	return Http.request({
+		url:'/update_password',
+		method:"POST",
+		data
+	})
+}
+// 退出
+// const upPassword=(data)=>{
+// 	return Http.request({
+// 		url:'/update_password',
+// 		method:"POST",
+// 		data
+// 	})
+// }
 
 export default {
 	reg,
@@ -61,5 +77,6 @@ export default {
 	updateinfo,
 	sendCode,
 	bindMobile,
-	getForget
+	getForget,
+	upPassword
 }

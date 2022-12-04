@@ -1,7 +1,8 @@
 <template>
 	<view class="box">
 		<!-- 资料编辑 -->
-		<userList :list="list" @chooseImg="chooseImg" @editName="editName" @chooseSex="chooseSex"></userList>
+		<userList :list="list" @chooseImg="chooseImg" @editName="editName"
+		 @chooseSex="chooseSex" v-model="form"></userList>
 		<button class="btn" @click="submit">提 交</button>
 	</view>
 </template>
@@ -14,6 +15,7 @@
 	import {
 		mapGetters
 	} from 'vuex'
+	import {computed} from 'vue'
 	export default {
 		components: {
 			userList
@@ -24,11 +26,15 @@
 		data() {
 			return {
 				list: userInfoList(),
+				form:{
+					nickname:this.$store.state.userinfo.nickname,
+				}
 			};
 		},
 		computed: {
 			...mapGetters(["hasUserInfo"]),
-		},
+		},	
+		
 		methods: {
 			// 更换头像 
 			chooseImg(e) {
@@ -53,8 +59,6 @@
 							this.$util.msg('头像更新失败')
 							uni.hideLoading()
 						}
-						
-						
 					}
 				})
 			},
@@ -80,14 +84,16 @@
 			},
 
 			async submit() {
+				this.hasUserInfo.nickname=this.form.nickname
 				uni.showLoading({
 					title: "提交中",
 					mask: true,
 				});
 
-				let {code} = await loginApi.updateinfo(this.hasUserInfo)
+				let {code,data} = await loginApi.updateinfo(this.hasUserInfo)
 				if (code == 20000) {
 					this.$util.msg('保存成功')
+					this.$store.commit('setToken',this.hasUserInfo)
 				}
 			}
 		}

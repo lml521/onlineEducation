@@ -1,7 +1,6 @@
 // 导入 store 对象获取当前用户信息
 import store from '@/store'
 export default () => {
-	
 	const userInfo = store.getters.hasUserInfo
 	return [ 
 		[{
@@ -12,9 +11,9 @@ export default () => {
 			},
 			{
 				title: '昵称',
-				event: 'editName',
+				value:userInfo.nickname,
 				input:true,
-				value: userInfo.username,
+				prop:'nickname',
 				
 			},
 			{

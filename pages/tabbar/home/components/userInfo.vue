@@ -6,7 +6,7 @@
 		<view class=" userInfo">
 			
 			<view class="font-md mb-3">
-			{{hasLogin&&String(hasLogin)!='{}'?$store.state.userinfo.username:'立即登录'}}  
+			{{hasLogin&&String(hasLogin)!='{}'?$store.state.userinfo.nickname:'立即登录'}}  
 			<text v-if="hasLogin&&String(hasLogin)!='{}'" class="member">永久会员</text>
 			</view>
 			<view class="font-sm">{{hasLogin&&String(hasLogin)!='{}'?'暂无描述':'登录解锁更多功能'}}</view>

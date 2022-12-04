@@ -5,25 +5,25 @@ export default () => {
 		[{
 				
 				title: '原密码', // 左侧标题
-				event: 'original',
+				prop:'opassword',
 				
 				placeholder:"请输出原密码",
 				input:true,
-				login: true, // true登录后才可访问
+			
 			},{
 				
 				title: '新密码', // 左侧标题
-				event: 'newPassword',
+				prop: 'password',
 				placeholder:"请输入新密码",
 				input:true,
-				login: true, // true登录后才可访问
+			
 			},{
 				
 				title: '确认密码', // 左侧标题
-				event: 'repassword',
+				prop: 'repassword',
 				placeholder:"请输入确认密码",
 				input:true,
-				login: true, // true登录后才可访问
+			
 			},
 		],
 	]

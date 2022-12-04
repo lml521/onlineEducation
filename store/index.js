@@ -22,6 +22,7 @@ const store = new Vuex.Store({
 	mutations: {
 		// 存储 用户信息 以及 token
 		setToken(state, data) {
+			console.log(data)
 			// 存储用户信息
 			state.userInfo = data
 			uni.setStorageSync(USER_INFO, data)
