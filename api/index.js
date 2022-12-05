@@ -5,7 +5,13 @@ const getIndex =()=>{
 		url:"/index"
 	})
 }
+const getCoupon=()=>{
+	return Http.request({
+		url:"/coupon?"
+	})
+}
 
 export default {
-	getIndex
+	getIndex,
+	getCoupon
 }
