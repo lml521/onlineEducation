@@ -2,7 +2,7 @@
 	<view class="banner">
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
 			<swiper-item class="flex justify-center" v-for="(item,index) in list " :key="index">
-				<img :src="item.img" alt="">
+				<img :src="item.src" alt="">
 			</swiper-item>
 			
 		</swiper>
