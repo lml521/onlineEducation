@@ -1,6 +1,7 @@
 <template>
 	<view>
-		我的优惠券
+		<!-- 我的优惠券 -->
+		<noList></noList>
 	</view>
 </template>
 

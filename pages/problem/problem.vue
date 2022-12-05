@@ -1,6 +1,7 @@
 <template>
 	<view>
-		常见问题
+		<!-- 常见问题 -->
+		<noList></noList>
 	</view>
 </template>
 

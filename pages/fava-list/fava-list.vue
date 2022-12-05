@@ -1,6 +1,7 @@
 <template>
 	<view>
-		收藏列表
+		<!-- 收藏列表 -->
+		<noList></noList>
 	</view>
 </template>
 

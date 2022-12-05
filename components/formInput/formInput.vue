@@ -10,13 +10,13 @@
 				<view class="item flex" v-if="item.type=='code'">
 					<uni-icons :type="item.icon" size="16" class="icon"></uni-icons>
 					<input class="input" v-model="value[item.prop]" :type="item.type" :placeholder="item.placeholder">
-					
+
 					<sendCode :phone="value.phone"></sendCode>
-					
+
 					<!-- <button class="send" @click="sendCode">
 						{{flag?countDown:'发送'}}
 					</button> -->
-				
+
 				</view>
 
 				<view class="item" v-if="item.type=='button'" @click="handelLogin">
@@ -37,7 +37,7 @@
 	} from 'vuex'
 	export default {
 		name: "formInput",
-		components:{
+		components: {
 			sendCode
 		},
 		props: {
@@ -77,13 +77,16 @@
 		methods: {
 			// 登录 / 注册 
 			async handelLogin() {
+				console.log(this.value, this.$store.state.userinfo, 80)
+				
+				
 				this.loading = true //开启loading加载
 				let res
 				try {
 					// 注册      --------------
 					if (this.type == 'reg') {
 						res = await loginApi.reg(this.value)
-						console.log(res,'注册账号')
+						console.log(res, '注册账号')
 					} else if (this.type == 'login') {
 						// 登录------------------
 						if (!this.agreement) {
@@ -92,22 +95,23 @@
 							return
 						}
 						res = await loginApi.login(this.value)
-						console.log(res,'登录账号')
+						console.log(res, '登录账号')
 					} else if (this.type == 'SFZ') {
 						// 绑定手机号 ----------------------
 						console.log('绑定')
-						console.log(this.value)
+						console.log(this.value, this.hasUserInfo)
 						res = await loginApi.bindMobile(this.value)
-						console.log(res,'绑定手机号')
-					}else if (this.type=='retrievePassword'){
-						// 找回密码 -----------------
-						console.log(this.value,'找回密码')
-						res=await loginApi.getForget(this.value)
-						console.log(res,'找回密码')
-					}
-					
+						// console.log(res,'绑定手机号')
 
-					
+					} else if (this.type == 'retrievePassword') {
+						// 找回密码 -----------------
+						console.log(this.value, '找回密码')
+						res = await loginApi.getForget(this.value)
+						console.log(res, '找回密码')
+					}
+
+
+
 					if (res.code == 20000) {
 						this.loading = false
 						if (this.type == 'reg') {
@@ -115,34 +119,31 @@
 							this.$emit("changeLogin")
 						} else if (this.type == 'login') {
 							this.$util.msg('登录成功')
-							console.log(res.data,1)
+							console.log(res.data, 1)
 							this.setToken(res.data)
-							
+
 							setTimeout(() => {
-									if (res.data.phone) {
-										uni.switchTab({
-											url: '/pages/tabbar/home/home'
-										})
-									}else{
-										this.navTo('/pages/bind-phone/bind-phone')
-									}
-								},300)
-								this.setToken(res.data)
+								if (res.data.phone) {
+									uni.switchTab({
+										url: '/pages/tabbar/home/home'
+									})
+								} else {
+									this.navTo('/pages/bind-phone/bind-phone')
+								}
+							}, 300)
+							this.setToken(res.data)
 						} else if (this.type == 'SFZ') {
 							this.$util.msg('绑定成功')
-							console.log(this.hasUserInfo, this.value.phone)
-							this.hasUserInfo.phone = this.value.phone
-							console.log(this.hasUserInfo)
-							this.$store.commit('setToken', this.hasUserInfo)
-							console.log(this.hasUserInfo.phone)
+							console.log(this.value.phone,'123')
+							this.$store.commit('setphone',this.value.phone)
 							setTimeout(() => {
 							uni.switchTab({
 								url: '/pages/tabbar/home/home'
 							})
 							}, 300)
-						}else if(this.type=='retrievePassword'){
+						} else if (this.type == 'retrievePassword') {
 							setTimeout(() => {
-							this.navBack()
+								this.navBack()
 							}, 300)
 						}
 					} else {
@@ -154,38 +155,6 @@
 					this.loading = false
 				}
 			},
-			// 发送验证码
-			// async sendCode() {
-			// 	if (this.flag) return
-			// 	try {
-			// 		let res = await loginApi.sendCode({
-			// 			phone: this.value.phone
-			// 		})
-			// 		console.log(res)
-			// 		if (res.code == 20000) {
-						
-			// 			this.$util.msg(`验证码：${res.data}`)
-			// 		} else {
-			// 			this.$util.msg(res.data)
-			// 			return
-			// 		}
-			// 	} catch (e) {
-			// 		console.log(e)
-			// 	}
-
-			// 	this.countDown = 60 //规定定时器秒数
-			// 	this.flag = true //节流开关
-			// 	this.Time = setInterval(() => {
-			// 		this.countDown--
-			// 		// 当定时器秒数小与0清除定时器
-			// 		if (this.countDown <= 0) {
-			// 			clearInterval(this.Time)
-			// 			this.Time = null
-			// 			this.flag = null
-			// 		}
-			// 	}, 1000)
-			// },
-
 
 			// 存储token 
 			setToken(data) {

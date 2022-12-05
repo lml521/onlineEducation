@@ -29,13 +29,13 @@
 			logout() {
 				this.$store.commit("logout")
 			},
-			clearCache() {
+			clearCache(obj) {
 				console.log("清除缓存")
 				uni.showModal({
 					content: '是否要清除缓存？',
 					success: (res) => {
 						if (res.confirm) {
-							console.log('点击了确认')
+							this.$set(obj,'text','0KB')
 						} else {
 							console.log('点击了取消')
 						}

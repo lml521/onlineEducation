@@ -2,7 +2,7 @@
 	<!-- 我的页面 头部封装 -->
 	<view class="user-header p-2 flex" @click="ToLogin">
 		
-		<img :src="hasLogin&&String(hasLogin)!='{}'?hasUserInfo.avatar:'/static/userImg.png'" alt="">
+		<img :src="hasLogin&&String(hasUserInfo)!='{}'&&hasUserInfo.avatar!=''?hasUserInfo.avatar:'/static/userImg.png'" alt="">
 		<view class=" userInfo">
 			
 			<view class="font-md mb-3">

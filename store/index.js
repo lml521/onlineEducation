@@ -32,6 +32,18 @@ const store = new Vuex.Store({
 			console.log(state.userInfo,'state.userInfo')
 		},
 		
+		// 修改 手机号码 
+		setphone(state,phone){
+			console.log(state.userinfo,'vuex')
+			let res =uni.getStorageSync(USER_INFO)
+			console.log(res)
+			res.phone=phone
+			
+			state.userInfo = res
+			uni.setStorageSync(USER_INFO, res)
+			// state.userinfo.phone=phone
+			// uni.setStorageSync(USER_INFO, state.userinfo)
+		},
 		// 退出登录 删除 用户信息以及token
 		logout(state){
 			state.userInfo={}

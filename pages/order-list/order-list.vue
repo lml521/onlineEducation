@@ -1,6 +1,7 @@
 <template>
 	<view>
-		我的订单
+		<!-- 我的订单 -->
+		<noList></noList>
 	</view>
 </template>
 
