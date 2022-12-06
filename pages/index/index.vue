@@ -15,6 +15,11 @@
 			拼团	
 		</text>
 		</h4>
+		<scrollCourse :list="groupList" ></scrollCourse>
+		
+		
+		
+		
 		
 		
 		<view class="divider"></view>
@@ -22,8 +27,8 @@
 		<text class="font-md font-weight-bold">最新列表</text>
 		<text class="font-sm text-light-muted">查看更多</text>
 		</h4>
-		
 		<indexItem v-for="(item,index) in newestList" :key="index" :item="item"></indexItem>
+		
 		<view class="divider"></view>
 		<view class="img">
 			<img :src="imageAd" alt="" draggable="false">
@@ -38,12 +43,14 @@
 	import multiRowNav from '@/components/multi-row-nav/multi-row-nav.vue' //nav数据组件
 	import coupon from '@/components/coupon/coupon.vue'
 	import indexItem from "@/components/index-item/index-item.vue"
+	import scrollCourse from '@/components/scrollCourse/scrollCourse.vue'
 	export default {
 		components: {
 			Banner,
 			multiRowNav,
 			coupon,
-			indexItem
+			indexItem,
+			scrollCourse
 		},
 		data() {
 			return {
