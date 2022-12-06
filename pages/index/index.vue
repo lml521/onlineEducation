@@ -1,47 +1,51 @@
 <template>
 	<view class="box">
-		
+		<!-- 搜索框 -->
 		<view class="p-2">
 			<view class="flex align-center justify-center py-2 rounded" style="background-color: rgb(245, 245, 241); color: rgb(146, 142, 138);">
-				
 				<uni-icons type="search" size="20" color="#928e8a"></uni-icons>
 				<text class="ml-2">请输入搜索关键词</text>
 			</view>
-			
 		</view>
+		
 		<!-- 轮播图 -->
 		<Banner :list="BannerList"></Banner>
+		
 		<!-- nav 导航栏 -->
 		<multiRowNav :navList="navList"></multiRowNav>
 
 		<!-- 优惠券 -->
 		<!-- discountCoupon -->
 		<coupon :couponList="couponList" :isColumn="true"></coupon>
-
+		
+		<!-- 下划线 -->
 		<view class="divider"></view>
+		
+		<!-- 拼团 -->
 		<h4 class="flex align-center py-3 px-2">
 			<text class="font-md font-weight-bold">
 				拼团
 			</text>
 		</h4>
+		<!-- 拼团列表 -->
 		<scrollCourse :list="groupList"></scrollCourse>
 
-
-
-
-
-
+		<!-- 下划线 -->
 		<view class="divider"></view>
+		
+		<!-- 最新列表 -->
 		<h4 class="flex align-center py-3 px-2 justify-between">
 			<text class="font-md font-weight-bold">最新列表</text>
 			<text class="font-sm text-light-muted">查看更多</text>
 		</h4>
+		
 		<indexItem v-for="(item,index) in newestList" :key="index" :item="item"></indexItem>
 
 		<view class="divider"></view>
+		
+		<!-- 图片广告 -->
 		<view class="img">
 			<img :src="imageAd" alt="" draggable="false">
-
 		</view>
 	</view>
 </template>
@@ -77,7 +81,15 @@
 				imageAd: '', //图片广告
 			}
 		},
-
+		onPullDownRefresh (){
+			console.log('触发了下拉刷新')
+			setTimeout(()=>{
+				this.getIndexList()
+				this.getCoupon()
+				uni.stopPullDownRefresh()
+			},3000)
+			return
+		},
 		created() {
 			this.getIndexList()
 			this.getCoupon()

@@ -4,9 +4,10 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				
+				 "enablePullDownRefresh": true,
 				"app-plus": {
 					"titleNView": false
+					
 				// 		"searchInput": {
 				// 			"height": "200rpx",
 				// 			"align": "center",
