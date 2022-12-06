@@ -242,6 +242,12 @@
 .flex-column-reverse {
 	flex-direction: column-reverse !important;
 }
+.column{
+	/* #ifndef APP-PLUS-NVUE */
+	display:flex;
+	/* #endif */
+	flex-direction: column;
+}
 
 .flex-wrap {
 	flex-wrap: wrap;
