@@ -9,7 +9,7 @@
 		<view class="right flex flex-column">
 			<view class="right-title text-ellipsis  font-md">{{item.title}}</view>
 			<view class="flex flex-1 align-end count">
-				<view v-if="item.price">￥{{item.price}}</view>
+				<view v-if="item.price">￥{{item.price=='0.00'?'免费':item.price}}</view>
 				<view class="grey">￥{{item.t_price}}</view>
 			</view>
 		</view>
@@ -103,7 +103,7 @@
 				}
 
 				.grey {
-					font-size: 28rpx;
+					font-size: 24rpx;
 					color: grey;
 				}
 			}
