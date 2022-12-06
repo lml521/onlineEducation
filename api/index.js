@@ -11,7 +11,15 @@ const getCoupon=()=>{
 	})
 }
 
+const getGroupList =(data)=>{
+	return Http.request({
+		url:"/group",
+		data
+	})
+}
+
 export default {
 	getIndex,
-	getCoupon
+	getCoupon,
+	getGroupList
 }

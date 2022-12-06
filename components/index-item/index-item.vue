@@ -8,23 +8,10 @@
 		</view>
 		<view class="right flex flex-column">
 			<view class="right-title text-ellipsis  font-md">{{item.title}}</view>
-<view class="flex flex-1 align-end count">
-	<view  v-if="item.price">￥{{item.price}}</view>
-	<view class="grey" >￥{{item.t_price}}</view>
-</view>
-			<!-- <view class="info">
-				<view class="nickname">
-					<i class="iconfont icon-laoshi2"></i>
-					{{item.nickName}}
-				</view> -->
-			<!-- 	<view class="count">
-					<text v-if="item.isFree" class="money">免费</text>
-					<text v-else class="money iconfont icon-moneybag">{{item.priceDiscount||item.priceOriginal}}</text>
-					<text class="iconfont icon-video">{{item.studyTotal}} 人在学</text>
-				</view> -->
-			<!-- </view> -->
-
-
+			<view class="flex flex-1 align-end count">
+				<view v-if="item.price">￥{{item.price}}</view>
+				<view class="grey">￥{{item.t_price}}</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -67,10 +54,10 @@
 
 <style lang="scss">
 	.item-box {
+		// background-color: pink;
 		display: flex;
-		width: 100%;
 		padding: 20rpx 10rpx;
-		border-bottom: 2rpx solid #ccc;
+		// border-bottom: 2rpx solid #ccc;
 
 		.left {
 			width: 300rpx;
@@ -95,9 +82,12 @@
 		}
 
 		.right {
-		margin-right: 22rpx;
-		flex: 1;
+			margin-right: 22rpx;
+			flex: 1;
+
 			.right-title {
+				// max-width: 300rpx;
+				
 				overflow: hidden;
 				text-overflow: ellipsis;
 				-webkit-line-clamp: 1;
@@ -105,14 +95,17 @@
 				-webkit-box-orient: vertical;
 				white-space: normal;
 			}
-			.count{
-				view{
+
+			.count {
+				view {
 					font-size: 38rpx;
 					color: #dc3545;
 				}
-				.grey{
+
+				.grey {
 					font-size: 28rpx;
-									color: grey;}
+					color: grey;
+				}
 			}
 		}
 	}
