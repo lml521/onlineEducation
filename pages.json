@@ -169,6 +169,59 @@
                 "enablePullDownRefresh": false
             }
             
+        },{
+            "path" : "pages/search/search",
+         
+				"style": {
+					 "enablePullDownRefresh": true,
+					"app-plus": {
+						"titleNView": {
+							"searchInput": {
+								"height": "200rpx",
+								"align": "left",
+								"borderRadius": "30rpx",
+								"placeholder": "输入搜索关键字",
+								"placeholderColor": "#ccc",
+								"backgroundColor": "#f6f9fb"
+							},
+							"buttons": [
+								{
+									"text": "搜索",
+									"fontSize": "30rpx"
+								}
+							]
+						}
+					}
+				}
+            
+        }
+        ,{
+            "path" : "pages/course/course",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "详情",
+                "enablePullDownRefresh": false
+            }
+        } 
+        ,{
+            "path" : "pages/search-result/search-result",
+            "style": {
+            	 "enablePullDownRefresh": true,
+            	"app-plus": {
+            		"titleNView": {
+            			"searchInput": {
+            				"height": "200rpx",
+            				"align": "left",
+            				"borderRadius": "30rpx",
+            				"placeholder": "输入搜索关键字",
+            				"placeholderColor": "#ccc",
+            				"backgroundColor": "#f6f9fb",
+							"disabled": true
+            			}
+            		}
+            	}
+            }
+            
         }
     ],
 	"tabBar": {

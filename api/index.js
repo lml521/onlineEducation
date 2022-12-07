@@ -18,8 +18,38 @@ const getGroupList =(data)=>{
 	})
 }
 
+// 跳转详情页
+// id: 6
+// column_id:0
+// group_id: 0
+// flashsale_id: 0
+
+const toCourse=(data)=>{
+	console.log(data)
+	return Http.request({
+		url:"/course/read",
+		data
+		
+	})
+}
+
+// 领取优惠券 
+// /user_coupon/receive coupon_id
+const getReceive=(data)=>{
+	console.log(data)
+	return Http.request({
+		url:"/user_coupon/receive",
+		method:"POST",
+		data
+		
+	})
+}
+
+
 export default {
 	getIndex,
 	getCoupon,
-	getGroupList
+	getGroupList,
+	toCourse,
+	getReceive
 }

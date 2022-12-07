@@ -1,7 +1,7 @@
 <template>
 	<!-- 每一个盒子 -->
 	<!-- @click="navTo(`/pages/course/course-details?id=${item.id}`)" -->
-	<view class="item-box" :class="{column : isColumn}">
+	<view class="item-box" :class="{column : isColumn}" @click="toCourse">
 		<view class="left">
 			<img :src="item.cover" alt="">
 			<text class="item-time">{{item.title=='media'?'视频':'图文'}}</text>
@@ -10,13 +10,14 @@
 			<view class="right-title text-ellipsis  font-md">{{item.title}}</view>
 			<view class="flex flex-1 align-end count">
 				<view v-if="item.price">￥{{item.price=='0.00'?'免费':item.price}}</view>
-				<view class="grey">￥{{item.t_price}}</view>
+				<view :class="item.price?'grey':''">￥{{item.t_price}}</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import indexApi from '@/api/index.js'
 	export default {
 		name: "course-item",
 		props: {
@@ -48,28 +49,43 @@
 			return {
 
 			};
+		},
+		methods:{
+			async toCourse(){
+				console.log(this.item)
+			let list={
+				id:Number(this.item.id),
+				column_id:0,
+				group_id:0,
+				flashsale_id:0,
+				
+			}
+			console.log(list)
+			let {code,data} =await indexApi.toCourse(list)
+			// console.log(res)
+			if(code==20000){
+				this.navTo(`/pages/course/course?id=${this.item.id}`)
+				
+			}
+			
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
 	.item-box {
-		// background-color: pink;
 		display: flex;
 		padding: 20rpx 10rpx;
-		// border-bottom: 2rpx solid #ccc;
-
 		.left {
 			width: 300rpx;
 			height: 170rpx;
 			position: relative;
 			margin-right: 20rpx;
-
 			img {
 				width: 100%;
 				height: 100%;
 			}
-
 			.item-time {
 				position: absolute;
 				bottom: 0;
@@ -80,14 +96,10 @@
 				color: #fff;
 			}
 		}
-
 		.right {
 			margin-right: 22rpx;
 			flex: 1;
-
 			.right-title {
-				// max-width: 300rpx;
-				
 				overflow: hidden;
 				text-overflow: ellipsis;
 				-webkit-line-clamp: 1;
@@ -95,13 +107,11 @@
 				-webkit-box-orient: vertical;
 				white-space: normal;
 			}
-
 			.count {
 				view {
-					font-size: 38rpx;
+					font-size: 34rpx;
 					color: #dc3545;
 				}
-
 				.grey {
 					font-size: 24rpx;
 					color: grey;

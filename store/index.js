@@ -1,12 +1,13 @@
 import Vue from "vue"
 import Vuex from "vuex"
 Vue.use(Vuex)
-import {TOKEN,USER_INFO} from "@/enum/user.js"
+import {TOKEN,USER_INFO,historyKeyword} from "@/enum/user.js"
 
 const store = new Vuex.Store({
 	state: {
 		userinfo:uni.getStorageSync(USER_INFO)|| {}, //
 		isToken:uni.getStorageSync(TOKEN)|| "",
+		historyKeyword:uni.getStorageSync(historyKeyword)||[],//历史记录
 	},
 	getters: {
 		// 获取token是否存在
@@ -16,6 +17,9 @@ const store = new Vuex.Store({
 		// 用户信息
 		hasUserInfo(state){
 			return state.userinfo
+		},
+		hasHistory(state){
+			return state.historyKeyword
 		}
 
 	},
@@ -44,6 +48,18 @@ const store = new Vuex.Store({
 			// state.userinfo.phone=phone
 			// uni.setStorageSync(USER_INFO, state.userinfo)
 		},
+		
+		// 添加搜索历史记录 
+		addHistory(state,item){
+			if(state.hasHistory){
+				state.hasHistory.unshift(item)
+			}else{
+				state.hasHistory=[item]
+			}
+			uni.setStorageSync(historyKeyword,state.hasHistory)
+		},
+		
+		
 		// 退出登录 删除 用户信息以及token
 		logout(state){
 			state.userInfo={}
