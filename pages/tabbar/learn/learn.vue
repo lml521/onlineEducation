@@ -14,11 +14,14 @@
 				<navList :list="list"></navList>
 			</view>
 		</view>
+		
+			<tabBar :index="index" @changeActive="changeActive"></tabBar>
 	</view>
 
 </template>
 
 <script>
+	import tabBar from '@/components/tabBar-List/tabBar-List.vue'
 	import {
 		mapGetters
 	} from "vuex";
@@ -27,16 +30,24 @@
 	export default {
 		data() {
 			return {
-				list: learnNav()
+				list: learnNav(),
+				index:0,
 			};
 		},
 		components: {
-			navList
+			navList,
+			tabBar
 		},
 		computed: {
 
 			...mapGetters(["hasLogin"]),
 		},
+		methods:{
+			changeActive(i){
+				console.log(i)
+				this.index=i
+			}
+		}
 	}
 </script>
 
