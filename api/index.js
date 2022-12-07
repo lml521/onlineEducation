@@ -41,15 +41,24 @@ const getReceive=(data)=>{
 		url:"/user_coupon/receive",
 		method:"POST",
 		data
-		
 	})
 }
 
+// 优惠券 
+const userCoupon =(data)=>{
+	// console.log(data)
+	return Http.request({
+		url:"/user_coupon",
+		data
+	})
+}
+// /user_coupon?page=1&limit=10
 
 export default {
 	getIndex,
 	getCoupon,
 	getGroupList,
 	toCourse,
-	getReceive
+	getReceive,
+	userCoupon
 }

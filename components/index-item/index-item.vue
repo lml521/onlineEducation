@@ -1,7 +1,7 @@
 <template>
 	<!-- 每一个盒子 -->
 	<!-- @click="navTo(`/pages/course/course-details?id=${item.id}`)" -->
-	<view class="item-box" :class="{column : isColumn}" @click="toCourse">
+	<view class="item-box" :class="{column:isColumn}" @click="toCourse">
 		<view class="left">
 			<img :src="item.cover" alt="">
 			<text class="item-time">{{item.title=='media'?'视频':'图文'}}</text>
@@ -62,8 +62,9 @@
 			}
 			console.log(list)
 			let {code,data} =await indexApi.toCourse(list)
-			// console.log(res)
+			
 			if(code==20000){
+				this.$store.commit("courseList",data)
 				this.navTo(`/pages/course/course?id=${this.item.id}`)
 				
 			}

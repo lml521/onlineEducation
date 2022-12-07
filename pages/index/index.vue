@@ -97,6 +97,15 @@
 			this.getCoupon()
 			this.getGroupList()
 		},
+		watch:{
+			"$store.state.isToken":{
+				handler(newVal){
+					console.log('watch监听  -----------------')
+					this.getCoupon()
+				},
+				immediate:true
+			}
+		},
 		methods: {
 			// 获取轮播图 nav 数据 
 			async getIndexList() {
@@ -114,10 +123,7 @@
 			},
 			// 优惠券数据 
 			async getCoupon() {
-				let {
-					code,
-					data
-				} = await indexApi.getCoupon()
+				let { code, data } = await indexApi.getCoupon()
 				console.log(data)
 				if (code == 20000) {
 					this.couponList = data

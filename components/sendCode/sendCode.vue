@@ -31,13 +31,11 @@
 					return
 				}
 				try {
-					// console.log(this.phone)
 					let res = await loginApi.sendCode({
 						phone: this.phone
 					})
 					console.log(res.data)
 					if (res.code == 20000) {
-
 						this.$util.msg(`验证码：${res.data}`)
 					} else {
 						this.$util.msg(res.data)

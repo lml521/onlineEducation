@@ -2,12 +2,14 @@ import Vue from "vue"
 import Vuex from "vuex"
 Vue.use(Vuex)
 import {TOKEN,USER_INFO,historyKeyword} from "@/enum/user.js"
+import config from "../config"
 
 const store = new Vuex.Store({
 	state: {
 		userinfo:uni.getStorageSync(USER_INFO)|| {}, //
 		isToken:uni.getStorageSync(TOKEN)|| "",
 		historyKeyword:uni.getStorageSync(historyKeyword)||[],//历史记录
+		courseItem:{}
 	},
 	getters: {
 		// 获取token是否存在
@@ -25,6 +27,7 @@ const store = new Vuex.Store({
 	},
 	mutations: {
 		init(state){
+			console.log('vuex')
 			state.userinfo=uni.getStorageSync(USER_INFO)|| {}
 			state.isToken=uni.getStorageSync(TOKEN)|| ""
 		},
@@ -83,6 +86,11 @@ const store = new Vuex.Store({
 			uni.removeStorageSync(USER_INFO)
 			state.isToken=""
 			uni.removeStorageSync(TOKEN)
+		},
+		
+		// 存储详情 数据 
+		courseList(state,data){
+			state.courseItem=data
 		}
 	},
 	actions: {

@@ -144,6 +144,7 @@
 								url: '/pages/tabbar/home/home'
 							})
 							}, 300)
+							this.$store.commit('init')
 						} else if (this.type == 'retrievePassword') {
 							setTimeout(() => {
 								this.navBack()

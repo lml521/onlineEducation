@@ -14,7 +14,7 @@
 					<img v-if="ele.src" :src="ele.src" alt="">
 					<text v-if="ele.text">{{ele.text}}</text>
 					<input v-if="ele.input" type="text" v-model="value[ele.prop]"
-				 :placeholder="ele.placeholder"
+				 :placeholder="ele.placeholder||'未填写'"
 					 placeholder-class="#9b9893">
 				</view>
 			</view>

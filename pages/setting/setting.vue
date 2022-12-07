@@ -28,6 +28,8 @@
 			// 退出 
 			logout() {
 				this.$store.commit("logout")
+				
+				this.$store.commit('init')
 			},
 			clearCache(obj) {
 				console.log("清除缓存")
