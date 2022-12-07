@@ -96,6 +96,9 @@
 						}
 						res = await loginApi.login(this.value)
 						console.log(res, '登录账号')
+						
+						
+						
 					} else if (this.type == 'SFZ') {
 						// 绑定手机号 ----------------------
 						console.log('绑定')
@@ -109,9 +112,6 @@
 						res = await loginApi.getForget(this.value)
 						console.log(res, '找回密码')
 					}
-
-
-
 					if (res.code == 20000) {
 						this.loading = false
 						if (this.type == 'reg') {
@@ -121,6 +121,7 @@
 							this.$util.msg('登录成功')
 							console.log(res.data, 1)
 							this.setToken(res.data)
+						
 
 							setTimeout(() => {
 								if (res.data.phone) {
@@ -131,7 +132,9 @@
 									this.navTo('/pages/bind-phone/bind-phone')
 								}
 							}, 300)
-							this.setToken(res.data)
+							
+								this.$store.commit('init')
+						
 						} else if (this.type == 'SFZ') {
 							this.$util.msg('绑定成功')
 							console.log(this.value.phone,'123')

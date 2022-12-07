@@ -2,8 +2,9 @@
 
 	<!-- 滚动优惠券 -->
 	<scroll-view scroll-x="true" class="scroll-row ">
-		
+		<!-- <componItem></componItem> -->
 		<view v-for="(item,index) in couponList" :key="item.id" class="list-scroll-view " :class="{active:item.isgetcoupon}">
+			
 			<view class="left">
 				<!-- {{item.isgetcoupon}} -->
 				<view class="price font-md">￥{{item.price}}</view>
@@ -15,6 +16,7 @@
 			<view class="right" @click="getDiscounts(item)">
 				{{item.isgetcoupon?'未领取':'领取'}}
 			</view>
+			
 		</view>
 		
 	</scroll-view>
@@ -23,14 +25,17 @@
 
 <script>
 	import indexApi from "@/api/index.js"
+	// import componItem from "@/components/coupon-item/coupon-item.vue"
 	export default {
 		name: "discountCoupon",
 		props: {
-
 			couponList: {
 				type: Array,
 				default: () => []
 			}
+		},
+		components:{
+			// componItem
 		},
 		data() {
 			return {
@@ -42,6 +47,7 @@
 			async getDiscounts(item){
 				
 				if(item.isgetcoupon){
+					
 					this.$util.msg('您已领取过了')
 					return 
 				} 
@@ -50,6 +56,7 @@
 				})
 				let res =await indexApi.getReceive({coupon_id:item.id})
 				if(res.code==20000){
+					item.isgetcoupon=!item.isgetcoupon
 					uni.hideLoading();
 					this.$util.msg('领取成功')
 				}else{

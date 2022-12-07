@@ -12,7 +12,7 @@
 			<view class="register">
 				<text class="text-success" @click="toAccount">
 					{{type=='login'?'注册账号':'去登录'}}</text>
-				<text class="text-light-muted" @click="navTo('/pages/forget/forget')">忘记密码？</text>
+				<text v-if="type=='login'" class="text-light-muted" @click="navTo('/pages/forget/forget')">忘记密码？</text>
 			</view>
 
 			<view class="weixinIcon">

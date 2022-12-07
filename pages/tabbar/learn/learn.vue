@@ -8,14 +8,15 @@
 			<view class="text">登录后才可以查看我的学习哦</view>
 			<button class="btn " plain size="mini" @click="navTo('/pages/login/login')">立即登录</button>
 		</view>
+		
 		<view class="loginBack" v-else>
 
 			<view class="nav p-3">
 				<navList :list="list"></navList>
 			</view>
+				<tabBar :index="index" @changeActive="changeActive"></tabBar>
 		</view>
 		
-			<tabBar :index="index" @changeActive="changeActive"></tabBar>
 	</view>
 
 </template>
