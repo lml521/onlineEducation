@@ -52,7 +52,10 @@ const store = new Vuex.Store({
 		// 添加搜索历史记录 
 		addHistory(state,item){
 			if(state.hasHistory){
-				state.hasHistory.unshift(item)
+				let index =state.hasHistory.findIndex(e=>e==item)
+				if(!index){
+					state.hasHistory.unshift(item)
+				}
 			}else{
 				state.hasHistory=[item]
 			}
