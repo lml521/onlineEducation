@@ -63,6 +63,11 @@ const store = new Vuex.Store({
 			}
 			uni.setStorageSync(historyKeyword,state.historyKeyword)
 		},
+		// 清空历史记录 
+		removeHistory(state){
+			state.historyKeyword=[]
+			uni.removeStorageSync(historyKeyword)
+		},
 		
 		
 		// 退出登录 删除 用户信息以及token
