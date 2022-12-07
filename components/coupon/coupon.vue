@@ -52,7 +52,10 @@
 				if(res.code==20000){
 					uni.hideLoading();
 					this.$util.msg('领取成功')
+				}else{
+						this.$util.msg(res.data)
 				}
+			
 			}
 		}
 	}

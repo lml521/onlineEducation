@@ -51,15 +51,17 @@ const store = new Vuex.Store({
 		
 		// 添加搜索历史记录 
 		addHistory(state,item){
-			if(state.hasHistory){
-				let index =state.hasHistory.findIndex(e=>e==item)
-				if(!index){
-					state.hasHistory.unshift(item)
+			console.log(state.historyKeyword,'5',state.historyKeyword.length)
+			if(state.historyKeyword.length){
+				let index =state.historyKeyword.findIndex(e=>e==item)
+				console.log(index)
+				if(index<0){
+					state.historyKeyword.unshift(item)
 				}
 			}else{
-				state.hasHistory=[item]
+				state.historyKeyword=[item]
 			}
-			uni.setStorageSync(historyKeyword,state.hasHistory)
+			uni.setStorageSync(historyKeyword,state.historyKeyword)
 		},
 		
 		
