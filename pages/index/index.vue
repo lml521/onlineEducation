@@ -100,7 +100,6 @@
 		watch:{
 			"$store.state.isToken":{
 				handler(newVal){
-					console.log('watch监听  -----------------')
 					this.getCoupon()
 				},
 				immediate:true
@@ -109,10 +108,7 @@
 		methods: {
 			// 获取轮播图 nav 数据 
 			async getIndexList() {
-				let {
-					code,
-					data
-				} = await indexApi.getIndex()
+				let {code,data} = await indexApi.getIndex()
 				if (code == 20000) {
 					this.BannerList = data[1].data
 					this.navList = data[2].data
@@ -131,20 +127,13 @@
 			},
 			// 获取拼团数据
 			async getGroupList() {
-				let {
-					code,
-					data
-				} = await indexApi.getGroupList({
+				let {code,data} = await indexApi.getGroupList({
 					usable: this.usable
 				})
 				if (code == 20000) {
 					this.groupList = data.rows
 				}
 			}
-
-
-
-
 		}
 	}
 </script>

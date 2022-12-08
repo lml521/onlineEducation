@@ -15,6 +15,7 @@
 				<navList :list="list"></navList>
 			</view>
 				<tabBar :index="index" @changeActive="changeActive"></tabBar>
+				<noList></noList>
 		</view>
 		
 	</view>
@@ -45,7 +46,6 @@
 		},
 		methods:{
 			changeActive(i){
-				console.log(i)
 				this.index=i
 			}
 		}

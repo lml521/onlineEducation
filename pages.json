@@ -173,7 +173,7 @@
             "path" : "pages/search/search",
          
 				"style": {
-					 "enablePullDownRefresh": true,
+					 "enablePullDownRefresh": false,
 					"app-plus": {
 						"titleNView": {
 							"searchInput": {
@@ -206,7 +206,7 @@
         ,{
             "path" : "pages/search-result/search-result",
             "style": {
-            	 "enablePullDownRefresh": true,
+            	 "enablePullDownRefresh": false,
             	"app-plus": {
             		"titleNView": {
             			"searchInput": {

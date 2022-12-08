@@ -77,7 +77,7 @@
 <style lang="scss">
 	.item-box {
 		display: flex;
-		padding: 20rpx 10rpx;
+		padding: 20rpx;
 		.left {
 			width: 300rpx;
 			height: 170rpx;

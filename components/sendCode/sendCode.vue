@@ -24,7 +24,13 @@
 		methods: {
 			// 发送验证码
 			async sendCode() {
-				if (this.flag) return
+				if (this.flag){
+					uni.showModal({
+						content: `请在${this.countDown}秒后重试`,
+						showCancel: false
+					})
+					return
+				} 
 				// 验证手机号码
 				if (!this.$util.checkStr(this.phone, 'mobile')) {
 					this.$util.msg("请输入有效手机号码")
