@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "list-box": "/pages/index/components/list-box",
+    "course-item": "/components/course-item/course-item"
+  }
+}

@@ -1,6 +1,7 @@
 <template>
 	<view class="flex">
-		<view class="tab-item  font-md" v-for="(item,i) in tabList"  :key="i"  :class="{active:i==index}" @click="changeActive(i)">
+		<view class="tab-item  font-md" v-for="(item,i) in tabList"  :key="i"  
+		:class="{active:i==index}" @click="changeActive(i)">
 			{{item.title}}
 			<view :class="{tabLine:i==index}" class=" animate__animated animate__fadeIn animate__faster"></view>
 		</view>

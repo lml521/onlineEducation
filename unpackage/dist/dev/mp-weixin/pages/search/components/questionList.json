@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "down-bar": "/components/common/down-bar"
+  }
+}

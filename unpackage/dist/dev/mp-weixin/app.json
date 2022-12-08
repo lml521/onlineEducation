@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/user",
+    "pages/classify/classify",
+    "pages/question/question",
+    "pages/read/read",
+    "pages/public/web-view",
+    "pages/search/search"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#F8F8F8",
+    "navigationBarTitleText": "学生在线"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tab/index.png",
+        "selectedIconPath": "static/tab/index-active.png"
+      },
+      {
+        "pagePath": "pages/classify/classify",
+        "text": "分类",
+        "iconPath": "static/tab/category.png",
+        "selectedIconPath": "static/tab/category-active.png"
+      },
+      {
+        "pagePath": "pages/read/read",
+        "text": "阅读",
+        "iconPath": "static/tab/article.png",
+        "selectedIconPath": "static/tab/article-active.png"
+      },
+      {
+        "pagePath": "pages/question/question",
+        "text": "阅读",
+        "iconPath": "static/tab/question.png",
+        "selectedIconPath": "static/tab/question-active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "static/tab/my.png",
+        "selectedIconPath": "static/tab/my-active.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

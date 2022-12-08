@@ -1,0 +1,1 @@
+<view><block wx:if="{{$root.m0}}"><web-view src="{{url}}"></web-view></block><block wx:else><view class="tip column"><text>如需浏览，请长按网址复制后使用浏览器访问：</text><text selectable="{{true}}">{{url}}</text></view></block></view>

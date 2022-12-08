@@ -1,0 +1,1 @@
+<view class="list-box"><view class="title"><view class="center"><text class="name">{{name}}</text><text class="word">{{word}}</text></view><view class="all "><text>全部</text><text class="iconfont icon-right"></text></view></view><slot></slot></view>

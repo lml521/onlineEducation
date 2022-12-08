@@ -6,10 +6,9 @@
 			<text class="font-sm text-light-muted" @click="removeHistory">清除全部</text>
 		</h4>
 		<view v-for="(item,index) in hasHistory" :key="index" 
-		class="d-inline-block item">
-			<text class="bg-hover-light px-2 py-1 font-sm rounded-circle"
-				style="margin-right: 12px; margin-bottom: 12px; max-width: 150px; overflow: hidden;
-				 white-space: nowrap; text-overflow: ellipsis;">{{item}}</text>
+		class="d-inline-block ml-2 mb-1">
+			<text class="bg-hover-light px-3 py-1 font-sm rounded-circle item"
+				>{{item}}</text>
 		</view>
 
 	</view>
@@ -24,23 +23,13 @@
 			};
 		},
 
-		// 点击 搜索
-		onNavigationBarButtonTap(e) {
-
-			if (e.index === 0) {
-				this.handelSearch()
-
-			}
-		},
+	
 		// 实时会获取搜索框你们的内容
 		onNavigationBarSearchInputChanged(e) {
 			this.content = e.text
 			console.log(this.content)
 		},
-		// 回车  
-		onNavigationBarSearchInputConfirmed() {
-			this.handelSearch()
-		},
+		
 		onShow() {
 			this.hasHistory = this.$store.getters.hasHistory
 			this.getHasHistory()
@@ -51,6 +40,17 @@
 		},
 		onBackPress() {
 			uni.switchTab('pages/index/index')
+		},
+		
+		// 点击 搜索
+		onNavigationBarButtonTap(e) {
+			if (e.index === 0) {
+				this.handelSearch()
+			}
+		},
+		// 回车
+		onNavigationBarSearchInputConfirmed() {
+			this.handelSearch()
 		},
 		methods: {
 			handelSearch() {
@@ -93,7 +93,15 @@
 
 <style lang="scss">
 	.item {
-		margin-bottom: 24rpx !important;
-		padding-left: 20rpx;
+		// margin-bottom: 24rpx !important;
+		padding:10rpx 20rpx;
+		display: inline-block;
+		border-radius: 30rpx;
+		// margin-right: 12px;
+		 // margin-bottom: 5rpx; 
+		 max-width: 150px; 
+		 overflow: hidden;
+		 white-space: nowrap; 
+		 text-overflow: ellipsis;
 	}
 </style>
