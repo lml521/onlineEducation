@@ -10,9 +10,13 @@
 					<text class="title">{{ele.title}}</text>
 				</view>
 				<view class="right">
+					
+					<text v-if="ele.text&&ele.order" class="ml-auto font-sm">{{ele.text}}</text>
+					<text v-if="ele.text&&ele.pay" class="ml-auto text-success">{{ele.text}}</text>
+					<text v-if="ele.text&&!ele.order&&!ele.pay">{{ele.text}}</text>
 					<text v-if="ele.rightIcon" class="iconccc" :class="ele.rightIcon"></text>
 					<img v-if="ele.src" :src="ele.src" alt="">
-					<text v-if="ele.text">{{ele.text}}</text>
+					
 					<input v-if="ele.input" type="text" v-model="value[ele.prop]"
 				 :placeholder="ele.placeholder||'未填写'"
 					 placeholder-class="#9b9893">

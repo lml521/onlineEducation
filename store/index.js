@@ -56,10 +56,9 @@ const store = new Vuex.Store({
 		
 		// 添加搜索历史记录 
 		addHistory(state,item){
-			console.log(state.historyKeyword,'5',state.historyKeyword.length)
+			
 			if(state.historyKeyword.length){
 				let index =state.historyKeyword.findIndex(e=>e==item)
-				console.log(index)
 				if(index>-1){				
 					state.historyKeyword.splice(index,1)
 				}

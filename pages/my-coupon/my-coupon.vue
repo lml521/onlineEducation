@@ -22,16 +22,17 @@
 		components:{
 			couponItem,
 		},
-		created(){
+		onLoad(options){
+			console.log(options,26)
 			this.getList()
 		},
+		
 		methods:{
 			async getList (){
 				let {code,data} =await indexAPi.userCoupon(this.data)
 				
 				if(code==20000){
 					this.rowsList=data.rows
-					// console.log(data.rows)
 					
 				}
 			}

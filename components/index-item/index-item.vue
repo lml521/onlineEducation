@@ -4,13 +4,13 @@
 	<view class="item-box" :class="{column:isColumn}" @click="toCourse">
 		<view class="left">
 			<img :src="item.cover" alt="">
-			<text class="item-time">{{item.title=='media'?'视频':'图文'}}</text>
+			<text class="item-time text-white font-sm ">{{item.title=='media'?'视频':'图文'}}</text>
 		</view>
 		<view class="right flex flex-column">
 			<view class="right-title text-ellipsis  font-md">{{item.title}}</view>
 			<view class="flex flex-1 align-end count">
 				<view v-if="item.price">￥{{item.price=='0.00'?'免费':item.price}}</view>
-				<view :class="item.price?'grey':''">￥{{item.t_price}}</view>
+				<view :class="item.price?'grey':''" v-if="item.t_price">￥{{item.t_price}}</view>
 			</view>
 		</view>
 	</view>
@@ -50,27 +50,37 @@
 
 			};
 		},
-		methods:{
-			async toCourse(){
-				console.log(this.item)
-			let list={
-				id:Number(this.item.id),
-				column_id:0,
-				group_id:0,
-				flashsale_id:0,
+		methods: {
+			async toCourse() {
 				
-			}
-			console.log(list)
-			let {code,data} =await indexApi.toCourse(list)
-			
-			if(code==20000){
-				this.$store.commit("courseList",data)
 				this.navTo(`/pages/course/course?id=${this.item.id}`)
+				// console.log(this.item)
+				// let list = {
+				// 	id: Number(this.item.id),
+				// 	column_id: 0,
+				// 	group_id: 0,
+				// 	flashsale_id: 0,
+
+				// }
+				// console.log(list)
 				
+				// let {
+				// 	code,
+				// 	data
+				// } = await indexApi.toCourse(list)
+
+				// if (code == 20000) {
+					// uni.navigateTo({
+					// 	url: `/pages/course/course?id=${this.item.id}`,
+						// success: (res) => {
+							
+						// 	res.eventChannel.emit('sendTestValue', {
+						// 		item: this.item
+						// 	})
+						// }
+					// })
+				}
 			}
-			
-			}
-		}
 	}
 </script>
 
@@ -78,28 +88,33 @@
 	.item-box {
 		display: flex;
 		padding: 20rpx;
+
 		.left {
 			width: 300rpx;
 			height: 170rpx;
 			position: relative;
 			margin-right: 20rpx;
+
 			img {
 				width: 100%;
 				height: 100%;
 			}
-			.item-time {
-				position: absolute;
-				bottom: 0;
-				background-color: rgba(0, 0, 0, .2);
-				padding: 3rpx 8rpx;
+
+			.item-time {		
+				    position: absolute;
+				    right: 5px;
+				    bottom: 5px;
+				    background-color: rgba(0,0,0,.4);
+				    padding: 0 5px;
 				font-size: 14rpx;
-				right: 0;
 				color: #fff;
 			}
 		}
+
 		.right {
 			margin-right: 22rpx;
 			flex: 1;
+
 			.right-title {
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -108,11 +123,13 @@
 				-webkit-box-orient: vertical;
 				white-space: normal;
 			}
+
 			.count {
 				view {
 					font-size: 34rpx;
 					color: #dc3545;
 				}
+
 				.grey {
 					font-size: 24rpx;
 					color: grey;

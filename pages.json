@@ -223,6 +223,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/create-order/create-order",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "创建订单",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 		"color": "#c4c0c9",

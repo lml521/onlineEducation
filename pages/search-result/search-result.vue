@@ -1,19 +1,10 @@
 <template>
 	<view class="box">
 
-		<tabBar :index="index" @changeActive="changeActive"></tabBar>
-		<!-- <view class="">
-			<course ref="mescrollItem0" :i="0" :index="index" :params="data"></course>
-
-			<column ref="mescrollItem1" :i="1" :index="index" :params="data"></column>
-
-		</view>
- -->
- 
+		<tabBar :index="index" @changeActive="changeActive"></tabBar> 
  	<!-- 下面子数据 -->
  		<swiper :style="{height: height}" :current="index" @change="changeActive">
  			<swiper-item v-for="(tab,i) in tabList" :key="i" :style="{height: height}">
- 
  				<mescroll-item 
  				ref="mescrollItem" 
  				:i="i" 
@@ -23,7 +14,6 @@
 				:data="data"
 				>
  				</mescroll-item>
- 
  			</swiper-item>
  		</swiper>
 	</view>
@@ -75,7 +65,7 @@
 			changeActive(i) {
 				i.detail?this.index = i.detail.current:this.index = Number(i)
 				i==0?this.data.type='course':this.data.type='column'
-				console.log(this.data,'999999999999999')
+				
 			},
 		}
 	}
