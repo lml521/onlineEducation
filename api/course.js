@@ -18,8 +18,15 @@ const addSava =(data)=>{
 	})
 }
 
+// 拼单 数据 /group_work/list
+const groupWork=(data)=>{
+	return Http.request({
+		url:`/group_work/list?group_id=${data.group_id}&page=${data.page}`,
+	})
+}
 
 export default {
 	callSava,
-	addSava
+	addSava,
+	groupWork
 }

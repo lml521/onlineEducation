@@ -43,10 +43,8 @@
 			console.log(res)
 			if(res.code==20000){
 				this.item=res.data
-			}
-			},
+			}},
 			toDiscount(e){
-				// goods_id=6&type=course
 				console.log(123,e,this.data)
 				let {id:goods_id,type}=this.data
 				console.log(goods_id,type)

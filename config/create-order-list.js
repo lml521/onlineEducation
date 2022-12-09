@@ -18,7 +18,6 @@ export default () => {
 			},
 			{
 				title: '支付方式',
-				page: '/pages/problem/problem',
 				text: '微信支付',
 				pay:true,
 			}

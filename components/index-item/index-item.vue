@@ -52,33 +52,12 @@
 		},
 		methods: {
 			async toCourse() {
-				
-				this.navTo(`/pages/course/course?id=${this.item.id}`)
-				// console.log(this.item)
-				// let list = {
-				// 	id: Number(this.item.id),
-				// 	column_id: 0,
-				// 	group_id: 0,
-				// 	flashsale_id: 0,
-
-				// }
-				// console.log(list)
-				
-				// let {
-				// 	code,
-				// 	data
-				// } = await indexApi.toCourse(list)
-
-				// if (code == 20000) {
-					// uni.navigateTo({
-					// 	url: `/pages/course/course?id=${this.item.id}`,
-						// success: (res) => {
-							
-						// 	res.eventChannel.emit('sendTestValue', {
-						// 		item: this.item
-						// 	})
-						// }
-					// })
+				console.log(this.item)
+				if(this.item.group_id){
+						this.navTo(`/pages/course/course?id=${this.item.id}&group_id=${this.item.group_id}`)
+				}else{
+					this.navTo(`/pages/course/course?id=${this.item.id}`)
+				}
 				}
 			}
 	}
