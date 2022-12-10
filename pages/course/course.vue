@@ -35,12 +35,15 @@
 				}
 			};
 		},
-		onLoad(options){
+		async onLoad(options){
 			console.log(options.id)
-			this.data.id=options.id
+			 this.data.id=options.id
 			this.data.group_id=options.group_id
-			this.getCoureList()
-			this.getGroupWork()
+			await this.getCoureList()
+			if(this.item.group){
+				console.log(1)
+					this.getGroupWork()
+			}
 			this.getTimeList()
 		       // 别问我啥意思。这是官方文档提供的
 				// this.page = this.getOpenerEventChannel();
@@ -54,19 +57,15 @@
 				// 	})
 				// })
 		},
-		onShow(){
-				this.getGroupWork()
-		},
+	
 		methods:{
 			getTimeList(){
 				if(this.item.group){
 					setInterval(()=>{
 						let res=this.$util.getTime(this.item.group.end_time)
 						this.time=res
-						// console.log(this.time)
 					},1000)
-						
-					}
+			}
 			},
 		async getCoureList(){	
 				let {code,data} = await indexApi.toCourse(this.data)
@@ -76,6 +75,10 @@
 					data.try=data.try.replace(/\<img/gi,'<img style="width :100%;height:auto"')
 					this.item=data
 					this.getTimeList()
+					console.log(data.group)
+					// if(data.group){
+					// 	this.getGroupWork()
+					// }
 					uni.setNavigationBarTitle({
 							title:this.item.title
 						})
@@ -88,7 +91,7 @@
 				let res =await courseApi.groupWork({group_id:this.data.group_id,page:1})
 				console.log(res)
 				this.rowsList=res.data.rows
-				console.log(this.rowsList)
+				console.log(this.rowsList,'0000')
 			}
 			
 			

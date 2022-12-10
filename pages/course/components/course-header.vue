@@ -61,13 +61,12 @@
 	
 	
 			<view class="divider"></view>
-			
-			
-			<view class="uni-card__header" v-if="rowsList.length">
+			<!-- {{rowsList}} -->
+			<view class="uni-card__header"  v-if="rowsList.length">
 				{{rowsList[0].num}}人在拼单,可直接参与
 				
 			</view>
-			<view class="p-2 con border-bottom">
+			<view class="p-2 con border-bottom"  v-if="rowsList.length">
 				<view class="flex align-center  ">
 					<img src="/static/userImg.png" class="bg-dark mr-2 image" alt="">
 					<text>{{rowsList[0].users[0].username}}</text>
@@ -117,7 +116,8 @@
 
 			};
 		},
-		created(){
+		onLoad() {
+			console.log(this.rowsList)
 		},
 		methods: {
 			async changeCollect() {
