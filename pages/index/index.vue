@@ -14,7 +14,7 @@
 		<Banner :list="BannerList"></Banner>
 		
 		<!-- nav 导航栏 -->
-		<multiRowNav :navList="navList"></multiRowNav>
+		<multiRowNav :navList="navList" @column="column"></multiRowNav>
 
 		<!-- 优惠券 -->
 		<!-- discountCoupon -->
@@ -133,6 +133,10 @@
 				if (code == 20000) {
 					this.groupList = data.rows
 				}
+			},
+			
+			column(item){
+				this.navTo(`/pages/list/list?module=${item.module}`)
 			}
 		}
 	}
