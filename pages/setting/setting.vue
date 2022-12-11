@@ -37,7 +37,10 @@
 					content: '是否要清除缓存？',
 					success: (res) => {
 						if (res.confirm) {
+							this.$store.commit('logout')
+							uni.clearStorageSync()
 							this.$set(obj,'text','0KB')
+							this.$util.msg('清除成功')
 						} else {
 							console.log('点击了取消')
 						}
