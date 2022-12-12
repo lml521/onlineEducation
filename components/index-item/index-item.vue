@@ -14,7 +14,8 @@
 		</view>
 		<view class="right flex flex-column">
 			<view class="right-title text-ellipsis  font-md" :class="{maxWidth:type}">{{item.title}}</view>
-			<view class="flex flex-1 align-end count">
+			<view class="flex flex-1 align-end count ">
+				
 				<view v-if="item.price">￥{{item.price=='0.00'?'免费':item.price}}</view>
 				<view :class="item.price?'grey':''" v-if="item.t_price">￥{{item.t_price}}</view>
 			</view>
@@ -75,6 +76,7 @@
 <style lang="scss">
 	.wrap{
 		display: inline-block !important;
+
 		flex-wrap: wrap !important; 
 	}
 	.maxWidth{
@@ -102,6 +104,7 @@
 				    bottom: 5px;
 				    background-color: rgba(0,0,0,.4);
 				    padding: 0 5px;
+					box-sizing: border-box;
 				font-size: 14rpx;
 				color: #fff;
 			}

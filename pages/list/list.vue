@@ -70,47 +70,26 @@
 					// 专栏 
 					if (this.type == 'column') {
 						response = await listApi.getList(this.data)
-						console.log(response)
-						const list = response.data.rows
-						console.log(list)
-						if (page.num === 1) {
-							this.list = []
-							this.mescroll.scrollTo(0, 0)
-						}
-						this.list = this.list.concat(list)
-						this.mescroll.endBySize(this.list.length, response.data.count)
+						console.log('专栏',response)
 						
-					}else if(this.type == 'flashsale'){// 秒杀
+						// 秒杀
+					}else if(this.type == 'flashsale'){
 					this.data.usable=1
 					response = await listApi.getFlashsale(this.data)
-					console.log(response)
-					const list = response.data.rows
-					console.log(list)
-					if (page.num === 1) {
-						this.list = []
-						this.mescroll.scrollTo(0, 0)
-					}
-					this.list = this.list.concat(list)
-					console.log(this.list.length, response.data.count)
-					this.mescroll.endBySize(this.list.length, response.data.count)
-					}else if(this.type == 'group'){// 拼团
+					console.log('秒杀',response)
+					
+					// 拼团
+					}else if(this.type == 'group'){
 					this.data.usable=1
 					response = await listApi.getGroup(this.data)
-					console.log(response)
-					const list = response.data.rows
-					console.log(list)
-					if (page.num === 1) {
-						this.list = []
-						this.mescroll.scrollTo(0, 0)
-					}
-					this.list = this.list.concat(list)
-					console.log(this.list.length, response.data.count)
-					this.mescroll.endBySize(this.list.length, response.data.count)
-					}else if(this.type == 'live'){// 拼团
+					console.log("拼团",response)
 					
-					console.log(this.data)
+					// 直播
+					}else if(this.type == 'live'){
 					response = await listApi.getLive(this.data)
-					console.log(response)
+					console.log("直播",response)
+					}
+					
 					const list = response.data.rows
 					console.log(list)
 					if (page.num === 1) {
@@ -118,12 +97,7 @@
 						this.mescroll.scrollTo(0, 0)
 					}
 					this.list = this.list.concat(list)
-					console.log(this.list.length, response.data.count)
 					this.mescroll.endBySize(this.list.length, response.data.count)
-					}
-					
-					
-					
 					
 				} catch (e) {
 					console.log("error=>", e)
