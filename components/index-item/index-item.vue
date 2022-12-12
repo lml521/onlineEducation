@@ -1,7 +1,9 @@
 <template>
 	<!-- 每一个盒子 -->
 	<!-- @click="navTo(`/pages/course/course-details?id=${item.id}`)" -->
-	<view class="item-box" :class="{column:isColumn}" @click="toCourse">
+	
+	<view class="item-box" :class="{column:isColumn,wrap:type}" @click="toCourse" >
+
 		<view class="left">
 			<img :src="item.cover" alt="">
 			<text class="item-time text-white font-sm " v-if="item.type=='media'">图文</text>
@@ -11,7 +13,7 @@
 			
 		</view>
 		<view class="right flex flex-column">
-			<view class="right-title text-ellipsis  font-md">{{item.title}}</view>
+			<view class="right-title text-ellipsis  font-md" :class="{maxWidth:type}">{{item.title}}</view>
 			<view class="flex flex-1 align-end count">
 				<view v-if="item.price">￥{{item.price=='0.00'?'免费':item.price}}</view>
 				<view :class="item.price?'grey':''" v-if="item.t_price">￥{{item.t_price}}</view>
@@ -25,7 +27,10 @@
 	export default {
 		name: "course-item",
 		props: {
-
+		type:{
+			type:String,
+			default:""
+		},
 			isColumn: {
 				type: Boolean,
 				default: false
@@ -68,7 +73,15 @@
 </script>
 
 <style lang="scss">
+	.wrap{
+		display: inline-block !important;
+		flex-wrap: wrap !important; 
+	}
+	.maxWidth{
+		max-width: 300rpx !important;
+	}
 	.item-box {
+		// display: inline-block !important;
 		display: flex;
 		padding: 20rpx;
 

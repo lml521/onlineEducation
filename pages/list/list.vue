@@ -1,15 +1,23 @@
 <template>
 	<view class="listBox">
 		<!-- 专栏列表 -->
-		<mescroll-uni
-		 :ref="'mescrollRef'+i" 
-		 @init="mescrollInit" 
-		 :down="downOption"
-		  @down="downCallback" 
-		  :up="upOption"
-		   @up="upCallback" >
-			<!-- 数据列表 -->
-			<indexItem :item="item" v-for="(item,index ) in list" :key="index"></indexItem>
+		<mescroll-uni :ref="'mescrollRef'+i" @init="mescrollInit" :down="downOption" @down="downCallback" :up="upOption"
+			@up="upCallback">
+			<!-- 专栏 -->
+			<indexItem v-if="type=='column'" :isColumn="false"  
+			:item="item" v-for="(item,index ) in list" :key="item.id"></indexItem>
+			
+			<!-- 秒杀 -->
+			<indexItem v-if="type=='flashsale'" type="flashsale" :isColumn="true" 
+			:item="item" v-for="(item,index ) in list" :key="item.id"></indexItem>
+			
+			<indexItem v-if="type=='group'" type="group" :isColumn="true"
+			:item="item" v-for="(item,index ) in list" :key="item.id"></indexItem>
+			
+			
+			<indexItem v-if="type=='live'" type="live" :isColumn="true"
+			:item="item" v-for="(item,index ) in list" :key="item.id"></indexItem>
+			
 		</mescroll-uni>
 	</view>
 </template>
@@ -20,65 +28,111 @@
 	import MescrollMixin from "@/uni_modules/mescroll-uni/components/mescroll-uni/mescroll-mixins.js";
 	import MescrollMoreItemMixin from "@/uni_modules/mescroll-uni/components/mescroll-uni/mixins/mescroll-more-item.js";
 	export default {
-		mixins: [MescrollMixin,MescrollMoreItemMixin],
-		components:{
+		mixins: [MescrollMixin, MescrollMoreItemMixin],
+		components: {
 			indexItem
 		},
 		data() {
 			return {
-				type:"",
-				data:{
+				type: "",
+				data: {
 					page: 1,
-					limit:10
+					limit: 10
 				},
-				downOption:{
-					auto:true // 不自动加载 (mixin已处理第一个tab触发downCallback)
+				downOption: {
+					auto: true // 不自动加载 (mixin已处理第一个tab触发downCallback)
 				},
-				upOption:{
-					auto:true, // 不自动加载
+				upOption: {
+					auto: true, // 不自动加载
 					noMoreSize: 4,
-					empty:{
+					empty: {
 						tip: '~ 空空如也 ~',
 					}
 				},
-				list:[],
+				list: [],
 			};
 		},
 		onLoad(options) {
+			this.type = options.module
 			console.log(options.module)
-			this.type=options.module
+			let title=options.module == 'column'?'专栏列表':options.module == 'flashsale'?'秒杀列表':options.module == 'group'?'拼团列表':'直播列表'
+			uni.setNavigationBarTitle({title})
 		},
-		methods:{
+		methods: {
 			downCallback() {
 				this.mescroll.resetUpScroll()
 			},
-			// /*上拉加载的回调: 其中page.num:当前页 从1开始, page.size:每页数据条数,默认10 */
+		
 			async upCallback(page) {
-				this.data.page  = page.num 
-				try{
-					console.log(this.type,this.type=='column')
+				this.data.page = page.num
+				try {
 					let response
-					if(this.type=='column'){
-					    response  = await listApi.getList(this.data)
+					// 专栏 
+					if (this.type == 'column') {
+						response = await listApi.getList(this.data)
 						console.log(response)
+						const list = response.data.rows
+						console.log(list)
+						if (page.num === 1) {
+							this.list = []
+							this.mescroll.scrollTo(0, 0)
+						}
+						this.list = this.list.concat(list)
+						this.mescroll.endBySize(this.list.length, response.data.count)
+						
+					}else if(this.type == 'flashsale'){// 秒杀
+					this.data.usable=1
+					response = await listApi.getFlashsale(this.data)
+					console.log(response)
 					const list = response.data.rows
 					console.log(list)
-					if(page.num === 1){
+					if (page.num === 1) {
 						this.list = []
-						this.mescroll.scrollTo(0,0)
+						this.mescroll.scrollTo(0, 0)
 					}
 					this.list = this.list.concat(list)
+					console.log(this.list.length, response.data.count)
+					this.mescroll.endBySize(this.list.length, response.data.count)
+					}else if(this.type == 'group'){// 拼团
+					this.data.usable=1
+					response = await listApi.getGroup(this.data)
+					console.log(response)
+					const list = response.data.rows
+					console.log(list)
+					if (page.num === 1) {
+						this.list = []
+						this.mescroll.scrollTo(0, 0)
+					}
+					this.list = this.list.concat(list)
+					console.log(this.list.length, response.data.count)
+					this.mescroll.endBySize(this.list.length, response.data.count)
+					}else if(this.type == 'live'){// 拼团
+					
+					console.log(this.data)
+					response = await listApi.getLive(this.data)
+					console.log(response)
+					const list = response.data.rows
+					console.log(list)
+					if (page.num === 1) {
+						this.list = []
+						this.mescroll.scrollTo(0, 0)
+					}
+					this.list = this.list.concat(list)
+					console.log(this.list.length, response.data.count)
 					this.mescroll.endBySize(this.list.length, response.data.count)
 					}
-				}catch(e){
-					//TODO handle the exception
+					
+					
+					
+					
+				} catch (e) {
 					console.log("error=>", e)
 				}
 			},
-			
-			
+
+
 		}
-		
+
 	}
 </script>
 
