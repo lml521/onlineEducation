@@ -4,7 +4,11 @@
 	<view class="item-box" :class="{column:isColumn}" @click="toCourse">
 		<view class="left">
 			<img :src="item.cover" alt="">
-			<text class="item-time text-white font-sm ">{{item.title=='media'?'视频':'图文'}}</text>
+			<text class="item-time text-white font-sm " v-if="item.type=='media'">图文</text>
+			<text class="item-time text-white font-sm " v-else-if="item.type=='video'">视频</text>
+			<text class="item-time text-white font-sm " v-else-if="item.type=='audio'">音频</text>
+			<text class="item-time text-white font-sm " v-else-if="item.type=='column'">专栏</text>
+			
 		</view>
 		<view class="right flex flex-column">
 			<view class="right-title text-ellipsis  font-md">{{item.title}}</view>

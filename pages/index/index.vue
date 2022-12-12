@@ -14,7 +14,8 @@
 		<Banner :list="BannerList"></Banner>
 		
 		<!-- nav 导航栏 -->
-		<multiRowNav :navList="navList" @column="column" @test="test" @flashsale="flashsale" @group="group" @live="live"
+		<multiRowNav :navList="navList" 
+		@column="column" @test="test" @flashsale="flashsale" @group="group" @live="live"
 		@book="book" @bbs="bbs"></multiRowNav>
 
 		<!-- 优惠券 -->

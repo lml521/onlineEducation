@@ -30,7 +30,6 @@
 			console.log(item)
 			if(item.url){
 				location.href=item.url
-				
 			}
 			if(item.module){
 				this.$emit(item.module,item)
