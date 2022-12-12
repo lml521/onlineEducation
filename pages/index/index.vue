@@ -14,7 +14,8 @@
 		<Banner :list="BannerList"></Banner>
 		
 		<!-- nav 导航栏 -->
-		<multiRowNav :navList="navList" @column="column"></multiRowNav>
+		<multiRowNav :navList="navList" @column="column" @test="test" @flashsale="flashsale" @group="group" @live="live"
+		@book="book" @bbs="bbs"></multiRowNav>
 
 		<!-- 优惠券 -->
 		<!-- discountCoupon -->
@@ -134,10 +135,40 @@
 					this.groupList = data.rows
 				}
 			},
-			
+			// 专栏 
 			column(item){
 				this.navTo(`/pages/list/list?module=${item.module}`)
+			},
+			// 考试 
+			test(item){
+				// console.log("考试")
+				this.navTo('/pages/test-list/test-list')
+			},
+			// 秒杀
+			flashsale(item){
+				this.navTo(`/pages/list/list?module=${item.module}`)
+			},
+			
+			// 拼团 
+			group(item){
+					this.navTo(`/pages/list/list?module=${item.module}`)
+			},
+			
+			// /pages/list/list?module=live
+			// 直播
+			live(item){
+					this.navTo(`/pages/list/list?module=${item.module}`)
+			},
+			
+			// 电子书
+			book(item){
+				this.navTo('/pages/book-list/book-list')
+			},
+			// 社区 
+			bbs(item){
+				this.navTo('/pages/bbs/bbs')	
 			}
+			
 		}
 	}
 </script>

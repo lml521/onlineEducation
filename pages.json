@@ -241,6 +241,33 @@
             }
             
         }
+        ,{
+            "path" : "pages/test-list/test-list",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "考试列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/book-list/book-list",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "电子书列表",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/bbs/bbs",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "社区",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 		"color": "#c4c0c9",
