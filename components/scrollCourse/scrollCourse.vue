@@ -32,14 +32,13 @@
 	.list-scroll {
 		// 内容一行显示不换行
 		white-space: nowrap;
-		height: 300rpx;
+		height: 310rpx;
 
 		.list-scroll-view {
 			display: inline-block;
-			width: 310rpx;
+			width: 340rpx;
 			background-color: #fff;
 			padding: 0 10rpx;
-			margin-right: 20rpx;
 			border-radius: 20rpx;
 		}
 	}

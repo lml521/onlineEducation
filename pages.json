@@ -264,6 +264,33 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "社区",
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+							"searchInput": {
+							"height": "200rpx",
+							"align": "center",
+							"placeholder": "搜索搜索帖子",
+							"placeholderColor": "#928e8a",
+							"backgroundColor": "#f5f5f1",
+							"borderRadius": "10rpx"
+						},
+						"buttons": [
+							{
+								"font_class":"uni-btn-icon",
+								"unicode":"e6be"
+							}
+						]
+					}
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/test-detail/test-detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "开始考试",
                 "enablePullDownRefresh": false
             }
             

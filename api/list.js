@@ -28,9 +28,17 @@ const getLive =(data)=>{
 		data
 	})
 }
+// 电子书 
+const getBookList =(data)=>{
+	return Http.request({
+		url:"/book/list",
+		data,
+	})
+}
 export default {
 	getList,
 	getFlashsale,
 	getGroup,
-	getLive
+	getLive,
+	getBookList
 }

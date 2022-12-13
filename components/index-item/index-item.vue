@@ -3,8 +3,8 @@
 	<!-- @click="navTo(`/pages/course/course-details?id=${item.id}`)" -->
 	
 	<view class="item-box" :class="{column:isColumn,wrap:type}" @click="toCourse" >
-
-		<view class="left">
+<!-- {{item}} -->
+		<view class="left" :class="{leftImg:imgmin}">
 			<img :src="item.cover" alt="">
 			<text class="item-time text-white font-sm " v-if="item.type=='media'">图文</text>
 			<text class="item-time text-white font-sm " v-else-if="item.type=='video'">视频</text>
@@ -14,10 +14,21 @@
 		</view>
 		<view class="right flex flex-column">
 			<view class="right-title text-ellipsis  font-md" :class="{maxWidth:type}">{{item.title}}</view>
-			<view class="flex flex-1 align-end count ">
+			<view class="" v-if="type=='live'" class="font-sm my-1  text-danger" >
+				直播中
+			</view>
+			<view class="flex flex-1 align-end count   text-ellipsis"  :class="{flexBox:imgmin}">
+				<view class="font text-danger" v-if="type=='flashsale'"  style="font-size: 16px;" >秒杀价:</view>
 				
-				<view v-if="item.price">￥{{item.price=='0.00'?'免费':item.price}}</view>
+				<view class="font text-danger" v-if="type=='group'"  style="font-size: 16px;" >拼团价:</view>
+				<view v-if="item.price" style="font-size: 16px;">￥{{item.price=='0.00'?'免费':item.price}}</view>
 				<view :class="item.price?'grey':''" v-if="item.t_price">￥{{item.t_price}}</view>
+				
+				<view  v-if="imgmin" class="border flex align-center justify-center rounded-circle px-2 py-1 ml-auto text-muted"
+				style="color: #6c757d;margin-right: 30rpx;">
+					{{item.sub_count}}人订阅
+					<text class="iconfont icon-xiayibu ml-1"></text>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -28,6 +39,10 @@
 	export default {
 		name: "course-item",
 		props: {
+			imgmin:{
+				type: Boolean,
+				default: false
+			},
 		type:{
 			type:String,
 			default:""
@@ -82,14 +97,31 @@
 	.maxWidth{
 		max-width: 300rpx !important;
 	}
+	.leftImg{
+		width: 184rpx !important;
+		height: 234rpx !important;
+		position: relative;
+		margin-right: 20rpx;
+		
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	
+	.flexBox{
+		width: 100% !important;
+		// display: block !important; 
+	}
 	.item-box {
 		// display: inline-block !important;
 		display: flex;
-		padding: 20rpx;
+		margin: 0 0 20rpx 10rpx;
+		// padding: 20rpx;
 
 		.left {
-			width: 300rpx;
-			height: 170rpx;
+			width: 340rpx;
+			height: 180rpx;
 			position: relative;
 			margin-right: 20rpx;
 
@@ -111,9 +143,7 @@
 		}
 
 		.right {
-			margin-right: 22rpx;
 			flex: 1;
-
 			.right-title {
 				overflow: hidden;
 				text-overflow: ellipsis;

@@ -1,13 +1,10 @@
 <template>
 	<view>
-		<!-- {{item}} -->
 		<courseHeader :item="item" :time="time" :rowsList="rowsList"></courseHeader>
-	
 		<courseContent :item="item"></courseContent>
 		<view  style="height:150rpx;"></view>
 		<view class="btn">
 			<button @click="navTo(`/pages/create-order/create-order?id=${item.id}&type=course`)">立即订购 ￥{{item.price}}</button>
-			
 		</view>
 	</view>
 </template>
@@ -45,28 +42,16 @@
 					this.getGroupWork()
 			}
 			this.getTimeList()
-		       // 别问我啥意思。这是官方文档提供的
-				// this.page = this.getOpenerEventChannel();
-				// // 你可以在这里直接接受，这里不是$on
-				// this.page.on('sendTestValue',(data)=>{
-				// 	// 这是data 就是上个页面传递的对象了
-				// 	console.log(data)
-				// 	this.item=data.item
-				// 	uni.setNavigationBarTitle({
-				// 		title:this.item.title
-				// 	})
-				// })
+			this.time=this.$util.getTime(this.item.group.end_time)
 		},
 	
 		methods:{
 			getTimeList(){
 				if(this.item.group){
 					setInterval(()=>{
-						let res=this.$util.getTime(this.item.group.end_time)
-						this.time=res
+						this.time=this.$util.getTime(this.item.group.end_time)
 					},1000)
-			}
-			},
+			}},
 		async getCoureList(){	
 				let {code,data} = await indexApi.toCourse(this.data)
 				console.log(code,data)
@@ -76,9 +61,7 @@
 					this.item=data
 					this.getTimeList()
 					console.log(data.group)
-					// if(data.group){
-					// 	this.getGroupWork()
-					// }
+					
 					uni.setNavigationBarTitle({
 							title:this.item.title
 						})

@@ -60,13 +60,7 @@
 				}
 				this.$store.commit('addHistory', this.content)
 				this.navTo(`/pages/search-result/search-result?keyword=${this.content}`)
-
-
 			},
-
-
-
-
 			// 获取本地数据 
 			getHasHistory() {
 				this.hasHistory = this.$store.getters.hasHistory
