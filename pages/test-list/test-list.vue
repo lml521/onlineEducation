@@ -9,7 +9,7 @@
 		  :up="upOption"
 		   @up="upCallback" >
 			<!-- 数据列表 -->
-			<testpaperItem :item="item" v-for="(item,index ) in list" :key="index"></testpaperItem>
+			<testpaperItem :item="item" v-for="(item,index) in list" :key="index"></testpaperItem>
 		</mescroll-uni>
 	</view>
 </template>
@@ -44,10 +44,10 @@
 				list:[],
 			};
 		},
-		onBackPress() {
+		onShow() {
 			console.log(123)
-			uni.switchTab('/pages/index/index')
-			},
+			this.getList()
+		},
 		
 		methods:{
 			downCallback() {
@@ -55,25 +55,31 @@
 			},
 			// /*上拉加载的回调: 其中page.num:当前页 从1开始, page.size:每页数据条数,默认10 */
 			async upCallback(page) {
+				
 				this.data.page  = page.num 
 				try{
-					   let response  = await testListApi.testpaper(this.data)
-						console.log(response)
+					let response  = await testListApi.testpaper(this.data)
+					console.log(response)
 					const list = response.data.rows
-					console.log(list)
-					if(page.num === 1){
-						this.list = []
-						this.mescroll.scrollTo(0,0)
-					}
 					this.list = this.list.concat(list)
 					this.mescroll.endBySize(this.list.length, response.data.count)
-					
 				}catch(e){
-					//TODO handle the exception
 					console.log("error=>", e)
 				}
 			},
 			
+			async getList(){
+				try{
+					let response  = await testListApi.testpaper(this.data)
+					console.log(response)
+					this.list= response.data.rows
+					this.list = this.list.concat(list)
+					this.mescroll.endBySize(this.list.length, response.data.count)
+					// console.log(list)
+				}catch(e){
+					console.log("error=>", e)
+				}
+			}
 			
 		}
 		

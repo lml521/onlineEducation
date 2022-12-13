@@ -4,10 +4,10 @@
 			<view v-for="(item,index) in list " :key="index+1"  class="item" hover-class="active"
 				:hover-stay-time="100" @click="handelbtn(item)">
 				<text v-if="item.icon&&item.direction=='left'"   :class="{colorCCC:index==0}" class="iconfont icon-shangyibu"></text>
-				<text v-if="item.icon&&item.direction=='right'" :class="{colorCCC:index==i}"   class="iconfont icon-xiayibu"></text>
+				<text v-if="item.icon&&item.direction=='right'" :class="{colorCCC:lengths==i}"   class="iconfont icon-xiayibu"></text>
 				<text v-if="item.icon && !item.direction" :class="item.icon"></text>
 				<view v-if="item.title">{{item.title||4}}</view>
-				<view v-if="item.title==''"><text style="color: #5ccc94;">1</text>/4</view>
+				<view v-if="item.title==''"><text style="color: #5ccc94;">{{i}}</text>/{{lengths}}</view>
 			</view>
 			
 		</view>
@@ -19,9 +19,15 @@
 	export default {
 		name:"testFooter",
 		props:{
+			// 当前第几题
 			i:{
 				type:Number,
-				default:1
+				default:0
+			},
+			// 中共多少条数据 
+			lengths:{
+				type:Number,
+				default:0
 			}
 		},
 		data() {
