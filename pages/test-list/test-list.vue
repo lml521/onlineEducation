@@ -44,6 +44,10 @@
 				list:[],
 			};
 		},
+		onBackPress() {
+			console.log(123)
+			uni.switchTab('/pages/index/index')
+			},
 		
 		methods:{
 			downCallback() {

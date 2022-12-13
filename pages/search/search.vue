@@ -39,7 +39,9 @@
 
 		},
 		onBackPress() {
+			console.log(1)
 			uni.switchTab('pages/index/index')
+			console.log(2)
 		},
 		
 		// 点击 搜索

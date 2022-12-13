@@ -3,7 +3,6 @@
 	<!-- @click="navTo(`/pages/course/course-details?id=${item.id}`)" -->
 	
 	<view class="item-box" :class="{column:isColumn,wrap:type}" @click="toCourse" >
-<!-- {{item}} -->
 		<view class="left" :class="{leftImg:imgmin}">
 			<img :src="item.cover" alt="">
 			<text class="item-time text-white font-sm " v-if="item.type=='media'">图文</text>

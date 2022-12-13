@@ -5,20 +5,35 @@
 			<uni-countdown :hour="h" :minute="m" :second="s" :show-day="false" color="red" splitorColor="red">
 			</uni-countdown>
 		</view>
+		<!-- 题目 -->
+		<examination :item="item" :i="index"></examination>
+		<view class="footer">
+			<testFooter @back="back" @submit="submit" @next="next"></testFooter>
+		</view>
+
 
 	</view>
 </template>
 
 <script>
-	import uniCountdown from "@/uni_modules/uni-countdown/components/uni-countdown/uni-countdown.vue"//倒计时
+	import uniCountdown from "@/uni_modules/uni-countdown/components/uni-countdown/uni-countdown.vue" //倒计时
 	import testApi from "@/api/test.js"
+	import examination from "@/components/examination/examination.vue"
+	import testFooter from "@/components/testFooter/testFooter.vue"
 	export default {
+		components: {
+			examination,
+			testFooter
+		},
 		data() {
 			return {
 				h: 1,
 				m: 0,
 				s: 0,
-				id:""
+				id: "",
+				list: [],
+				index: 1,
+				item: {}
 			};
 		},
 		components: {
@@ -44,14 +59,52 @@
 		},
 		onLoad(options) {
 			console.log(options.id)
-			this.id=options.id
+			this.id = options.id
 			this.getTestList()
 		},
-		methods:{
-			async getTestList(){
-				let res =await testApi.getTestList({id:this.id})
+		methods: {
+
+			async getTestList() {
+				let res = await testApi.getTestList({
+					id: this.id
+				})
 				console.log(res)
-			}
+				if (res.code == 20000) {
+					console.log(res.data.testpaper_questions)
+					this.list = res.data.testpaper_questions
+					this.item = res.data.testpaper_questions[this.index]
+					console.log(res.data.testpaper_questions[this.index])
+				}
+			},
+
+
+			// 返回上一题 
+			back() {
+				console.log(this.index)
+				if (this.index == 1) return
+				this.index = this.index - 1
+			},
+			// 提交 
+			submit() {
+				console.log()
+				uni.showModal({
+					content: '还有题目没有完成',
+					showCancel: false,
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+						}
+					}
+				})
+			},
+
+
+			// 下一题
+			next() {
+				console.log(this.index)
+				if (this.index == this.item.length) return
+				this.index = this.index + 1
+			},
 		}
 
 	}
@@ -59,24 +112,25 @@
 
 <style lang="scss">
 	.countDown {
-		display: flex;
+		width: 100%;
 		align-items: center;
 		justify-content: center;
 		background-color: #fff;
 		color: red;
+		display: flex;
 		border-top: 0.5px solid red;
 		border-bottom: 0.5px solid red;
 		padding: 10px 0;
 		font-size: 17px;
 		height: 25px;
-		position: fixed;
-		left: 0;
-		right: 0;
 		z-index: 1000;
 	}
-	
-	/deep/ .uni-countdown__splitor{
-		font-weight: 900 !important;
-	} 
 
+	/deep/ .uni-countdown__splitor {
+		font-weight: 900 !important;
+	}
+
+	// .footer{
+	// 	position: fixed;
+	// }
 </style>
