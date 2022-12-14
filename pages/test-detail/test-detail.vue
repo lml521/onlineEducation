@@ -11,8 +11,11 @@
 			加载中...
 		</view>
 		<!-- 题目 -->
-		<examination :item="item" :i="index" v-if="this.list.length"></examination>
 
+		<view class="mb100" >
+
+		<examination :item="item" :i="index" v-if="this.list.length"></examination>
+		</view>
 		<view class="footer">
 			<testFooter :lengths="lengths" :i="index" @back="back" @submit="submit" @next="next"></testFooter>
 		</view>
@@ -24,6 +27,7 @@
 <script>
 	import uniCountdown from "@/uni_modules/uni-countdown/components/uni-countdown/uni-countdown.vue" //倒计时
 	import testApi from "@/api/test.js"
+	import testListApi from "@/api/testList.js"
 	import examination from "@/components/examination/examination.vue"
 	import testFooter from "@/components/testFooter/testFooter.vue"
 	export default {
@@ -40,7 +44,8 @@
 				list: [], //获取考试的全部数据
 				index: 1, //当前题的
 				lengths: 0,
-				item: {}
+				item: {},
+				examInfo:{},//信息
 			};
 		},
 		components: {
@@ -49,21 +54,21 @@
 		// 返回 退出 
 		onBackPress(event) {
 			console.log(event)
-			
-			if(event.from=="backbutton"){
+
+			if (event.from == "backbutton") {
 				console.log(123)
 				uni.showModal({
-					content:"是否要放弃本次考试",
-					success:(res)=> {
-						if(res.confirm){
+					content: "是否要放弃本次考试",
+					success: (res) => {
+						if (res.confirm) {
 							this.navBack()
 						}
 					}
 				})
 				return true
-			}else{
+			} else {
 				uni.redirectTo({
-					url:"/pages/test-list/test-list"
+					url: "/pages/test-list/test-list"
 				})
 				return false
 			}
@@ -73,25 +78,29 @@
 			this.id = options.id
 			this.getTestList()
 		},
-		
+
 		methods: {
 
 			async getTestList() {
+				// console.log(data)
+				// getHandInAnExamination()
 				let res = await testApi.getTestList({
 					id: this.id
 				})
 				console.log(res)
 				if (res.code == 20000) {
 					this.list = res.data.testpaper_questions
-					this.item = this.list[this.index-1]
+					this.examInfo = res.data
+					this.item = this.list[this.index - 1]
 					this.lengths = this.list.length
 					this.index = 1
+					console.log(this.examInfo)
 				} else {
 					this.index = 0
 					this.$util.msg(res.data)
-					setTimeout(()=>{
+					setTimeout(() => {
 						this.navBack()
-					},1000)
+					}, 1000)
 				}
 			},
 
@@ -101,29 +110,51 @@
 				console.log(this.index)
 				if (this.index == 1) return
 				this.index = this.index - 1
-					this.item = this.list[this.index-1]
+				this.item = this.list[this.index - 1]
 			},
 			// 提交 
 			submit() {
-				console.log()
-				uni.showModal({
-					content: '还有题目没有完成',
-					showCancel: false,
-					success: function(res) {
+				let arrs = this.list.map(item => item.user_value)
+				let obj = {
+					user_test_id: this.examInfo.user_test_id,
+					value: arrs
+				}
+console.log(arrs,obj)
+uni.showModal({
+					content: '确定要交卷吗',
+					success:(res)=> {
 						if (res.confirm) {
-							console.log('用户点击确定');
+							this.HandInAnExamination(obj)
+						} else if (res.cancel) {
+							console.log('用户点击取消');
 						}
 					}
-				})
+				});
 			},
-
+			
+			async HandInAnExamination(obj){
+							try{
+								const res = await testListApi.getHandInAnExamination(obj)
+								console.log(res);
+								if(res.code!==20000){
+									this.$util.msg(res.data.slice(0,4)+'没有答题')
+								}else{
+									this.$util.msg('交卷成功')
+									setTimeout(()=>{
+										this.navBack()
+									},1000)
+								}
+							}catch(e){
+								console.log(e);
+							}
+						},
 
 			// 下一题
 			next() {
 				console.log(this.index)
 				if (this.index == this.list.length) return
 				this.index = this.index + 1
-				this.item = this.list[this.index-1]
+				this.item = this.list[this.index - 1]
 			},
 		}
 
@@ -161,7 +192,4 @@
 		font-weight: 900 !important;
 	}
 
-	// .footer{
-	// 	position: fixed;
-	// }
 </style>

@@ -45,8 +45,8 @@
 			};
 		},
 		onShow() {
-			console.log(123)
-			this.getList()
+			console.log(this.data.page,'999')
+			this.getList(this.data.page)
 		},
 		
 		methods:{
@@ -55,6 +55,7 @@
 			},
 			// /*上拉加载的回调: 其中page.num:当前页 从1开始, page.size:每页数据条数,默认10 */
 			async upCallback(page) {
+				console.log(page.num)
 				
 				this.data.page  = page.num 
 				try{
@@ -68,13 +69,14 @@
 				}
 			},
 			
-			async getList(){
+			async getList(num){
+				
 				try{
 					let response  = await testListApi.testpaper(this.data)
-					console.log(response)
-					this.list= response.data.rows
-					this.list = this.list.concat(list)
-					this.mescroll.endBySize(this.list.length, response.data.count)
+					this.list = response.data.rows
+					// this.list = this.list.concat(list)
+					// 	console.log(this.list,'00000')
+					// this.mescroll.endBySize(this.list.length, response.data.count)
 					// console.log(list)
 				}catch(e){
 					console.log("error=>", e)
