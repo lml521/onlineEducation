@@ -277,8 +277,10 @@
 						},
 						"buttons": [
 							{
-								"font_class":"uni-btn-icon",
-								"unicode":"e6be"
+								"float": "right",
+								"fontSrc": "/static/iconfont.ttf",
+								"text":"\ue682",
+								"fontSize": "20"
 							}
 						]
 					}

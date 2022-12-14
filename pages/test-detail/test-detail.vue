@@ -11,10 +11,8 @@
 			加载中...
 		</view>
 		<!-- 题目 -->
-
-		<view class="mb100" >
-
-		<examination :item="item" :i="index" v-if="this.list.length"></examination>
+		<view class="mb100">
+			<examination :item="item" :i="index" v-if="this.list.length"></examination>
 		</view>
 		<view class="footer">
 			<testFooter :lengths="lengths" :i="index" @back="back" @submit="submit" @next="next"></testFooter>
@@ -45,7 +43,7 @@
 				index: 1, //当前题的
 				lengths: 0,
 				item: {},
-				examInfo:{},//信息
+				examInfo: {}, //信息
 			};
 		},
 		components: {
@@ -54,7 +52,6 @@
 		// 返回 退出 
 		onBackPress(event) {
 			console.log(event)
-
 			if (event.from == "backbutton") {
 				console.log(123)
 				uni.showModal({
@@ -82,8 +79,6 @@
 		methods: {
 
 			async getTestList() {
-				// console.log(data)
-				// getHandInAnExamination()
 				let res = await testApi.getTestList({
 					id: this.id
 				})
@@ -119,10 +114,9 @@
 					user_test_id: this.examInfo.user_test_id,
 					value: arrs
 				}
-console.log(arrs,obj)
-uni.showModal({
+				uni.showModal({
 					content: '确定要交卷吗',
-					success:(res)=> {
+					success: (res) => {
 						if (res.confirm) {
 							this.HandInAnExamination(obj)
 						} else if (res.cancel) {
@@ -131,23 +125,23 @@ uni.showModal({
 					}
 				});
 			},
-			
-			async HandInAnExamination(obj){
-							try{
-								const res = await testListApi.getHandInAnExamination(obj)
-								console.log(res);
-								if(res.code!==20000){
-									this.$util.msg(res.data.slice(0,4)+'没有答题')
-								}else{
-									this.$util.msg('交卷成功')
-									setTimeout(()=>{
-										this.navBack()
-									},1000)
-								}
-							}catch(e){
-								console.log(e);
-							}
-						},
+
+			async HandInAnExamination(obj) {
+				try {
+					const res = await testListApi.getHandInAnExamination(obj)
+					console.log(res);
+					if (res.code !== 20000) {
+						this.$util.msg(res.data.slice(0, 4) + '没有答题')
+					} else {
+						this.$util.msg('交卷成功')
+						setTimeout(() => {
+							this.navBack()
+						}, 1000)
+					}
+				} catch (e) {
+					console.log(e);
+				}
+			},
 
 			// 下一题
 			next() {
@@ -191,5 +185,4 @@ uni.showModal({
 	/deep/ .uni-countdown__splitor {
 		font-weight: 900 !important;
 	}
-
 </style>
