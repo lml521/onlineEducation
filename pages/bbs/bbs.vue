@@ -71,7 +71,12 @@
 			await this.getbbsList()
 			this.gieList()
 		},
-
+		// 按钮 跳转新增帖子页面 
+	onNavigationBarButtonTap(e) {
+			if (e.index === 0) {
+				this.navTo('/pages/add-post/add-post')
+			}
+		},
 		// 实时会获取搜索框你们的内容
 		onNavigationBarSearchInputChanged(e) {
 			this.content = e.text

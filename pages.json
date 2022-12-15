@@ -311,7 +311,17 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "新增帖子",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": {
+						"buttons": [
+							{
+								"text": "发布",
+								"fontSize": "28rpx"
+							}
+						]
+					}
+				}
             }
             
         }

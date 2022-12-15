@@ -1,6 +1,5 @@
 <template>
 	<view>
-	
 		<bbsItem  :detail="true" :item="item" @click.stop="()=>{}">
 		></bbsItem>
 		<view class="divider"></view>
