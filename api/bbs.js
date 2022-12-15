@@ -31,11 +31,19 @@ const unsupport =(data)=>{
 		data
 	})
 }
+// 获取 详情 数据 
+const getItme =(data)=>{
+	return Http.request({
+		url:"/post/read",
+		data
+	})
+}
 
 
 export default {
 	getBbs,
 	getPostList,
 	support,
-	unsupport
+	unsupport,
+	getItme
 }

@@ -1,5 +1,5 @@
 <template>
-	<view class="itemBox p-3">
+	<view class="itemBox p-3" @click="toDetail">
 		<view class="user flex align-center w-100">
 			<img class="mr-2 img  " :src="item.user.avatar||'/static/userImg.png'" alt="">
 			<view>
@@ -9,25 +9,26 @@
 			<view class="post-tag">精华</view>
 		</view>
 
-		<view class="py-2">
+		<view class="py-2" :class="{'p-2':detail}">
 			<view>
 				{{item.desc.text}}
 			</view>
 			<view class="imgs flex flex-wrap">
 				<view class="flex align-center justify-center mt-1" style="width: 33.33%;"
-					v-for="(ele,i) in item.desc.images">
+					v-for="(ele,i) in item.desc.images" :class="{detailImg:detail}">
 					<img :src="ele" alt="">
 				</view>
 			</view>
 		</view>
 
-		<view class="flex align-center justify-between mt-2">
+		<view class="flex align-center justify-between mt-2" v-if="!detail">
 			<view class="flex align-center">
 				<view class="flex align-center pr-2">
 					<text class="iconfont icon-pinglun2" style="font-size: 23px;"></text>
 					<text class="ml-1">{{item.comment_count}}</text>
 				</view>
-				<view class="flex align-center " :class="{'text-danger':item.issupport}" @click="handelSupport">
+				<view class="flex align-center " :class="{'text-danger':item.issupport}" 
+				@click="handelSupport">
 					<text class="iconfont icon-dianzan2" style="font-size: 23px;"></text>
 					<text class="ml-1">{{item.support_count}}</text>
 				</view>
@@ -44,6 +45,13 @@
 	import bbsApi from "@/api/bbs.js"
 	export default {
 		props: {
+			// 是否是详情
+			detail:{
+				type:Boolean,
+				default:false,
+				
+			},
+			// 当前 这一项
 			item: {
 				type: Object,
 				default: () => {
@@ -78,6 +86,7 @@
 
 
 		methods: {
+			// 点赞 取消点赞 
 			async handelSupport() {
 			
 				let res
@@ -97,12 +106,24 @@
 						
 					}
 				}
+			},
+			// 跳转详情 
+			toDetail(){
+				console.log(1234,this.item.id)
+				this.navTo(`/pages/post-detail/post-detail?id=${this.item.id}`)
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
+	.detailImg{
+		width: 100% !important;
+		img{
+			width: 320px !important;
+			height: 208px !important;
+		}
+	}
 	.itemBox {
 		.user {
 			.img {

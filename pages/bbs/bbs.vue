@@ -27,11 +27,6 @@
 			</view>
 
 			<bbsItem v-for="(item,index) in list" :key="index" :item="item"></bbsItem>
-			<!-- 123 -->
-			<!-- <view class="" v-for="(item,index) in list" :key="index" style="height: 100px;">{{index}}
-
-			</view> -->
-
 		</mescroll-uni>
 
 	</view>
