@@ -20,7 +20,7 @@
 				</view>
 			</view>
 		</view>
-
+<!-- iconfont icon-shanchu text-white -->
 		<view class="flex align-center justify-between mt-2" v-if="!detail">
 			<view class="flex align-center">
 				<view class="flex align-center pr-2">
