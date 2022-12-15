@@ -82,13 +82,10 @@
 					this.searchList = this.searchList.concat(list)
 					this.mescroll.endBySize(this.searchList.length, response.data.count)
 				}catch(e){
-					//TODO handle the exception
 					console.log("error=>", e)
 				}
 			},
-			// handleToDetails(id){
-			// 	this.navTo("/pages/article/details?id=" + id)
-			// }
+			
 		}
 	}
 </script>

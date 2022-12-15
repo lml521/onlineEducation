@@ -7,8 +7,16 @@ const getBbs =(data)=>{
 		data
 	})
 }
+// post/list?page=1&keyword=1&bbs_id=0
+const getPostList =(data)=>{
+	return Http.request({
+		url:"/post/list",
+		data
+	})
+}
 
 
 export default {
-	getBbs
+	getBbs,
+	getPostList
 }
