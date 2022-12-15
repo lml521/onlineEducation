@@ -7,7 +7,7 @@ const getBbs =(data)=>{
 		data
 	})
 }
-// post/list?page=1&keyword=1&bbs_id=0
+//获取 帖子数据 
 const getPostList =(data)=>{
 	return Http.request({
 		url:"/post/list",
@@ -15,8 +15,27 @@ const getPostList =(data)=>{
 	})
 }
 
+// 喜欢 帖子 点赞 
+const support =(data)=>{
+	return Http.request({
+		url:"/post/support",
+		method:"POST",
+		data
+	})
+}
+// 取消帖子 
+const unsupport =(data)=>{
+	return Http.request({
+		url:"/post/unsupport",
+		method:"POST",
+		data
+	})
+}
+
 
 export default {
 	getBbs,
-	getPostList
+	getPostList,
+	support,
+	unsupport
 }
