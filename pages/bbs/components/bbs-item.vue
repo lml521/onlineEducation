@@ -1,8 +1,8 @@
 <template>
+	<!-- 帖子 每一项 -->
 	<view class="itemBox p-3" @click="toDetail">
 		<view class="user flex align-center w-100">
-			<!-- {{item.user}} -->
-			<img class="mr-2 img  " :src="item.user.avatar!=false?item.user.avatar:'/static/userImg.png'" alt="">
+			<img class="mr-2 img  " :src="item.user.avatar||'/static/userImg.png'" alt="">
 			<view>
 				<view class="text-primary font-weight-bold">{{item.user.name}}</view>
 				<view class="text-muted font">{{item.user.sex}}</view>
@@ -29,7 +29,7 @@
 					<text class="ml-1">{{item.comment_count}}</text>
 				</view>
 				<view class="flex align-center " :class="{'text-danger':item.issupport}" 
-				@click="handelSupport">
+				@click.stop="handelSupport">
 					<text class="iconfont icon-dianzan2" style="font-size: 23px;"></text>
 					<text class="ml-1">{{item.support_count}}</text>
 				</view>
@@ -44,6 +44,7 @@
 
 <script>
 	import bbsApi from "@/api/bbs.js"
+	
 	export default {
 		props: {
 			// 是否是详情
@@ -104,7 +105,6 @@
 						this.item.support_count-=1
 						this.item.issupport=false
 						this.$util.msg('取消点赞')
-						
 					}
 				}
 			},

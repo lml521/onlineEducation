@@ -1,5 +1,5 @@
 <template>
-	<view class="uni-file-picker">
+	<view class="uni-file-picker ">
 		<view v-if="title" class="uni-file-picker__header">
 			<text class="file-title">{{ title }}</text>
 			<text class="file-count">{{ filesList.length }}/{{ limitLength }}</text>
@@ -8,12 +8,14 @@
 			:image-styles="imageStyles" :files-list="filesList" :limit="limitLength" :disablePreview="disablePreview"
 			:delIcon="delIcon" @uploadFiles="uploadFiles" @choose="choose" @delFile="delFile">
 			<slot>
+				<!-- 添加图片 盒子 -->
 				<view class="is-add">
-					<view class="add"></view>
+					 <view class="add"></view>
 					<view class="add rotate"></view>
 				</view>
 			</slot>
 		</upload-image>
+		<!-- 上传 图片 删除 -->
 		<upload-file v-if="fileMediatype !== 'image' || showType !== 'grid'" :readonly="readonly"
 			:list-styles="listStyles" :files-list="filesList" :showType="showType" :delIcon="delIcon"
 			@uploadFiles="uploadFiles" @choose="choose" @delFile="delFile">
@@ -23,10 +25,7 @@
 </template>
 
 <script>
-	import {
-		chooseAndUploadFile,
-		uploadCloudFiles
-	} from './choose-and-upload-file.js'
+	import {chooseAndUploadFile,uploadCloudFiles} from './choose-and-upload-file.js'
 	import {
 		get_file_ext,
 		get_extname,
@@ -217,6 +216,8 @@
 				this.files.forEach(v => {
 					files.push(v)
 				})
+				console.log(files,'2199999999999')
+				this.$emit("getImgs",files)
 				return files
 			},
 			showType() {
@@ -616,8 +617,7 @@
 	}
 
 	.uni-file-picker__header {
-		padding-top: 5px;
-		padding-bottom: 10px;
+		padding: 10px 0;
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
@@ -625,12 +625,12 @@
 	}
 
 	.file-title {
-		font-size: 14px;
+		font-size: 16px;
 		color: #333;
 	}
 
 	.file-count {
-		font-size: 14px;
+		font-size: 16px;
 		color: #999;
 	}
 

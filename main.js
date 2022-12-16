@@ -8,6 +8,11 @@ import store from "@/store/index.js"
 import mixins from '@/common/mixins/minxins.js'
 Vue.mixin(mixins)
 
+// 引入 dayjs 
+// import * as dayjs from 'dayjs'
+// dayjs.locale('zh-cn') 
+
+
 // 引入 util 
 import * as util from '@/common/js/util.js'
 Vue.prototype.$util =util

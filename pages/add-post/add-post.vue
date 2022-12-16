@@ -10,24 +10,17 @@
 		</view>
 
 		<view class="p-2 " style="box-sizing: border-box; width: 100%;">
-			<textarea class="p-2 text" placeholder="请填写帖子内容" enterkeyhint="return" maxlength="140"></textarea>
-			<view class="">
-				<view class="flex justify-between my-2">
-				<view>点击可预览选好的图片</view>
-				<view style="color: #b2b2b2;">{{imageValue.length}}/9</view>
-			</view>
-			<uni-file-picker 
-			v-model="imageValue" 
-			file-mediatype="image" 
-			mode="grid" 
-			file-extname="png,jpg" 
+			<textarea class="p-2 text" placeholder="请填写帖子内容" enterkeyhint="return" maxlength="140"
+				v-model="data.content[0].text"></textarea>
+			<!-- uni-file-picker__header -->
+
+			<uni-file-picker v-model="imageValue" file-mediatype="image" mode="grid" file-extname="png,jpg" 
 			:limit="9"
-			@progress="progress" 
-			@success="success" 
-			@fail="fail" 
-			@select="select" />
-			</view>
+				title="点击可预览选好的图片" @getImgs="getImgs" @progress="progress" @success="success" @fail="fail"
+				@select="select" />
+
 		</view>
+	</view>
 	</view>
 </template>
 
@@ -38,7 +31,7 @@
 		data() {
 			return {
 				imageValue: [],
-				num:[],
+				num: [],
 				title: "选择社区",
 				data: {
 					page: 1,
@@ -47,12 +40,66 @@
 
 				list: [],
 				index: -1,
+				data: {
+					bbs_id: "",
+					content: [{
+						text: "",
+						images: []
+					}]
+				}
+
 			};
 		},
 		created() {
 			this.getbbsList()
 		},
+
+
+		// 按钮 跳转新增帖子页面
+		async onNavigationBarButtonTap(e) {
+			if (e.index === 0) {
+				if (this.index < 0) {
+					this.$util.msg("请先选择社区")
+					return
+				}
+				uni.showLoading({
+					mask: true
+				})
+				console.log(this.num,123)
+				console.log(this.data)
+				let res = await bbsApi.addSave(this.data)
+				console.log(res)
+				if (res.code == 20000) {
+					uni.hideLoading()
+					this.$util.msg('发布成功')
+					setTimeout(() => {
+						this.navBack()
+					}, 300)
+				} else {
+					uni.hideLoading()
+					this.$util.msg(res.data)
+				}
+			}
+		},
+
+
 		methods: {
+			getImgs(list) {
+				console.log(list, 'list')
+				let data = []
+				list.forEach((value, index) => {
+					console.log(value, index)
+					data[index] = value.url
+				})
+				this.data.content[0].images=data
+				this.num=data
+				
+			},
+
+
+
+
+			// 获取选择社区 数据 
 			async getbbsList() {
 				let res = await bbsApi.getBbs(this.data)
 				if (res.code == 20000) {
@@ -63,23 +110,21 @@
 
 			// 选择器  选中一项 . 获取到下标 再根据 全部数据 获取到title
 			bindPickerChange(e) {
+
 				this.index = e.detail.value
 				this.title = this.list[this.index].title
+				this.data.bbs_id = this.list[this.index].id
+
 			},
-
-
 			// 获取上传状态
-		async	select(e) {
-			      let file = e.tempFilePaths[0];
-				  let res =await upLoadApi.uploadImg(file)
-				  if(res.code==20000){
-					  console.log(res.data)
-					  console.log(this.imageValue,this.imageValue.__ob__.dep.subs
-)
-					  // this.num.push(res.data)
-				  }
-				  console.log(res)
-		 
+			async select(e) {
+				console.log(e)
+				let file = e.tempFilePaths[0];
+				let res = await upLoadApi.uploadImg(file)
+				if (res.code == 20000) {
+					console.log(res.data)
+
+				}
 			},
 			// 获取上传进度
 			progress(e) {

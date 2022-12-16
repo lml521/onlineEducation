@@ -1,8 +1,5 @@
 <template>
 	<view class="box">
-
-
-
 		<mescroll-uni :ref="'mescrollRef'+i" @init="mescrollInit" :down="downOption" @down="downCallback" :up="upOption"
 			@up="upCallback" style="background-color: pink;">
 
@@ -14,18 +11,14 @@
 						:class="{active:data.bbs_id==item.id}" @click="changeCurrent(item.id)">{{item.title}}
 					</view>
 				</scroll-view>
-
 				<view class="divider"></view>
-
 				<!-- 总帖子 总用户 -->
 				<view class="tabNav">
 					<view>总帖子{{postCount}}</view>
 					<view>总用户{{userCount}}</view>
 				</view>
-
 				<view class="divider"></view>
 			</view>
-
 			<bbsItem v-for="(item,index) in list" :key="index" :item="item"></bbsItem>
 		</mescroll-uni>
 
@@ -69,10 +62,14 @@
 		},
 		async created() {
 			await this.getbbsList()
-			this.gieList()
+			
 		},
+		onShow() {
+			this.getList()
+		},
+		
 		// 按钮 跳转新增帖子页面 
-	onNavigationBarButtonTap(e) {
+		onNavigationBarButtonTap(e) {
 			if (e.index === 0) {
 				this.navTo('/pages/add-post/add-post')
 			}
@@ -88,24 +85,24 @@
 				this.mescroll.resetUpScroll()
 			},
 			// /*上拉加载的回调: 其中page.num:当前页 从1开始, page.size:每页数据条数,默认10 */
-			async upCallback(page) {
+			 upCallback(page) {
 				this.data.page = page.num
-				console.log(this.data, 55555555555555)
+				this.getList()
+			},
+			async getList() {
 				try {
 					let response = await bbsAPi.getPostList(this.data)
 					const list = response.data.rows
-					if (page.num === 1) {
+					if (this.data.page=== 1) {
 						this.list = []
 						this.mescroll.scrollTo(0, 0)
 					}
 					this.list = this.list.concat(list)
 					this.mescroll.endBySize(this.list.length, response.data.count)
 				} catch (e) {
-					//TODO handle the exception
 					console.log("error=>", e)
 				}
 			},
-
 
 			// 获取 滚动 数据
 			async getbbsList() {
@@ -131,6 +128,7 @@
 			// 切换当前选中
 			changeCurrent(id) {
 				this.data.bbs_id = id
+				this.getList()
 			},
 			// 滚动时触发 
 			scrolltolower(e) {
@@ -138,9 +136,7 @@
 				this.getbbsList()
 			},
 
-			async gieList() {
-
-			}
+			
 
 		}
 	}

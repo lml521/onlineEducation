@@ -49,6 +49,14 @@ const getPostComment =(data)=>{
 	})
 }
 
+// 新增帖子 
+const addSave=(data)=>{
+	return Http.request({
+		url:"/post/save",
+		method:"POST",
+		data
+	})
+}
 
 export default {
 	getBbs,
@@ -56,5 +64,6 @@ export default {
 	support,
 	unsupport,
 	getItme,
-	getPostComment
+	getPostComment,
+	addSave
 }

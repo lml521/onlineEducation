@@ -10,7 +10,7 @@
 				{{item.content}}
 			</view>
 			<view style="color: #666;font-size: 12px;">
-				{{item.created_time}}
+				{{ item.created_time | filtTime}}
 
 			</view>
 			<view class="pl-2 mt-3">
@@ -26,7 +26,7 @@
 							{{ele.content}}
 						</view>
 						<view style="color: #666;font-size: 12px;">
-							{{ele.created_time}}
+							{{ele.created_time|filtTime}}
 
 						</view>
 					</view>
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+	import moment from "moment"
+	moment.locale('zh-cn');  
 	export default {
 
 		props: {
@@ -55,7 +57,13 @@
 
 			};
 		},
-
+		filters: {
+			filtTime(item) {
+				console.log(item, new Date(item).getTime())
+				// moment().format('LLL')
+				return moment(new Date(item).getTime()).format('YYYY-MM-DD a h:mm')
+			}
+		},
 		methods: {
 
 
