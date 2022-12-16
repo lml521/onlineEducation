@@ -39,11 +39,22 @@ const getItme =(data)=>{
 	})
 }
 
+// 帖子评论数据 
+// /post_comment?post_id=204&page=1
+
+const getPostComment =(data)=>{
+	return Http.request({
+		url:"/post_comment",
+		data
+	})
+}
+
 
 export default {
 	getBbs,
 	getPostList,
 	support,
 	unsupport,
-	getItme
+	getItme,
+	getPostComment
 }

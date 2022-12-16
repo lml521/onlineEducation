@@ -1,7 +1,8 @@
 <template>
 	<view class="itemBox p-3" @click="toDetail">
 		<view class="user flex align-center w-100">
-			<img class="mr-2 img  " :src="item.user.avatar||'/static/userImg.png'" alt="">
+			<!-- {{item.user}} -->
+			<img class="mr-2 img  " :src="item.user.avatar!=false?item.user.avatar:'/static/userImg.png'" alt="">
 			<view>
 				<view class="text-primary font-weight-bold">{{item.user.name}}</view>
 				<view class="text-muted font">{{item.user.sex}}</view>

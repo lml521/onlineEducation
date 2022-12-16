@@ -7,9 +7,6 @@
 					<button size="mini" type="default" style="width: 100%;">{{title}}</button>
 				</picker>
 			</view>
-
-
-
 		</view>
 
 		<view class="p-2 " style="box-sizing: border-box; width: 100%;">
@@ -17,25 +14,31 @@
 			<view class="">
 				<view class="flex justify-between my-2">
 				<view>点击可预览选好的图片</view>
-				<view style="color: #b2b2b2;">0/9</view>
+				<view style="color: #b2b2b2;">{{imageValue.length}}/9</view>
 			</view>
-			<uni-file-picker v-model="imageValue" file-mediatype="image" mode="grid" file-extname="png,jpg" :limit="9"
-				@progress="progress" @success="success" @fail="fail" @select="select" />
+			<uni-file-picker 
+			v-model="imageValue" 
+			file-mediatype="image" 
+			mode="grid" 
+			file-extname="png,jpg" 
+			:limit="9"
+			@progress="progress" 
+			@success="success" 
+			@fail="fail" 
+			@select="select" />
 			</view>
-		
 		</view>
-
-
-
 	</view>
 </template>
 
 <script>
 	import bbsApi from "@/api/bbs.js"
+	import upLoadApi from "@/api/upload.js"
 	export default {
 		data() {
 			return {
 				imageValue: [],
+				num:[],
 				title: "选择社区",
 				data: {
 					page: 1,
@@ -66,8 +69,17 @@
 
 
 			// 获取上传状态
-			select(e) {
-				console.log('选择文件：', e)
+		async	select(e) {
+			      let file = e.tempFilePaths[0];
+				  let res =await upLoadApi.uploadImg(file)
+				  if(res.code==20000){
+					  console.log(res.data)
+					  console.log(this.imageValue,this.imageValue.__ob__.dep.subs
+)
+					  // this.num.push(res.data)
+				  }
+				  console.log(res)
+		 
 			},
 			// 获取上传进度
 			progress(e) {
@@ -77,6 +89,7 @@
 			// 上传成功
 			success(e) {
 				console.log('上传成功')
+				console.log(this.imageValue)
 			},
 
 			// 上传失败

@@ -4,8 +4,8 @@
 			<view class="file-picker__box-content" :style="borderStyle">
 				<image class="file-image" :src="item.url" mode="aspectFill" @click.stop="prviewImage(item,index)"></image>
 				<view v-if="delIcon && !readonly" class="icon-del-box" @click.stop="delFile(index)">
-					<uni-icons type="trash" size="20" color="#fff"></uni-icons>
-					
+					 <uni-icons type="trash" size="20" color="#fff"></uni-icons>
+					<!-- <text class="iconfont icon-iconfontshanchu text-white"></text> -->
 				</view>
 			
 				<view v-if="(item.progress && item.progress !== 100) ||item.progress===0 " class="file-picker__progress">
@@ -151,6 +151,7 @@
 			delFile(index) {
 				this.$emit('delFile', index)
 			},
+			
 			prviewImage(img, index) {
 				let urls = []
 				if(Number(this.limit) === 1&&this.disablePreview&&!this.disabled){
