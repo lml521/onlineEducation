@@ -3,7 +3,7 @@ import Http from '@/utils/request.js'
 // 取消收藏
 const callSava =(data)=>{
 	return Http.request({
-		url:"/uncollect",
+		url:"/mobile/uncollect",
 		method:"POST",
 		data
 	})
@@ -12,7 +12,7 @@ const callSava =(data)=>{
 // 添加收藏 
 const addSava =(data)=>{
 	return Http.request({
-		url:"/collect",
+		url:"/mobile/collect",
 		method:"POST",
 		data
 	})
@@ -21,7 +21,7 @@ const addSava =(data)=>{
 // 拼单 数据 /group_work/list
 const groupWork=(data)=>{
 	return Http.request({
-		url:`/group_work/list?group_id=${data.group_id}&page=${data.page}`,
+		url:`/mobile/group_work/list?group_id=${data.group_id}&page=${data.page}`,
 	})
 }
 

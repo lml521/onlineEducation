@@ -1,7 +1,7 @@
 import Http from "@/utils/request.js"
 const getTestList=(data)=>{
 	return Http.request({
-		url:"/testpaper/read",
+		url:"/mobile/testpaper/read",
 		data
 	})
 }

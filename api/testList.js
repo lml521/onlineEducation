@@ -2,7 +2,7 @@
 import Http from "@/utils/request.js"
 const testpaper=(data)=>{
 	return Http.request({
-		url:"/testpaper/list",
+		url:"/mobile/testpaper/list",
 		data
 	})
 }
@@ -10,7 +10,7 @@ const testpaper=(data)=>{
 //交卷
 const getHandInAnExamination=(data)=>{
 		return Http.request({
-			url:'/user_test/save',
+			url:'/mobile/user_test/save',
 			method:"post",
 			data,
 		})

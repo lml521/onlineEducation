@@ -4,7 +4,7 @@ import Http from '@/utils/request.js'
 // 注册
 const reg = (data) => {
 	return Http.request({
-		url: "/reg",
+		url: "/mobile/reg",
 		method: "POST",
 		data
 	})
@@ -12,7 +12,7 @@ const reg = (data) => {
 // 登录 
 const login = (data) => {
 	return Http.request({
-		url: "/login",
+		url: "/mobile/login",
 		method: "POST",
 		data
 	})
@@ -21,7 +21,7 @@ const login = (data) => {
 //  提交修改 
 const updateinfo = (data) => {
 	return Http.request({
-		url: "/update_info",
+		url: "/mobile/update_info",
 		method: "POST",
 		data,
 	})
@@ -30,7 +30,7 @@ const updateinfo = (data) => {
 // 获取验证码
 const sendCode = (data) => {
 	return Http.request({
-		url: "/get_captcha",
+		url: "/mobile/get_captcha",
 		method: "POST",
 		data
 	})
@@ -39,7 +39,7 @@ const sendCode = (data) => {
 // 更改 手机号码
 const bindMobile = (data) => {
 	return Http.request({
-		url: "/bind_mobile",
+		url: "/mobile/bind_mobile",
 		method: "POST",
 		data
 	})
@@ -48,7 +48,7 @@ const bindMobile = (data) => {
 // 找回密码 
 const getForget=(data)=>{
 	return Http.request({
-		url:'/forget',
+		url:'/mobile/forget',
 		method:"POST",
 		data
 	})
@@ -57,7 +57,7 @@ const getForget=(data)=>{
 // 修改 密码 
 const upPassword=(data)=>{
 	return Http.request({
-		url:'/update_password',
+		url:'/mobile/update_password',
 		method:"POST",
 		data
 	})

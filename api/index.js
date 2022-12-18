@@ -2,18 +2,18 @@ import Http from '@/utils/request.js'
 
 const getIndex =()=>{
 	return Http.request({
-		url:"/index"
+		url:"/mobile/index"
 	})
 }
 const getCoupon=()=>{
 	return Http.request({
-		url:"/coupon?"
+		url:"/mobile/coupon?"
 	})
 }
 
 const getGroupList =(data)=>{
 	return Http.request({
-		url:"/group",
+		url:"/mobile/group",
 		data
 	})
 }
@@ -27,7 +27,7 @@ const getGroupList =(data)=>{
 const toCourse=(data)=>{
 	console.log(data)
 	return Http.request({
-		url:"/course/read",
+		url:"/mobile/course/read",
 		data
 		
 	})
@@ -38,7 +38,7 @@ const toCourse=(data)=>{
 const getReceive=(data)=>{
 	console.log(data)
 	return Http.request({
-		url:"/user_coupon/receive",
+		url:"/mobile/user_coupon/receive",
 		method:"POST",
 		data
 	})
@@ -48,7 +48,7 @@ const getReceive=(data)=>{
 const userCoupon =(data)=>{
 	// console.log(data)
 	return Http.request({
-		url:"/user_coupon",
+		url:"/mobile/user_coupon",
 		data
 	})
 }

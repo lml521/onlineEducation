@@ -122,7 +122,7 @@
 			// 优惠券数据 
 			async getCoupon() {
 				let { code, data } = await indexApi.getCoupon()
-				console.log(data)
+				console.log(code,data)
 				if (code == 20000) {
 					this.couponList = data
 				}

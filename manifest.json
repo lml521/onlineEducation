@@ -50,19 +50,19 @@
     "quickapp" : {},
 
 // "H5相关 "
-	// "h5": {
-	// 		"devServer": {
-	// 			"proxy" : {
-	// 				"/api" : {
-	// 					"target" :"http://demonuxtapi.dishait.cn/mobile",
-	// 					"changeOrigin" : true,
-	// 					"pathRewrite" : {
-	// 						"^/api" : ""
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	},
+"h5": {
+		"devServer": {
+			"proxy" : {
+				"/dev-api" :{
+					"target" : "http://eduapi.2yuecloud.com",
+					"changeOrigin" : true,
+					"pathRewrite" : {
+						"^/dev-api" : ""
+					}
+				}
+			}
+		}
+	},
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid" : "wx1b04c07d31df32bd",

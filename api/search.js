@@ -2,7 +2,7 @@ import Http from '@/utils/request.js'
 
 const getSearchList =(data)=>{
 	return Http.request({
-		url:"/search",
+		url:"/mobile/search",
 		data
 	})
 }
