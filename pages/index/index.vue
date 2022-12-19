@@ -1,5 +1,9 @@
 <template>
 	<view class="box">
+		
+		<indexSkeleton v-if="loading"></indexSkeleton>
+		
+		
 		<!-- 搜索框 -->
 		<view class="p-2" >
 			<view class="flex align-center justify-center py-2 rounded" 
@@ -55,6 +59,7 @@
 </template>
 
 <script>
+	import indexSkeleton from "./components/indexSkeleton.vue"
 	import Banner from '@/components/Banner/Banner.vue' //banner组件
 	import indexApi from "@/api/index.js" //api请求
 	import multiRowNav from '@/components/multi-row-nav/multi-row-nav.vue' //nav数据组件
@@ -67,10 +72,13 @@
 			multiRowNav,
 			coupon,
 			indexItem,
-			scrollCourse
+			scrollCourse,
+			indexSkeleton
 		},
+	
 		data() {
 			return {
+				loading:false,
 				// 轮播图数据 
 				BannerList: [],
 				// nav数据 
@@ -95,6 +103,7 @@
 			return
 		},
 		created() {
+			this.loading=true
 			this.getIndexList()
 			this.getCoupon()
 			this.getGroupList()
@@ -117,6 +126,7 @@
 					this.newestList = data[5].data
 					this.imageAd = data[6].data
 					console.log(this.BannerList, this.navList)
+					this.loading=false
 				}
 			},
 			// 优惠券数据 
@@ -125,6 +135,7 @@
 				console.log(code,data)
 				if (code == 20000) {
 					this.couponList = data
+					this.loading=false
 				}
 			},
 			// 获取拼团数据
