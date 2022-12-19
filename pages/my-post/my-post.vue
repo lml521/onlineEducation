@@ -3,7 +3,7 @@
 		<!-- 帖子 -->
 		
 		<!-- /mobile/mypost?page=1&limit=5 -->
-		<bbs-item v-for="(item,index) in list" :key="index" :item="item" :mypost="true"></bbs-item>
+		<bbs-item v-for="(item,index) in list" :key="index" :item="item" :mypost="true" @gitList="gitList"> </bbs-item>
 		<noList></noList>
 	</view>
 </template>

@@ -73,7 +73,15 @@ const getMypost=(data)=>{
 		url:"/mobile/mypost",
 		data
 	})
-	
+}
+
+// 删除帖子
+const deleteList=(data)=>{
+	return Http.request({
+		url:"/mobile/post/delete",
+		method:"POST",
+		data
+	})
 }
 
 export default {
@@ -85,5 +93,6 @@ export default {
 	getPostComment,
 	addSave,
 	getReply,
-	getMypost
+	getMypost,
+	deleteList
 }

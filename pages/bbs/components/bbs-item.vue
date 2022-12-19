@@ -34,7 +34,7 @@
 				</view>
 			</view>
 
-				<button type="warn" size="mini">删除</button>
+				<button v-if="mypost" @click.stop="detailList" type="warn" size="mini" >删除</button>
 	
 			<view class="text-light-muted font">
 				{{item.created_time}}
@@ -94,6 +94,34 @@
 
 
 		methods: {
+			detailList(){
+				uni.showLoading({
+					mask:true
+				})
+				uni.showModal({
+				
+					content: '是否要删除该帖子？',
+					success: async(res) => {
+						if (res.confirm) {
+							console.log('用户点击确定');
+						let res =await bbsApi.deleteList({id:this.item.id})
+						console.log(res)
+						if(res.code==20000){
+							this.$emit("gitList")
+							uni.hideLoading()
+							this.$util.msg('删除成功')
+						}else{
+								uni.hideLoading()
+							this.$util.msg('删除失败')
+						}
+						} else if (res.cancel) {
+								uni.hideLoading()
+							console.log('用户点击取消');
+						}
+					}
+				})
+				console.log(this.item.id)
+			},
 			// 点赞 取消点赞 
 			async handelSupport() {
 			

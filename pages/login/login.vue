@@ -21,7 +21,7 @@
 
 			<view v-if="type=='login'" class="agreement">
 				<checkbox-group @change="changeCheckBox">
-					<checkbox style="transform: scale(0.7);" :checkes="agreement" />
+					<checkbox style="transform: scale(0.7);" :checked="agreement" />
 					<text class="text-light-muted">已阅读并同意用户协议&隐私声明</text>
 				</checkbox-group>
 			</view>
