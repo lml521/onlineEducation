@@ -58,6 +58,16 @@ const addSave=(data)=>{
 	})
 }
 
+// 提交评论 
+// /mobile/post/reply
+const getReply=(data)=>{
+	return Http.request({
+		url:"/mobile/post/reply",
+		method:"POST",
+		data
+	})
+}
+
 export default {
 	getBbs,
 	getPostList,
@@ -65,5 +75,6 @@ export default {
 	unsupport,
 	getItme,
 	getPostComment,
-	addSave
+	addSave,
+	getReply
 }
