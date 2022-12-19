@@ -7,7 +7,7 @@
 				<view class="text-primary font-weight-bold">{{item.user.name}}</view>
 				<view class="text-muted font">{{item.user.sex}}</view>
 			</view>
-			<view class="post-tag">精华</view>
+			<view class="post-tag" v-if="!mypost">精华</view>
 		</view>
 
 		<view class="py-2" :class="{'p-2':detail}">
@@ -17,23 +17,25 @@
 			<view class="imgs flex flex-wrap">
 				<view class="flex align-center justify-center mt-1" style="width: 33.33%;"
 					v-for="(ele,i) in item.desc.images" :class="{detailImg:detail}">
-					<img :src="ele" alt="">
+					<img :src="ele" >
 				</view>
 			</view>
 		</view>
-<!-- iconfont icon-shanchu text-white -->
 		<view class="flex align-center justify-between mt-2" v-if="!detail">
 			<view class="flex align-center">
 				<view class="flex align-center pr-2">
 					<text class="iconfont icon-pinglun2" style="font-size: 23px;"></text>
-					<text class="ml-1">{{item.comment_count}}</text>
+					<text class="ml-1">{{item.comment_count||'评论'}}</text>
 				</view>
 				<view class="flex align-center " :class="{'text-danger':item.issupport}" 
 				@click.stop="handelSupport">
 					<text class="iconfont icon-dianzan2" style="font-size: 23px;"></text>
-					<text class="ml-1">{{item.support_count}}</text>
+					<text class="ml-1">{{item.support_count||'点赞'}}</text>
 				</view>
 			</view>
+
+				<button type="warn" size="mini">删除</button>
+	
 			<view class="text-light-muted font">
 				{{item.created_time}}
 			</view>
@@ -47,6 +49,10 @@
 	
 	export default {
 		props: {
+			mypost:{
+				type:Boolean,
+				default:false,
+			},
 			// 是否是详情
 			detail:{
 				type:Boolean,

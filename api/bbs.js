@@ -59,13 +59,21 @@ const addSave=(data)=>{
 }
 
 // 提交评论 
-// /mobile/post/reply
 const getReply=(data)=>{
 	return Http.request({
 		url:"/mobile/post/reply",
 		method:"POST",
 		data
 	})
+}
+
+// 获取 我的帖子 
+const getMypost=(data)=>{
+	return Http.request({
+		url:"/mobile/mypost",
+		data
+	})
+	
 }
 
 export default {
@@ -76,5 +84,6 @@ export default {
 	getItme,
 	getPostComment,
 	addSave,
-	getReply
+	getReply,
+	getMypost
 }
