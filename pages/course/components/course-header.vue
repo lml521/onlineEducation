@@ -247,11 +247,6 @@
 			background-color: rgb(195, 21, 46);
 		}
 	}
-
-
-
-
-
 	.uni-card__header {
 		display: flex;
 		position: relative;
