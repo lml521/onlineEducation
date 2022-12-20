@@ -14,22 +14,8 @@
 			:poster="item.cover"></video>
 
 		<!-- 音频 -->
-		<view  v-else-if="item.type=='audio'" >
-			<view class="px-5 pt-5">
-				<img :src="item.cover" alt="" style="width: 100%; height: 100%; border-radius: 20rpx;">
-			</view>
-			<slider activeColor="#5ccc84" block-color="#5ccc84" block-size="15" />
-			<view class="flex px-3 justify-between " style="margin-top: -10rpx; font-size: 24rpx;">
-				<text>00:00:00</text>
-				<text>00:01:10</text>
-			</view>
-			<view class="audioBtn  flex justify-center align-center pb-5">
-				<text class="iconfont icon-ziyuan11" ></text>
-				<text class="iconfont mx-3 icon-bofang2"></text>
-				<text class="iconfont icon-shoucang1"></text>
-				
-			</view>
-		</view>
+		<i-audio v-else-if="item.type=='audio'" :item="item" ></i-audio>
+	
 
 
 		<view class="flex justify-between bg-danger text-white px-3 py-2" v-if="item.group">
@@ -267,12 +253,5 @@
 		color: #62ce89;
 	}
 	
-	.audioBtn text:nth-child(1),.audioBtn text:nth-child(3){
-		font-size: 60rpx;
-		color: #bbb;
-	}
-	.audioBtn text:nth-child(2){
-		font-size: 100rpx;
-		color: #5ccc84;
-	}
+	 
 </style>

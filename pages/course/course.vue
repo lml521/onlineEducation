@@ -37,16 +37,14 @@
 			this.data.group_id=options.group_id
 			await this.getCoureList()
 			if(this.item.group){
-				console.log(1)
 					this.getGroupWork()
 			}
 			this.getTimeList()
-			this.time=this.$util.getTime(this.item.group.end_time)
+			
 		},
 	
 		methods:{
 			getTimeList(){
-				console.log(this.item.group,1)
 				if(this.item.group){
 					setInterval(()=>{
 						this.time=this.$util.getTime(this.item.group.end_time)
@@ -54,12 +52,11 @@
 			}},
 		async getCoureList(){	
 				let {code,data} = await indexApi.toCourse(this.data)
-				console.log(code,data)
+			
 				if(code==20000){
 					data.try=data.try.replace(/\<img/gi,'<img style="width :100%;height:auto"')
 					this.item=data
 					this.getTimeList()
-					console.log(data.group)
 					uni.setNavigationBarTitle({
 							title:this.item.title
 						})
