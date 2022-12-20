@@ -1,4 +1,7 @@
 <template>
+	<view class="">
+		
+
 	<!-- 帖子 每一项 -->
 	<view class="itemBox p-3" @click="toDetail">
 		<view class="user flex align-center w-100">
@@ -40,6 +43,10 @@
 				{{item.created_time}}
 			</view>
 
+		</view>
+		</view>
+		<view class="divider">
+			
 		</view>
 	</view>
 </template>
