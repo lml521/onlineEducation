@@ -112,7 +112,6 @@
 	import courseApi from "@/api/course.js"
 	export default {
 		props: {
-
 			item: {
 				type: Object,
 				default: () => {}

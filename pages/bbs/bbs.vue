@@ -67,18 +67,24 @@
 		onShow() {
 			this.getList()
 		},
-		
+		// 实时会获取搜索框你们的内容
+		onNavigationBarSearchInputChanged(e) {
+			console.log(e)
+			this.data.keyword = e.text
+			console.log(this.data.keyword)
+		},
+		// 回车 
+		onNavigationBarSearchInputConfirmed() {
+			console.log(this.data)
+			this.getList()
+		},
 		// 按钮 跳转新增帖子页面 
 		onNavigationBarButtonTap(e) {
 			if (e.index === 0) {
 				this.navTo('/pages/add-post/add-post')
 			}
 		},
-		// 实时会获取搜索框你们的内容
-		onNavigationBarSearchInputChanged(e) {
-			this.content = e.text
-			console.log(this.content)
-		},
+	
 		methods: {
 			/*下拉刷新的回调 */
 			downCallback() {
