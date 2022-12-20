@@ -1,5 +1,5 @@
 <template>
-	<view class="py-2 itemBox flex">
+	<view class="py-2 itemBox flex" @click="addItem">
 
 		<img :src="item.user.avatar||'/static/userImg.png'" class="mr-2">
 		<view class="flex-1">
@@ -58,13 +58,17 @@
 			};
 		},
 		filters: {
+			// 时间过滤 
 			filtTime(item) {
-				console.log(item, new Date(item).getTime())
-				// moment().format('LLL')
+				// console.log(item, new Date(item).getTime())
 				return moment(new Date(item).getTime()).format('YYYY-MM-DD a h:mm')
 			}
 		},
 		methods: {
+			addItem(){
+				console.log(123,this.item)
+				this.$emit('addItem',this.item)
+			}
 
 
 		}
