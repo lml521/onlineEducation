@@ -1,12 +1,9 @@
 <template>
 	<view class="content">
 		<view class="title">
-			课程简介
+		{{item.isbuy && item.type === 'media'? '课程内容' : '课程简介'}}
 		</view>
-		<view class="contentHtml" v-html="item.try">
-
-		</view>
-
+		<mp-html  :content="(item.isbuy && item.type === 'media') ? item.content : item.try" />
 	</view>
 </template>
 

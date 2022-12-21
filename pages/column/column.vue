@@ -10,7 +10,7 @@
 		<!-- tab切换 -->
 		<tabBarList :tabList="tabList" :index="index" @changeActive="changeActive">、</tabBarList>
 
-	<!-- 简介 -->
+		<!-- 简介 -->
 		<view class="" v-if="index==0">
 			<view class="flex flex-column p-3">
 				<view class="mb-1" style="font-size: 38rpx;">
@@ -32,15 +32,16 @@
 				<view class="contentHtml" v-html="item.content"></view>
 			</view>
 		</view>
-		
-		
+
+
 		<view class="" v-else>
 			<view class="p-3">
-				<view class="border rounded bg-light text-muted p-2" >
-				共	{{columnList.length}}	节
+				<view class="border rounded bg-light text-muted p-2">
+					共 {{columnList.length}} 节
 				</view>
-				
-				<view class="flex align-center align-center p-3 border-bottom" v-for="(item,index) in columnList" :key="index">
+
+				<view class="flex align-center align-center p-3 border-bottom" v-for="(item,index) in columnList"
+					:key="index" @click="handleOpenDetail(item)">
 					<view style="width: 90rpx;">{{index+1|formIndex}}</view>
 					<view class="flex " style="flex-direction: column !important;">
 						<view>{{item.title}}</view>
@@ -48,12 +49,13 @@
 							<text class="border text-danger rounded border-danger font-small px-1 mt-1 mr-1">
 								{{item.type|formatType}}
 							</text>
-							<text  class="border text-danger rounded border-danger font-small px-1 mt-1 mr-1" v-if="item.price==0">免费试看</text>
+							<text class="border text-danger rounded border-danger font-small px-1 mt-1 mr-1"
+								v-if="item.price==0">免费试看</text>
 						</view>
 					</view>
-					
+
 				</view>
-				
+
 			</view>
 		</view>
 
@@ -94,36 +96,36 @@
 					group_id: 0,
 					flashsale_id: 0,
 				},
-				columnList:[]
+				columnList: []
 			};
 		},
 		async onLoad(options) {
-			console.log(options)
 			this.data.id = options.id
 			this.data.group_id = options.group_id
 
 			this.getCoureList()
 
 		},
-		filters:{
-			formIndex(value){
-				if(value<10){
-					return '00'+value
-				}else if (value>=10&&value<100){
-					return '0'+value
+		filters: {
+			// 过滤序号
+			formIndex(value) {
+				if (value < 10) {
+					return '00' + value
+				} else if (value >= 10 && value < 100) {
+					return '0' + value
 				}
-				
+
 			},
-		
-				formatType(value) {
-					let type = {
-						media: '图文',
-						audio: '音频',
-						video: '视频',
-						column: '专栏'
-					}
-					return type[value]
-				
+			// 过滤 类型
+			formatType(value) {
+				let type = {
+					media: '图文',
+					audio: '音频',
+					video: '视频',
+					column: '专栏'
+				}
+				return type[value]
+
 			},
 		},
 
@@ -134,6 +136,27 @@
 				// console.log(e)
 				this.index = e
 			},
+
+
+			handleOpenDetail(item) {
+				console.log("item=>", item,this.item.isbuy)
+				if (item.price != 0 && !this.item.isbuy) {
+					this.$utils.toast("请先购买该专栏")
+					return
+				}
+
+				this.navTo("/pages/course/course?id=" + item.id + "&column_id=" + this.item.id, {
+					isLogin: true
+				})
+			},
+
+
+
+
+
+
+
+
 			// 获取 专栏详情数据 
 			async getCoureList() {
 				let res = await columnApi.getColumnList(this.data)
@@ -141,7 +164,7 @@
 				console.log(res)
 
 				this.item = res.data
-				this.columnList=res.data.column_courses
+				this.columnList = res.data.column_courses
 				this.item.content = this.item.content.replace(/\<img/gi, '<img style="width :100%;height:auto"')
 				uni.setNavigationBarTitle({
 					title: res.data.title
@@ -170,9 +193,8 @@
 				console.log(this.item.type)
 				let data = {
 					goods_id: this.item.id,
-					type: "course"
+					type: "column"
 				}
-
 				try {
 					let res
 					this.item.isfava ? res = await courseApi.callSava(data) : res = await courseApi.addSava(data)
@@ -195,8 +217,7 @@
 				} catch (e) {
 					console.log(e)
 				}
-
-			}
+			},
 
 		}
 	}
@@ -261,5 +282,9 @@
 			border-radius: 10rpx;
 			color: #fff;
 		}
+	}
+
+	.textMain {
+		color: #62ce89;
 	}
 </style>

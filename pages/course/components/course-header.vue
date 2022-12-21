@@ -172,7 +172,6 @@
 					goods_id: this.item.id,
 					type: "course"
 				}
-
 				try {
 					let res
 					this.item.isfava ? res = await courseApi.callSava(data) : res = await courseApi.addSava(data)
@@ -195,8 +194,7 @@
 				} catch (e) {
 					console.log(e)
 				}
-
-			}
+			},
 		}
 	}
 </script>
