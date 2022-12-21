@@ -325,6 +325,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/column/column",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 		"color": "#c4c0c9",

@@ -3,10 +3,7 @@
 
 		<view class="img" v-if="!item.isbuy">
 			<img :src="item.cover" alt="">
-			<text class="item-time text-white font-sm  p-1" v-if="item.type=='media'">图文</text>
-			<text class="item-time text-white font-sm  p-1" v-else-if="item.type=='video'">视频</text>
-			<text class="item-time text-white font-sm  p-1" v-else-if="item.type=='audio'">音频</text>
-			<text class="item-time text-white font-sm  p-1" v-else-if="item.type=='column'">专栏</text>
+			<text class="item-time text-white font-sm ">{{item.type|formatType}}</text>
 		</view>
 		<!-- 视频 -->
 
@@ -54,6 +51,7 @@
 
 			</view>
 		</view>
+		
 		<view class="flex flex-column p-3">
 			<view class="mb-1" style="font-size: 38rpx;">
 				{{item.title}}
@@ -69,7 +67,6 @@
 			<view class="flex mt-2 align-end">
 				<text class="text-danger font-lg">￥{{item.price}}</text>
 				<text class="font-sm text-light-muted ml-1 text-through">￥{{item.t_price}}</text>
-
 			</view>
 		</view>
 
@@ -130,6 +127,17 @@
 				videoContext: ""
 			};
 		},
+		filters: {
+			formatType(value) {
+				let type = {
+					media: '图文',
+					audio: '音频',
+					video: '视频',
+					column: '专栏'
+				}
+				return type[value]
+			}
+		},
 		onLoad() {
 			console.log(this.rowsList)
 		},
@@ -142,6 +150,17 @@
 			}, 300)
 		},
 
+		filters: {
+			formatType(value) {
+				let type = {
+					media: '图文',
+					audio: '音频',
+					video: '视频',
+					column: '专栏'
+				}
+				return type[value]
+			}
+		},
 		methods: {
 			async changeCollect() {
 				uni.showLoading({

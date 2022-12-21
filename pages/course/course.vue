@@ -2,8 +2,8 @@
 	<view>
 		<courseHeader :item="item" :time="time" :rowsList="rowsList"></courseHeader>
 		<courseContent :item="item"></courseContent>
-		<view  style="height:150rpx;"></view>
-		<view class="btn">
+		<view  style="height:150rpx;"  v-if="!item.isbuy"></view>
+		<view class="btn" v-if="!item.isbuy">
 			<button @click="navTo(`/pages/create-order/create-order?id=${item.id}&type=course`)">立即订购 ￥{{item.price}}</button>
 		</view>
 	</view>
