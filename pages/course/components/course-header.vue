@@ -7,11 +7,11 @@
 		</view>
 		<!-- 视频 -->
 
-		<video v-else-if="item.type=='video'" :src="item.content" id="myVideo" class="video"
+		<video  @onProgress="handleAudioProgress" v-else-if="item.type=='video'" :src="item.content" id="myVideo" class="video"
 			:poster="item.cover"></video>
 
 		<!-- 音频 -->
-		<i-audio v-else-if="item.type=='audio'" :item="item" ></i-audio>
+		<i-audio @timeupdate="handleVideoProgress" v-else-if="item.type=='audio'" :item="item" ></i-audio>
 	
 
 
@@ -162,6 +162,33 @@
 			}
 		},
 		methods: {
+			
+			
+			// 音频的学习进度
+						handleAudioProgress(e){
+							console.log("e=>", e)
+							this.progress = e
+						},
+						// 视频的学习进度
+						handleVideoProgress(event){
+							console.log("event=>", event)
+							const {currentTime, duration} = event.detail
+							
+							if(duration > 0){
+								this.progress = ((currentTime / duration) * 100).toFixed(2)
+							}
+						},
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			async changeCollect() {
 				uni.showLoading({
 					title: "操作中...",

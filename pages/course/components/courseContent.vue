@@ -1,4 +1,18 @@
 <template>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<view class="content">
 		<view class="title">
 
@@ -47,6 +61,13 @@
 					this.handleUpdateStudyProgress()
 				},
 		methods: {
+			
+		
+			
+			
+			
+			
+			
 			// 将学习进度提交到后台
 			async handleUpdateStudyProgress() {
 				try {

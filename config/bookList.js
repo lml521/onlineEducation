@@ -7,12 +7,8 @@ export default () => {
 		{
 			icon: 'iconfont icon-leimupinleifenleileibie', //  左侧图标
 			title: '',
-		},{
-			icon: 'iconfont icon-tijiao',
-			title: '交卷',
-			event:"submit"
-
 		},
+		
 		{
 			icon: "iconfont icon-xiayibu",
 			event: 'next', //点击触发事件名

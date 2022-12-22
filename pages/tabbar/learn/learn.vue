@@ -86,13 +86,18 @@
 			...mapGetters(["hasLogin"]),
 		},
 		onShow(e) {
-			if(this.hasLogin){
-				this.tabList.forEach((item)=>{
+			if (this.hasLogin) {
+				this.tabList.forEach((item) => {
 					item.page = 1
 					item.loadMore = "more"
 				})
 				this.initLoad()
 			}
+			uni.$on("progress", () => {
+				if (this.tabs[this.index].loadMore === 'more') {
+					this.initLoad()
+				}
+			})
 		},
 		created() {
 			this.height = uni.getSystemInfoSync().windowHeight - uni.upx2px(80) + 'px'

@@ -15,7 +15,7 @@
 			<examination :item="item" :i="index" v-if="this.list.length"></examination>
 		</view>
 		<view class="footer">
-			<testFooter :lengths="lengths" :i="index" @back="back" @submit="submit" @next="next"></testFooter>
+			<testFooter :list="list" :lengths="lengths" :i="index" @back="back" @submit="submit" @next="next"></testFooter>
 		</view>
 
 
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+		import list from '@/config/testList.js'
 	import uniCountdown from "@/uni_modules/uni-countdown/components/uni-countdown/uni-countdown.vue" //倒计时
 	import testApi from "@/api/test.js"
 	import testListApi from "@/api/testList.js"
@@ -35,6 +36,7 @@
 		},
 		data() {
 			return {
+				list:list(),
 				h: 1, //时
 				m: 0, //分
 				s: 0, //秒
@@ -107,6 +109,13 @@
 				this.index = this.index - 1
 				this.item = this.list[this.index - 1]
 			},
+			// 下一题
+			next() {
+				console.log(this.index)
+				if (this.index == this.list.length) return
+				this.index = this.index + 1
+				this.item = this.list[this.index - 1]
+			},
 			// 提交 
 			submit() {
 				let arrs = this.list.map(item => item.user_value)
@@ -143,13 +152,7 @@
 				}
 			},
 
-			// 下一题
-			next() {
-				console.log(this.index)
-				if (this.index == this.list.length) return
-				this.index = this.index + 1
-				this.item = this.list[this.index - 1]
-			},
+			
 		}
 
 	}

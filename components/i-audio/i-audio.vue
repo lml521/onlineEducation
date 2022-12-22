@@ -4,15 +4,16 @@
 		<view class="px-5 pt-5">
 			<img :src="item.cover" alt="" style="width: 100%; height: 100%; border-radius: 20rpx;">
 		</view>
-		<slider  @changing="handleChanging" @change="handleChange" 
-		 activeColor="#5ccc84" block-color="#5ccc84" block-size="15" />
+		<slider @changing="handleChanging" @change="handleChange" activeColor="#5ccc84" block-color="#5ccc84"
+			block-size="15" />
 		<view class="flex px-3 justify-between " style="margin-top: -10rpx; font-size: 24rpx;">
 			<text>{{currentTime|formatTime}}</text>
 			<text>{{duration|formatTime}}</text>
 		</view>
 		<view class="audioBtn  flex justify-center align-center pb-5">
 			<!-- 开启或者 关闭循环播放 -->
-			<text class="iconfont icon-ziyuan11"  :style="loopStatus ? 'color : rgb(92, 204, 132);' : ''"  @click="handleLoop"></text>
+			<text class="iconfont icon-ziyuan11" :style="loopStatus ? 'color : rgb(92, 204, 132);' : ''"
+				@click="handleLoop"></text>
 			<!-- 点击开启或者关闭 -->
 			<text class="iconfont mx-3 " :class="isPlaying ? 'icon-tianchongxing-' : 'icon-bofang2'"
 				@click="handlePlay"></text>
@@ -83,7 +84,8 @@
 				this._audioContext.autoplay = false
 				// 设置音频播放的音频地址
 				// this._audioContext.src = this.item.content
-				this._audioContext.src ="http://m701.music.126.net/20221220160923/268a111c83672ffe930d87a92eb74e50/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096410267/0adb/e6bc/bb93/8937b88be6e4b2c38966e838a64173ad.mp3"
+				this._audioContext.src =
+					"http://m701.music.126.net/20221220160923/268a111c83672ffe930d87a92eb74e50/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096410267/0adb/e6bc/bb93/8937b88be6e4b2c38966e838a64173ad.mp3"
 
 				// 使用事件监听音频是否开始播放
 				this._audioContext.onPlay(() => {
@@ -101,6 +103,12 @@
 					this.duration = this._audioContext.duration
 					// 获取当前正在播放的进度时间
 					this.currentTime = this._audioContext.currentTime
+
+
+					if (this.duration > 0) {
+						let progress = ((this.currentTime / this.duration) * 100).toFixed(2)
+						this.$emit("onProgress", progress)
+					}
 
 				})
 				// 使用事件监听音频是否播放结束

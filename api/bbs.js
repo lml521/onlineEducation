@@ -84,6 +84,22 @@ const deleteList=(data)=>{
 	})
 }
 
+
+const getBookDetailList=(data)=>{
+	return Http.request({
+		url:"/mobile/book/read",
+		data
+	})
+}
+
+// /mobile/book/detail?book_id=90&id=223
+
+const getBookdetail=(data)=>{
+	return Http.request({
+		url:"/mobile/book/detail",
+		data
+	})
+}
 export default {
 	getBbs,
 	getPostList,
@@ -94,5 +110,7 @@ export default {
 	addSave,
 	getReply,
 	getMypost,
-	deleteList
+	deleteList,
+	getBookDetailList,
+	getBookdetail
 }

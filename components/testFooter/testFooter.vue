@@ -15,7 +15,7 @@
 </template>
 
 <script>
-	import list from '@/config/testList.js'
+
 	export default {
 		name:"testFooter",
 		props:{
@@ -28,11 +28,15 @@
 			lengths:{
 				type:Number,
 				default:0
+			},
+			list:{
+				type:Array,
+				default:()=>[]
 			}
 		},
 		data() {
 			return {
-				list:list()
+				
 			};
 		},
 		methods:{
