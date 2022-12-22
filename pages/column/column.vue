@@ -41,7 +41,7 @@
 				</view>
 
 				<view class="flex align-center align-center p-3 border-bottom" v-for="(item,index) in columnList"
-					:key="index" @click="handleOpenDetail(item)">
+					:key="index" @click="handleOpenDetail(item)" hover-class="bg-light">
 					<view style="width: 90rpx;">{{index+1|formIndex}}</view>
 					<view class="flex " style="flex-direction: column !important;">
 						<view>{{item.title}}</view>

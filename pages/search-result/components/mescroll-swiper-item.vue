@@ -69,7 +69,6 @@
 			// /*上拉加载的回调: 其中page.num:当前页 从1开始, page.size:每页数据条数,默认10 */
 			async upCallback(page) {
 				this.data.page  = page.num 
-				console.log(this.data,55555555555555)
 				try{
 					const response  = await searchApi.getSearchList(this.data)
 					console.log(response)
