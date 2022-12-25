@@ -94,9 +94,9 @@
 				this.initLoad()
 			}
 			uni.$on("progress", () => {
-				if (this.tabs[this.index].loadMore === 'more') {
+				
 					this.initLoad()
-				}
+			
 			})
 		},
 		created() {

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="" v-html="content">
+		<view class="p-2" v-html="content" style="border-bottom: 1px solid #ccc;">
 
 		</view>
 

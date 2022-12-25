@@ -139,7 +139,6 @@
 			},
 			// slider 完成一次拖动后触发的事件
 			handleChange(e) {
-				console.log("e=>", e)
 				this._audioContext.seek(e.detail.value)
 				this._isChanging = false
 			},
@@ -147,7 +146,6 @@
 			handleChanging(e) {
 				this._isChanging = true
 				this._audioContext.seek(e.detail.value)
-				console.log("eee=>", e)
 				this.currentTime = e.detail.value
 			},
 			// 停止
