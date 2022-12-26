@@ -1,18 +1,5 @@
 <template>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	<view class="content">
 		<view class="title">
 
@@ -49,25 +36,18 @@
 			};
 		},
 		onPageScroll(e) {
-			console.log(this.item.isbuy , this.item.type)
+			console.log(this.item.isbuy, this.item.type)
 			if (this.item.isbuy && this.item.type === "media" && e.scrollTop > this.scrollTop) {
 				this.scrollTop = e.scrollTop
-				console.log(this.scrollTop , e.scrollTop,'this.scrollTop = e.scrollTop')
+				console.log(this.scrollTop, e.scrollTop, 'this.scrollTop = e.scrollTop')
 			}
 			this.handleMediaProgress()
 			console.log("scrollTop=>", this.scrollTop)
 		},
 		beforeDestroy() {
-					this.handleUpdateStudyProgress()
-				},
+			this.handleUpdateStudyProgress()
+		},
 		methods: {
-			
-		
-			
-			
-			
-			
-			
 			// 将学习进度提交到后台
 			async handleUpdateStudyProgress() {
 				try {
@@ -78,7 +58,7 @@
 					}
 					console.log(data)
 					const response = await studyApi.setStudyUserHistory(data)
-					console.log(response,'response')
+					console.log(response, 'response')
 
 				} catch (e) {
 					console.log("error=>", e)
@@ -120,7 +100,9 @@
 					uni.setNavigationBarTitle({
 						title: this.item.title
 					})
-				} catch (e) {} finally {
+				} catch (e) {
+					console.log(e)
+				} finally {
 
 				}
 			}

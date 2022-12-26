@@ -100,6 +100,13 @@ const getBookdetail=(data)=>{
 		data
 	})
 }
+
+const getBook=(data)=>{
+	return Http.request({
+		url:"/mobile/mybook",
+		data,
+	})
+}
 export default {
 	getBbs,
 	getPostList,
@@ -112,5 +119,6 @@ export default {
 	getMypost,
 	deleteList,
 	getBookDetailList,
-	getBookdetail
+	getBookdetail,
+	getBook
 }

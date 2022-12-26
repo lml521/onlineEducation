@@ -5,7 +5,7 @@
 		<view class="card">
 			<view class="flex justify-between title">
 				<h4>{{item.title}}</h4>
-				<text style="color:#dc3545;font-size: 24rpx;">时长：{{item.pass_score}}分钟</text>
+				<text style="color:#dc3545;font-size: 24rpx;">时长：{{item.expire}}分钟</text>
 			</view>
 			<view class="flex">
 				<text class="flex-1">

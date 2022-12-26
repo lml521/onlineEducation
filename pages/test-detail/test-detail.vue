@@ -1,7 +1,7 @@
 <template>
 	<view class="testBox">
 
-		<view class="countDown" v-if="this.list.length">
+		<view class="countDown" v-if="this.testList.length">
 			考试时间
 			<uni-countdown :hour="h" :minute="m" :second="s" :show-day="false" color="red" splitorColor="red">
 			</uni-countdown>
@@ -12,10 +12,12 @@
 		</view>
 		<!-- 题目 -->
 		<view class="mb100">
-			<examination :item="item" :i="index" v-if="this.list.length"></examination>
+			<examination :item="item" :i="index" v-if="this.testList.length"></examination>
 		</view>
+		<!-- 1 -->
 		<view class="footer">
-			<testFooter :list="list" :lengths="lengths" :i="index" @back="back" @submit="submit" @next="next"></testFooter>
+			<testFooter :list="list" :lengths="lengths" :i="index" @back="back" @submit="submit" @next="next">
+			</testFooter>
 		</view>
 
 
@@ -23,7 +25,7 @@
 </template>
 
 <script>
-		import list from '@/config/testList.js'
+	import list from '@/config/testList.js'
 	import uniCountdown from "@/uni_modules/uni-countdown/components/uni-countdown/uni-countdown.vue" //倒计时
 	import testApi from "@/api/test.js"
 	import testListApi from "@/api/testList.js"
@@ -36,12 +38,12 @@
 		},
 		data() {
 			return {
-				list:list(),
+				list: list(),
 				h: 1, //时
 				m: 0, //分
 				s: 0, //秒
 				id: "", //id
-				list: [], //获取考试的全部数据
+				testList: [], //获取考试的全部数据
 				index: 1, //当前题的
 				lengths: 0,
 				item: {},
@@ -78,6 +80,27 @@
 			this.getTestList()
 		},
 
+
+		computed: {
+			unDone() {
+				// 问题: 怎么样才能知道用户哪些题填了, 哪些没填
+				let arr = [] // 用来保存没有填写的题目序号
+
+				this.testList.forEach((item, index) => {
+					if ((item.type === 'answer' || item.type === 'completion') && !item.user_value[0]) {
+						arr.push(index + 1)
+					} else if ((item.type === 'trueOrfalse' || item.type === 'radio') && item.user_value === -1) {
+						arr.push(index + 1)
+					} else if (item.type === "checkbox" && item.user_value.length === 0) {
+						arr.push(index + 1)
+					}
+
+				})
+
+				return arr
+			}
+		},
+
 		methods: {
 
 			async getTestList() {
@@ -86,11 +109,21 @@
 				})
 				console.log(res)
 				if (res.code == 20000) {
-					this.list = res.data.testpaper_questions
+					this.testList = res.data.testpaper_questions
 					this.examInfo = res.data
-					this.item = this.list[this.index - 1]
-					this.lengths = this.list.length
+					this.item = this.testList[this.index - 1]
+					this.lengths = this.testList.length
 					this.index = 1
+				console.log(res.data.expire)
+				if(res.data.expire>0&&res.data.expire<60){
+					this.h= 0 //时
+					this.m=res.data.expire //分
+					this.s= 0 //秒
+				}else if (res.data.expire>60&&res.data.expire<120){
+					this.h= 1 //时
+					this.m=res.data.expire-60 //分
+					this.s= 0 //秒
+				}
 					console.log(this.examInfo)
 				} else {
 					this.index = 0
@@ -107,22 +140,34 @@
 				console.log(this.index)
 				if (this.index == 1) return
 				this.index = this.index - 1
-				this.item = this.list[this.index - 1]
+				this.item = this.testList[this.index - 1]
 			},
 			// 下一题
 			next() {
 				console.log(this.index)
-				if (this.index == this.list.length) return
+				if (this.index == this.testList.length) return
 				this.index = this.index + 1
-				this.item = this.list[this.index - 1]
+				this.item = this.testList[this.index - 1]
 			},
 			// 提交 
 			submit() {
-				let arrs = this.list.map(item => item.user_value)
+				if (this.unDone.length > 0) {
+					uni.showModal({
+						content: `还有题目没有完成,第${this.unDone}题`,
+						showCancel: false,
+						confirmText: '确定',
+						success: res => {},
+					});
+					return
+				}
+
+				let arrs = this.testList.map(item => item.user_value)
 				let obj = {
 					user_test_id: this.examInfo.user_test_id,
 					value: arrs
 				}
+
+
 				uni.showModal({
 					content: '确定要交卷吗',
 					success: (res) => {
@@ -152,7 +197,7 @@
 				}
 			},
 
-			
+
 		}
 
 	}

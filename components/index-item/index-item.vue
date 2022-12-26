@@ -25,7 +25,8 @@
 				<view v-if="imgmin"
 					class="border flex align-center justify-center rounded-circle px-2 py-1 ml-auto text-muted"
 					style="color: #6c757d;margin-right: 30rpx;" @click.stop="navTo(`/pages/book-detail/book-detail?id=${item.id}`)">
-					{{item.sub_count}}人订阅
+					<text v-if="item.sub_count">{{item.sub_count}}人订阅}}</text>
+					<text v-else>立即学习</text>
 					<text class="iconfont icon-xiayibu ml-1"></text>
 				</view>
 			</view>
