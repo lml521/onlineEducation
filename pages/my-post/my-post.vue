@@ -1,17 +1,15 @@
 
 
 <template>
-
 	 <mescroll-uni 
-	 :ref="'mescrollRef'+i" 
+	 ref="mescrollRef" 
 	 @init="mescrollInit" 
-
+	 :height="height" 
 	 :down="downOption"
 	  @down="downCallback" 
 	  :up="upOption"
 	   @up="upCallback" >
 		<!-- 数据列表 -->
-		
 		<bbs-item v-for="(item,index) in list" :key="index" :item="item" :mypost="true" @gitList="gitList">
 		</bbs-item>
 	</mescroll-uni>
@@ -35,28 +33,29 @@
 					limit:5
 				},
 				downOption:{
-					auto:false // 不自动加载 (mixin已处理第一个tab触发downCallback)
+					auto:true // 不自动加载 (mixin已处理第一个tab触发downCallback)
 				},
 				upOption:{
-					auto:false, // 不自动加载
+					auto:true, // 不自动加载
 					noMoreSize: 4,
 					empty:{
-						tip: '~ 空空如也 ~',
+						tip: '没有更多数据',
 					}
 				},
 				list: [] //列表数据
 			}
 		},
+		
 		props:{
-			
-			i: { 
-				type: Number,
+			data:{
+				type: Object,
 				default(){
-					return 0
+					return{}
 				}
 			},
-			
+			height: [Number,String] // mescroll的高度
 		},
+		
 		methods: {
 			/*下拉刷新的回调 */
 			downCallback() {
@@ -74,7 +73,6 @@
 						this.mescroll.scrollTo(0, 0)
 					}
 					this.list = this.list.concat(list)
-					console.log(this.list.length, res.data.count)
 					this.mescroll.endBySize(this.list.length, res.data.count)
 				}catch(e){
 					console.log("error=>", e)
@@ -84,44 +82,4 @@
 		}
 	}
 </script>
-
-
-<!-- 
-		methods: {
-
-			/*下拉刷新的回调 */
-			downCallback() {
-				console.log(123)
-				this.mescroll.resetUpScroll()
-			},
-			// /*上拉加载的回调: 其中page.num:当前页 从1开始, page.size:每页数据条数,默认10 */
-			async upCallback(page) {
-				 console.log(456)
-				this.data.page = page.num
-			let res = await bbsApi.getMypost(this.data)
-			console.log(res)
-			let list = res.data.rows
-			if (this.data.page === 1) {
-				this.list = []
-				this.mescroll.scrollTo(0, 0)
-			}
-			this.list = this.list.concat(list)
-			console.log(this.list.length, res.data.count)
-			this.mescroll.endBySize(this.list.length, res.data.count)
-			},
-			
-			async gitList(){
-				let res = await bbsApi.getMypost(this.data)
-				console.log(res)
-				let list = res.data.rows
-				if (this.data.page === 1) {
-					this.list = []
-					this.mescroll.scrollTo(0, 0)
-				}
-				this.list = this.list.concat(list)
-				console.log(this.list.length, res.data.count)
-				this.mescroll.endBySize(this.list.length, res.data.count)
-			},
-		}
-	} -->
 

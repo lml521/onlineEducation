@@ -1,7 +1,5 @@
 <template>
-	<view class="">
-
-
+	<view>
 		<!-- 帖子 每一项 -->
 		<view class="itemBox p-3" @click="toDetail">
 			<view class="user flex align-center w-100">
@@ -42,12 +40,9 @@
 				<view class="text-light-muted font">
 					{{item.created_time}}
 				</view>
-
 			</view>
 		</view>
-		<view class="divider">
-
-		</view>
+		<view class="divider"></view>
 	</view>
 </template>
 
@@ -69,37 +64,10 @@
 			// 当前 这一项
 			item: {
 				type: Object,
-				default: () => {
-					return {
-						bbs_id: 210,
-						comment_count: 141,
-						created_time: "2022-07-03 16:36:12",
-						desc: {
-							text: "你干嘛",
-							images: []
-						},
-						id: 204,
-						is_top: 1,
-						issupport: true,
-						support_count: 21,
-						user: {
-							id: 1970,
-							avatar: "",
-							sex: "未知",
-							name: "🐔哥你干嘛"
-						},
-						user_id: 1970,
-					}
-				}
+				default: () => {}
 			}
 		},
-		data() {
-			return {
-
-			}
-		},
-
-
+		
 		methods: {
 			detailList() {
 				uni.showLoading({

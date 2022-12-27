@@ -42,7 +42,6 @@
 			}
 			this.time = this.$util.getTime(this.item.group.end_time)
 			this.getTimeList()
-
 		},
 
 		methods: {
@@ -54,11 +53,7 @@
 				}
 			},
 			async getCoureList() {
-				let {
-					code,
-					data
-				} = await indexApi.toCourse(this.data)
-
+				let {code,data} = await indexApi.toCourse(this.data)
 				if (code == 20000) {
 					data.try = data.try.replace(/\<img/gi, '<img style="width :100%;height:auto"')
 					this.item = data
@@ -82,9 +77,6 @@
 				})
 				this.rowsList = res.data.rows
 			}
-
-
-
 		}
 	}
 </script>

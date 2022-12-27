@@ -14,9 +14,9 @@
 
 			<!-- 单选  多选  -->
 			<view class="textarea" v-if="item.type=='answer'||item.type=='completion'">
-				<textarea placeholder="请输入答案..." @input="handelText" :value="item.user_value[iNum]"
-					v-for="(numItem,iNum) in num"></textarea>
-				<view class="bg-main main-btn  mt-3" @click="num++" v-if="item.type=='completion'">
+				<textarea placeholder="请输入答案..." @input="handelText" v-model="item.user_value[iNum]"
+					v-for="(numItem,iNum) in item.user_value"></textarea>
+				<view class="bg-main main-btn  mt-3" @click="handleAddCompletion" v-if="item.type=='completion'">
 					添加填空
 				</view>
 			</view>
@@ -73,6 +73,10 @@
 		},
 
 		methods: {
+			// 添加填空
+			handleAddCompletion() {
+				this.item.user_value.push("")
+			},
 			// 单选 多选 
 			answer(is) {
 				console.log(this.item)

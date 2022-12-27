@@ -16,9 +16,7 @@
 					<!-- <button class="send" @click="sendCode">
 						{{flag?countDown:'发送'}}
 					</button> -->
-
 				</view>
-
 				<view class="item" v-if="item.type=='button'" @click="handelLogin">
 					<button class="btn" :loading="loading">
 						{{item.value}}

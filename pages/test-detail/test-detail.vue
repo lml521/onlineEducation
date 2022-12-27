@@ -11,8 +11,11 @@
 			加载中...
 		</view>
 		<!-- 题目 -->
-		<view class="mb100">
+	
 			<examination :item="item" :i="index" v-if="this.testList.length"></examination>
+	
+		<view class="" style="height: 100rpx; position: fixed;bottom: 0;">
+			
 		</view>
 		<!-- 1 -->
 		<view class="footer">
@@ -232,5 +235,8 @@
 
 	/deep/ .uni-countdown__splitor {
 		font-weight: 900 !important;
+	}
+	.footer{
+		background-color: #fff;
 	}
 </style>

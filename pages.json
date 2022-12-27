@@ -139,7 +139,7 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "我的帖子",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": true
             }
             
         }

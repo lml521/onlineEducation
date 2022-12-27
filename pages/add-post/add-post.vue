@@ -8,7 +8,6 @@
 				</picker>
 			</view>
 		</view>
-
 		<view class="p-2 " style="box-sizing: border-box; width: 100%;">
 			<textarea class="p-2 text" placeholder="请填写帖子内容" enterkeyhint="return" maxlength="140"
 				v-model="data.content[0].text"></textarea>
@@ -18,7 +17,6 @@
 			:limit="9"
 				title="点击可预览选好的图片" @getImgs="getImgs" @progress="progress" @success="success" @fail="fail"
 				@select="select" />
-
 		</view>
 	</view>
 	</view>
@@ -37,7 +35,6 @@
 					page: 1,
 					limit: 100
 				},
-
 				list: [],
 				index: -1,
 				data: {
@@ -47,13 +44,11 @@
 						images: []
 					}]
 				}
-
 			};
 		},
 		created() {
 			this.getbbsList()
 		},
-
 
 		// 按钮 跳转新增帖子页面
 		async onNavigationBarButtonTap(e) {
@@ -65,10 +60,7 @@
 				uni.showLoading({
 					mask: true
 				})
-				console.log(this.num,123)
-				console.log(this.data)
 				let res = await bbsApi.addSave(this.data)
-				console.log(res)
 				if (res.code == 20000) {
 					uni.hideLoading()
 					this.$util.msg('发布成功')
@@ -93,11 +85,7 @@
 				})
 				this.data.content[0].images=data
 				this.num=data
-				
 			},
-
-
-
 
 			// 获取选择社区 数据 
 			async getbbsList() {
@@ -105,16 +93,13 @@
 				if (res.code == 20000) {
 					this.list = res.data.rows
 				}
-
 			},
 
 			// 选择器  选中一项 . 获取到下标 再根据 全部数据 获取到title
 			bindPickerChange(e) {
-
 				this.index = e.detail.value
 				this.title = this.list[this.index].title
 				this.data.bbs_id = this.list[this.index].id
-
 			},
 			// 获取上传状态
 			async select(e) {
@@ -123,7 +108,6 @@
 				let res = await upLoadApi.uploadImg(file)
 				if (res.code == 20000) {
 					console.log(res.data)
-
 				}
 			},
 			// 获取上传进度

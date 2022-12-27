@@ -2,7 +2,6 @@
 	<view class="box">
 		<mescroll-uni :ref="'mescrollRef'+i" @init="mescrollInit" :down="downOption" @down="downCallback" :up="upOption"
 			@up="upCallback" style="background-color: pink;">
-
 			<view class="px-1 pt-2 scroll-row">
 				<!-- 社区 -->
 				<scroll-view scroll-x="true" @scrolltolower="scrolltolower">
@@ -69,13 +68,11 @@
 		},
 		// 实时会获取搜索框你们的内容
 		onNavigationBarSearchInputChanged(e) {
-			console.log(e)
 			this.data.keyword = e.text
 			console.log(this.data.keyword)
 		},
 		// 回车 
 		onNavigationBarSearchInputConfirmed() {
-			console.log(this.data)
 			this.getList()
 		},
 		// 按钮 跳转新增帖子页面 
