@@ -1,6 +1,5 @@
 <template>
 	<view>
-
 		<view class="scroll-row-item course course-one flex p-2">
 			<view class="position-relative">
 				<img :src="item.cover" />
@@ -46,9 +45,7 @@
 					电子书简介
 				</view>
 				<view class="p-2" v-html="item.try">
-
 				</view>
-
 			</view>
 		</view>
 
@@ -65,17 +62,13 @@
 					<view class="flex " style="flex-direction: column !important;">
 						<view>{{ele.title}}</view>
 						<view>
-
 							<text class="border text-danger rounded border-danger font-small px-1 mt-1 mr-1"
 								v-if="ele.isfree">免费试看</text>
 						</view>
 					</view>
-
 				</view>
-
 			</view>
 		</view>
-
 	</view>
 </template>
 
@@ -121,12 +114,9 @@
 				} else if (value >= 10 && value < 100) {
 					return '0' + value
 				}
-
 			},
 		},
 		methods: {
-
-
 			// 获取数据
 			async getBookDetailList() {
 				let res = await bbsApi.getBookDetailList({

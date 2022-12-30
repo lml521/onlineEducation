@@ -151,17 +151,13 @@
 		display: inline-block;
 		border: 1px solid #dee2e6;
 	}
-
 	.active {
 		background-color: #5ccc84;
 		color: #fff;
 	}
-
 	.tabNav {
 		display: flex;
-
 		padding: 20rpx 0;
-
 		view {
 			flex: 1;
 			font-weight: 700;

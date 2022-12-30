@@ -79,7 +79,6 @@
 		},
 		data() {
 			return {
-
 				tabList: [{
 					title: "简介",
 					id: 0
@@ -150,26 +149,15 @@
 				})
 			},
 
-
-
-
-
-
-
-
 			// 获取 专栏详情数据 
 			async getCoureList() {
 				let res = await columnApi.getColumnList(this.data)
-
-				console.log(res)
-
 				this.item = res.data
 				this.columnList = res.data.column_courses
 				this.item.content = this.item.content.replace(/\<img/gi, '<img style="width :100%;height:auto"')
 				uni.setNavigationBarTitle({
 					title: res.data.title
 				})
-
 			},
 
 
@@ -179,9 +167,7 @@
 					group_id: this.data.group_id,
 					page: 1
 				})
-				console.log(res)
 				this.rowsList = res.data.rows
-				console.log(this.rowsList, '0000')
 			},
 
 			// 切换喜欢 
@@ -190,7 +176,6 @@
 					title: "操作中...",
 					mask: true
 				})
-				console.log(this.item.type)
 				let data = {
 					goods_id: this.item.id,
 					type: "column"
@@ -233,7 +218,6 @@
 			width: 100%;
 			height: 100%;
 		}
-
 		.item-time {
 			font-size: 14rpx;
 			color: #fff;
@@ -243,22 +227,17 @@
 			bottom: 10rpx;
 			background-color: rgba(0, 0, 0, 0.4);
 		}
-
 	}
-
 	.content {
 		.title {
 			padding: 20rpx;
 			border-bottom: 1px solid #ccc;
 		}
-
 		.contentHtml {
 			padding: 0 25rpx;
 			box-sizing: border-box;
-
 		}
 	}
-
 	img {
 		width: 100% !important;
 	}
@@ -273,7 +252,6 @@
 		left: 0;
 		right: 0;
 		padding: 20rpx;
-
 		button {
 			display: flex;
 			align-items: center;
@@ -283,7 +261,6 @@
 			color: #fff;
 		}
 	}
-
 	.textMain {
 		color: #62ce89;
 	}
