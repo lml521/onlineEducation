@@ -67,6 +67,8 @@
 				this.data.page = page.num
 				try {
 					let response
+					
+					
 					// 专栏 
 					if (this.type == 'column') {
 						response = await listApi.getList(this.data)
@@ -89,6 +91,12 @@
 					response = await listApi.getLive(this.data)
 					console.log("直播",response)
 					}
+					
+					
+					
+					
+					
+					
 					
 					const list = response.data.rows
 					console.log(list)
