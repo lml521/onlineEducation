@@ -4,7 +4,6 @@
 			<swiper-item class="flex justify-center" v-for="(item,index) in list " :key="index" @click="topage(item)">
 				<img :src="item.src" alt="">
 			</swiper-item>
-			
 		</swiper>
 	</view>
 </template>
